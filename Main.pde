@@ -21,6 +21,8 @@ void draw() {
 
 void keyPressed() {
   showClock = true;
+  file = new SoundFile(this, "adele.mp3");
+  file.play();
 }
 
 void mousePressed() {
