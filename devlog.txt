@@ -6,6 +6,8 @@
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 5/20/16
+Kathy: Styled ipad with icons and added buttons to interact with mousepress
+Calvin and Ruochong: Experimented with music playing on clock and restructured files
 
 -----------------------------------------------------------------------------------------------------------------------------------------
 5/19/16
