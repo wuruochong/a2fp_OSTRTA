@@ -9,7 +9,8 @@ public class Clock {
   float hoursRadius= radius * 0.50;
   float clockDiameter= radius * 1.8;
   PFont font;
-
+  PImage hImg;
+  
   void draw() {
     background(0);
     font = createFont ("Serif", 60);
@@ -48,6 +49,8 @@ public class Clock {
       vertex(x, y);
     }
     text(str(hour()) + ':' + str(minute()), 100, 100); 
+    hImg = loadImage("home.png");
+    image(hImg, 250, 630, 60, 60);
     // endShape();
   }
 }
