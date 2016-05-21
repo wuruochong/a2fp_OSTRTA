@@ -12,12 +12,12 @@ public class Clock {
   PImage hImg;
   
   void draw() {
-    background(0);
+    background(255);
     font = createFont ("Serif", 60);
     textFont (font);
     textAlign(LEFT);
     // Draw the clock background
-    fill(255);
+    fill(225);
     noStroke();
     ellipse(cx, cy, clockDiameter, clockDiameter);
 
@@ -49,8 +49,8 @@ public class Clock {
       vertex(x, y);
     }
     text(str(hour()) + ':' + str(minute()), 100, 100); 
-    hImg = loadImage("home.png");
-    image(hImg, 250, 630, 60, 60);
+    hImg = loadImage("home.jpg");
+    image(hImg, 920, 370, 110, 110);
     // endShape();
   }
 }
