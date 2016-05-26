@@ -9,11 +9,12 @@ CoC CoC;
 boolean showClock;
 boolean home;
 boolean coc;
+boolean cal;
 
 void setup() {
   //size(560, 720);
-  //size(1024, 760);
-  size(1000,1000);
+  size(1024, 760);
+  //size(1000,1000);
   background(255);
   clock = new Clock();
   calen = new Calendar();
@@ -22,6 +23,7 @@ void setup() {
   showClock = false;
   home = false;
   coc = false;
+  cal = false;
   
   //icon images
   wImg = loadImage("wall.jpg");
@@ -46,10 +48,12 @@ void reset() {
 void draw() {
   if (showClock)
     clock.draw();
-  if (coc){
+  else if (coc){
     CoC.setup();
     CoC.draw();
   }
+  else if (cal) {
+    calc.draw();}
   if (home) {
     background(255);
     reset();
@@ -69,6 +73,10 @@ void mousePressed() {
   }
   if (mouseX >= 660 && mouseX <= 720 && mouseY >= 540 && mouseY <=600) {
     coc = true;
+    home=false;
+  }
+  if (mouseX >= 550 && mouseX <= 620 && mouseY >= 540 && mouseY <=610) {
+    cal = true;
     home=false;
   }
   if (mouseX >= 910 && mouseX <=1024 && mouseY >= 360 && mouseY <= 480 ) {
