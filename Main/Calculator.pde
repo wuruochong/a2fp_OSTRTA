@@ -24,16 +24,31 @@ public class Calculator {
   }
   
   void draw() {
+    
+    int xpos, ypos, xsize, ysize;
+    
     background(255);
     fill(255);
     rect(170,150,300,400);
-    fill(120);
-    rect(170,150,60,30);
-    fill(120);
-    rect(170,180,60,30);
-    fill(0);
-    text(str(9), 200, 195);
     
+    fill(120);
+    rect(190,170,250,30);
+    
+    ypos = 200;
+    
+    for (int i = 7 ; i > 0 ; i -=3) { 
+    xpos = 190;
+    fill(120);
+    ypos+=30;
+    
+    for (int j = i; j < i+3; j ++) {
+    fill(120);
+    rect(xpos,ypos,60,30);
+    fill(0);
+    text(str(j), xpos+10, ypos+25);
+    xpos+=50;
+    }
+   }
     
     hImg = loadImage("home.jpg");
     image(hImg, 920, 370, 110, 110);
