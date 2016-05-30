@@ -3,6 +3,13 @@ public class Monster extends Unit{
   int _mp;
   int _xcor;
   int _ycor;
+  
+  int _trainingTime;
+  int _moveSpeed;
+  int _attackSpeed;
+  int _attackRange;
+  int _dmgPerAttack;
+  
   public Monster(int xcor, int ycor){
     _xcor = xcor;
     _ycor = ycor;
