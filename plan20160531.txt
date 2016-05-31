@@ -1,22 +1,30 @@
-
 Team OSTRTA -- Kathy Lau, Calvin Vuong, Ruochong Wu
 APCS2
 Plan 2016/05/31
 
+All of the following tasks will be worked on collaboratively, but certain classes or files for these tasks will be delegated accordingly when the time arrives.
+If our team feels that we are working at a good pace, we may work on two different tasks at the same time and delegate responsibilites accordingly.
+
+Completion date goals for the following tasks are listed next to the name.
+
 Priorities in order of planned completion:
+
 Planning Operations:
-  1. Game flow charts
-  2. UML diagrams
-  3. Decide on order of implementation of classes (top-down/bottom-up)
+  1. Game flow charts (6/2)
+  2. UML diagrams (6/3)
+  3. Decide on order of implementation of classes (top-down/bottom-up) (6/3)
+
 Core Applications:
-  1. Tower Defense Game - half of the classes, gain basic understanding
-        -core gameplay functions first (e.g. tower shooting, monster spawning)
-        -improved graphics and animation later 
-  2. Clock system + alarm
-  3. Calculator
-  4. Calendar
-  5. PacMan
+  1. Tower Defense Game - half of the classes, gain basic understanding (6/10)
+        -core gameplay functions first (e.g. tower shooting, monster spawning) (6/8) 
+        -improved graphics and animation later (6/10)
+  2. Clock system + alarm (6/10)
+  3. Calculator (6/11)
+  4. Calendar (6/11)
+  5. PacMan (6/12)
+  6. Solitaire (6/13)
+
 Supplemental Applications (with concepts that need to be researched):
   1. Weather (need to know about APIs)
   2. Messenger(need to know about sockets/ports)
-  3. Solitaire
+
