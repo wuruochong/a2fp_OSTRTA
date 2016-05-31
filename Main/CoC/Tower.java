@@ -1,18 +1,19 @@
-public class Tower extends Unit{
-  int  _hp;
-  int _xcor;
-  int _ycor;
+// represents any building in the game
+public abstract class Tower extends Unit{
+    int _upgradeState;
 
-   public Tower(int xcor, int ycor){
-    _xcor = xcor;
-    _ycor = ycor;
-    _hp = 100;
-  }
+    // decreases tower hp by n
+    // returns true if tower is destroyed as a result of this damage
+    public boolean takeDamage(int n) {
+	_hp -= n;
+	return ! isAlive();
+    }
 
-   public takeDamage(int n) {
-   	  
-  void draw(){
-    rect(_xcor*100, _ycor*100 , 10, 10);
-  }
+    // returns true if tower successfully upgraded
+    public abstract boolean upgrade();
 
+    void draw(){
+	rect(_xcor*100, _ycor*100 , 10, 10);
+    }
+    
 }
