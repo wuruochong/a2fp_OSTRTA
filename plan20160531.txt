@@ -1,0 +1,22 @@
+
+Team OSTRTA -- Kathy Lau, Calvin Vuong, Ruochong Wu
+APCS2
+Plan 2016/05/31
+
+Priorities in order of planned completion:
+Planning Operations:
+  1. Game flow charts
+  2. UML diagrams
+  3. Decide on order of implementation of classes (top-down/bottom-up)
+Core Applications:
+  1. Tower Defense Game - half of the classes, gain basic understanding
+        -core gameplay functions first (e.g. tower shooting, monster spawning)
+        -improved graphics and animation later 
+  2. Clock system + alarm
+  3. Calculator
+  4. Calendar
+  5. PacMan
+Supplemental Applications (with concepts that need to be researched):
+  1. Weather (need to know about APIs)
+  2. Messenger(need to know about sockets/ports)
+  3. Solitaire
