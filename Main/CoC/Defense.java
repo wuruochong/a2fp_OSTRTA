@@ -6,6 +6,9 @@ public class Defense{
     int _splashRadius;
     ArrayPriorityQueue _monstersToShoot;
     boolean _attackAir;
+
+    int _fireRate; // fires once per every _fireRate draw()
+    int _drawTicks; // keeps track of how many draws
     
     // constructor
     public Defense(int x, int y) {
@@ -20,7 +23,14 @@ public class Defense{
 	_monstersToShoot = new ArrayPriorityQueue<Monsters>();
 	_attackAir = false;
     }
-    
+
+    void draw(List<Monsters> monsterList) {
+	queueMonsters(monsterList);
+	if ( _drawTicks % _fireRate == 0 )
+	    shoot();
+	_drawTicks += 1;
+    }
+
     // determines exactly how to attack monsters (e.g. individual damage, collateral damage, etc.)
     // modify in subclasses to fit tower descriptions
     public void shoot() {
@@ -62,6 +72,7 @@ public class Defense{
 	}
     }
     
+    /** HELPER METHODS BELOW **/
     // returns true if enemy is in shoot radius of the tower
     public boolean inRadius(Monster enemy) {
 	float dist = Math.hypot(this._xcor - enemy._xcor, this._ycor - enemy._ycor);
