@@ -1,25 +1,16 @@
-public class Barbarian {
-  
-  int _hp = 45;
-  int _mp = 25;
-  int _trainingTime = 20;
-  int _moveSpeed = 16;
-  double _attackRange = 0.4;
-  int _dmgPerAttack=8;
-  int _level = 1;
-  int _houseSpace = 1;
-  
+public class Barbarian extends Monster{
+
+
    public Barbarian(){
-   
+
+     _hp = 25;
+     _mp = 25;
+     _trainingTime = 30;
+    _moveSpeed = 32;
+     _attackRange = 0.4;
+     _dmgPerAttack=11;
+     _level = 1;
+     _houseSpace = 1;
    }
-   
-  int attack(){
-    return _dmgPerAttack;
-  }
-  
-  int levelup(){
-    _level++;
-    return _level;
-  }
-  
+
 }
