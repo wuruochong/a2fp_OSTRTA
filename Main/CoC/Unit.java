@@ -4,7 +4,7 @@ public abstract class Unit{
   int _ycor;
 
   boolean isAlive(){
-    return !(_hp == 0);
+    return _hp >= 0;
   }
 //  abstract void draw();
 }

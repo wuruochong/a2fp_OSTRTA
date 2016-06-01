@@ -1,5 +1,5 @@
 // represents a defense tower
-public class Defense{
+public class Defense extends Tower{
     int _attackPower;
     float _critChance;
     int _range;
@@ -9,7 +9,7 @@ public class Defense{
 
     int _fireRate; // fires once per every _fireRate draw()
     int _drawTicks; // keeps track of how many draws
-    
+
     // constructor
     public Defense(int x, int y) {
 	_hp = 100;
@@ -20,7 +20,7 @@ public class Defense{
 	_critChance = 0.01;
 	_range = 50;
 	_splashRadius = 0;
-	_monstersToShoot = new ArrayPriorityQueue<Monsters>();
+	_monstersToShoot = new ArrayPriorityQueue<Monster>();
 	_attackAir = false;
     }
 
@@ -48,7 +48,7 @@ public class Defense{
 	    }
 	}
     }
-	
+
     // deals damage to enemy equal to damage instance var, with crit chance factored in, to enemy
     // if splash is true, that means this damage is due to splash damage
     // returns true if the enemy is dead after attack
@@ -61,7 +61,7 @@ public class Defense{
 
 	return enemy.takeDamage( (int) multiplier * _attackPower);
     }
-    
+
     // queues Monsters into things to shoot for this tower if not already in queue and in radius
     public void queueMonsters(List<Monster> monsterList) {
 	for ( Monster monster : monsterList ) {
@@ -71,7 +71,7 @@ public class Defense{
 		_monstersToShoot.add(monster);
 	}
     }
-    
+
     /** HELPER METHODS BELOW **/
     // returns true if enemy is in shoot radius of the tower
     public boolean inRadius(Monster enemy) {
@@ -83,5 +83,5 @@ public class Defense{
     private boolean inRadius(Monster enemy1, Monster enemy2, int radius) {
 	return radius >= (int) ( Math.hypot(enemy1._xcor - enemy2._xcor, enemy1._ycor - enemy2._ycor) );
     }
-    
+
 }

@@ -6,11 +6,11 @@ public class Monster extends Unit implements Comparable{
 
     int _trainingTime;
     int _moveSpeed;
-    //int _attackSpeed;
     double _attackRange;
     int _dmgPerAttack;
     int _level;
     int _houseSpace;
+    ArrayPriorityQueue _towersToShoot;
 
     public Monster(){
 
@@ -21,6 +21,7 @@ public class Monster extends Unit implements Comparable{
 	_ycor = ycor;
 	_hp = 10;
 	_mp = 10;
+  _towersToShoot = new ArrayPriorityQueue<Tower>();
     }
 
     // reduces HP by n, returns true if monster is now dead
@@ -29,8 +30,9 @@ public class Monster extends Unit implements Comparable{
 	return ! isAlive();
     }
 
-    public int attack(){
-	return _dmgPerAttack;
+    // deals damage to tower
+    public boolean attack(Tower tower) {
+  return enemy.takeDamage( _dmgPerAttack);
     }
 
   public  int levelup(){
@@ -39,19 +41,35 @@ public class Monster extends Unit implements Comparable{
 
     }
 
-  public void subtractHP(int dmg) {
-      _hp -= dmg;
-    }
-
-  public void priorityAttackList() {
-
-    //needs implementation
-
+  public int getAttackRange() {
+    return _attackRange;
   }
 
-  public boolean isAlive(){
-    return _hp >= 0;
-  }
+  // determines exactly how to shoot towers
+    public void shoot() {
+    	while ( ! _towersToShoot.peekTop().isAlive() )
+    	    _towersToShoot.removeTop();
+
+    	Tower tower = _monstersToShoot.peekTop();
+    	attack(tower);
+    	    }
+
+
+
+        // queues Towers into things to attack
+        public void queueTowers(List<Tower> towerList) {
+    	for ( Tower tower : towerList ) {
+    	    if ( inRadius(tower) && ! towerList.contains(tower) )
+    		    _towersToShoot.add(tower);
+    	}
+        }
+
+        // returns true if tower is in attack radius of the monster
+        public boolean inRadius(Tower tower) {
+    	float dist = Math.hypot(this._xcor - tower._xcor, this._ycor - tower._ycor);
+    	return dist <= (_range * this.getAttackRange() );
+        }
+
 
     public int compareTo(Object o){return 0;}
 
