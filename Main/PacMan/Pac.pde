@@ -12,12 +12,24 @@ public class Pac extends Sprite{
 
   void draw() {
     drawSprite();
+    walk();
   }
 
-  public void drawSprite() {
+  void drawSprite() {
     color yellow = color(255, 255, 0);
     fill(yellow);
-    }
+     arc(xcor*20 + xcor*5, ycor*20 + ypos*5 + 60, 25, 25, map((millis() % 500), 0, 500, 0, 0.52), map((millis() % 500), 0, 500, TWO_PI, 5.76) );
+      // mouth movement //
+     }
+   
+   void walk() { //0-right, 1-down, 2-left, 3-up
+   if (board.isWall(xcor, ycor)) {
+     if (nextDir == 0) xcor++;
+     if (nextDir == 1) ycor--;
+     if (nextDir==2) xcor--;
+     if (nextDir==3) ycor++;
+   }
+   }
 
 
   void keyPressed() {
@@ -30,5 +42,8 @@ public class Pac extends Sprite{
     } else if (key == 'w') {
       setDir(3);
     }
+    
+    println(key);
+    
   }
 }
