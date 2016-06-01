@@ -2,6 +2,7 @@
 5/31/16
 Kathy, Calvin, Ruochong: Developed plan and delegated tasks to complete over day off.
 Calvin: wrote some of the basic tower methods AND implemented a data structure, YAY
+Kathy: restructed monsters class as super class and added more subclasses. added pacman framework
 -----------------------------------------------------------------------------------------------------------------------------------------
 5/22/16
 Work on CoC game. Created classes CoC, Unit, Tower, Monster. Created link from Main to CoC.
