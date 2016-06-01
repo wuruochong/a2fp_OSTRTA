@@ -1,18 +1,28 @@
-/** Team Legendary Spoon - Calvin Vuong, Ruochong Wu, Zicheng Zhen
-    APCS2 pd10
-    HW35 -- Privileged Status Gets You to the Front of the Line 
-    2016-05-04 **/
+/*
+NOTE:
+This class has methods that are defined in the Java PriorityQueue API that were not implemented
+when we wrote a PriorityQueue class for class homework. (e.g. contains(), iterator(), etc.)
+
+This may give the impression that the methods in the class are "breaking" the rules of a priority
+queue, but they are indeed not.
+*/
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ArrayPriorityQueue implements PriorityQueue {
+public class ArrayPriorityQueue implements Iteratorable {
     /** Instance Variables **/
     ArrayList<Comparable> _queue; //reversely ordered; dequeue from end of array
 
     /** Default Constructor **/
     public ArrayPriorityQueue() {
 	_queue = new ArrayList<Comparable>();
+    }
+    
+    /** Iterator **/
+    public Iterator iterator() {
+	return _queue.iterator();
     }
 
     /** Methods **/

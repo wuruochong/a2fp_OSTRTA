@@ -3,8 +3,10 @@ public class Defense{
     int _attackPower;
     float _critChance;
     int _range;
+    int _splashRadius;
     ArrayPriorityQueue _monstersToShoot;
-
+    boolean _attackAir;
+    
     // constructor
     public Defense(int x, int y) {
 	_hp = 100;
@@ -14,32 +16,48 @@ public class Defense{
 	_attackPower = 10;
 	_critChance = 0.01;
 	_range = 50;
+	_splashRadius = 0;
 	_monstersToShoot = new ArrayPriorityQueue<Monsters>();
+	_attackAir = false;
     }
     
     // determines exactly how to attack monsters (e.g. individual damage, collateral damage, etc.)
+    // modify in subclasses to fit tower descriptions
     public void shoot() {
 	// remove left-over dead monsters from queue
 	while ( ! _monstersToShoot.peekTop().isAlive() )
 	    _monstersToShoot.removeTop();
 
 	Monster target = _monstersToShoot.peekTop();
-	attack(target);
+	attack(target, false);
+	if ( _splash != 0 ) { // if there is splash damage
+	    // find all monsters in splash radius
+	    for ( Monster monster : _monstersToShoot ) {
+		if ( monster.isAlive() && inRadius(target, monster, _splash) )
+		    attack(monster, true); // attack them w/ splash damage
+	    }
+	}
     }
 	
-    // deals damage to enemy equal to damage instance var, with crit chance factored in
+    // deals damage to enemy equal to damage instance var, with crit chance factored in, to enemy
+    // if splash is true, that means this damage is due to splash damage
     // returns true if the enemy is dead after attack
-    public boolean attack(Monster enemy){
+    public boolean attack(Monster enemy, boolean splash){
+	int mulitplier = 1;
 	if ( Math.random() < _critChance )
-	    return enemy.takeDamage(10 * _attackPower);
-	else
-	    return enemy.takeDamage(_attackPower);
+	    multiplier *= 10;
+	if ( splash )
+	    multiplier /= 5;
+
+	return enemy.takeDamage( (int) multiplier * _attackPower);
     }
     
     // queues Monsters into things to shoot for this tower if not already in queue and in radius
     public void queueMonsters(List<Monster> monsterList) {
 	for ( Monster monster : monsterList ) {
-	    if ( inRadius(monster) && ! monsterList.contains(monster) )
+	    if ( (! _attackAir) && monster.isFlying() ) // do not queue flying monsters if tower cannot attack them
+		; // do nothing
+	    else if ( inRadius(monster) && ! monsterList.contains(monster) )
 		_monstersToShoot.add(monster);
 	}
     }
@@ -48,6 +66,11 @@ public class Defense{
     public boolean inRadius(Monster enemy) {
 	float dist = Math.hypot(this._xcor - enemy._xcor, this._ycor - enemy._ycor);
 	return dist <= _range;
+    }
+
+    // returns true if enemy2 is in specified radius of enemy1
+    private boolean inRadius(Monster enemy1, Monster enemy2, int radius) {
+	return radius >= (int) ( Math.hypot(enemy1._xcor - enemy2._xcor, enemy1._ycor - enemy2._ycor) );
     }
     
 }
