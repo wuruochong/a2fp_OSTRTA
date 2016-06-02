@@ -1,0 +1,61 @@
+UML Diagrams
+
+---------------------------------
+
+Unit (abstract)
+---------------------------------
+int _hp
+int _xcor
+int _ycor
+
++ boolean isAlive()
++ abstract void draw()
+
+Tower (extends Unit) (abstract)
+---------------------------------
+int _upgradeState;
+
++ boolean takeDamage(int)
++ abstract boolean upgrade()
++ void draw()
+
+Defense (extends Tower)
+---------------------------------
+int _attackPower
+float _critChance
+int _range
+int _splashRadius
+ArrayPriorityQueue _monstersToShoot
+boolean _attackAir
+int _fireRate
+int _drawTicks
+
+static int cost
+
++ void draw(List<Monster>)
++ void shoot()
++ boolean attack(Monster, boolean)
++ void queueMonsters(List<Monster>)
++ void upgrade()
++ boolean inRadius(Monster)
+- boolean inRadius(Monster, Monster, int)
+
+Sniper (extends Tower)
+---------------------------------
++ void upgrade()
++ void draw()
+
+Canon (extends Tower)
+---------------------------------
++ void upgrade()
++ void draw()
+
+Tesla (extends Tower)
+---------------------------------
+int _timesPerShoot;
+
+static int cost
+
++ void shoot()
++ void upgrade()
++ void draw()
