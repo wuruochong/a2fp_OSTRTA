@@ -10,6 +10,8 @@ public class Defense extends Tower{
     int _fireRate; // fires once per every _fireRate draw()
     int _drawTicks; // keeps track of how many draws
 
+    static int cost = 100;
+
     // constructor
     public Defense(int x, int y) {
 	_hp = 100;
@@ -22,11 +24,12 @@ public class Defense extends Tower{
 	_splashRadius = 0;
 	_monstersToShoot = new ArrayPriorityQueue<Monster>();
 	_attackAir = false;
+	_fireRate = 60; // once per second
     }
 
     void draw(List<Monsters> monsterList) {
 	queueMonsters(monsterList);
-	if ( _drawTicks % _fireRate == 0 )
+	if ( ! _monstersToShoot.isEmpty() && _drawTicks % _fireRate == 0 )
 	    shoot();
 	_drawTicks += 1;
     }
@@ -70,6 +73,14 @@ public class Defense extends Tower{
 	    else if ( inRadius(monster) && ! monsterList.contains(monster) )
 		_monstersToShoot.add(monster);
 	}
+    }	
+
+    public void upgrade() {
+	_attackPower = (int) (_attackPower * 1.1);
+	_range = (int) (_range * 1.1);
+	_hp = (int) (_hp * 1.1);
+	_splashRadius = (int) (_splashRadius * 1.1);
+	_upgradeState += 1;
     }
 
     /** HELPER METHODS BELOW **/
