@@ -17,6 +17,10 @@ Planning Operations:
 Core Applications:
   1. Tower Defense Game - half of the classes, gain basic understanding (6/10)
         -core gameplay functions first (e.g. tower shooting, monster spawning) (6/8) 
+	      o get all tower and monster classes done (6/3)
+	      o get player class done (6/4)
+	      o build a main driver file which will make the above classes interact with each other (6/6)
+	      o work on algorithms and AI to produce enemy bases (6/8)
         -improved graphics and animation later (6/10)
   2. Clock system + alarm (6/10)
   3. Calculator (6/11)
