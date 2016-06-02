@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ArrayPriorityQueue implements Iterable {
+public class ArrayPriorityQueue<T> implements Iterable {
     /** Instance Variables **/
     ArrayList<Comparable> _queue; //reversely ordered; dequeue from end of array
 
@@ -21,7 +21,7 @@ public class ArrayPriorityQueue implements Iterable {
     }
     
     /** Iterator **/
-    public Iterator iterator() {
+    public Iterator<Comparable> iterator() {
 	return _queue.iterator();
     }
 

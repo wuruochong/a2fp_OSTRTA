@@ -3,7 +3,8 @@ public class Monster extends Unit implements Comparable{
     int _mp;
     int _xcor;
     int _ycor;
-
+    boolean isFlying = false;
+    int _range;
     int _trainingTime;
     int _moveSpeed;
     double _attackRange;
@@ -66,14 +67,14 @@ public class Monster extends Unit implements Comparable{
 
         // returns true if tower is in attack radius of the monster
         public boolean inRadius(Tower tower) {
-    	float dist = Math.hypot(this._xcor - tower._xcor, this._ycor - tower._ycor);
+    	double dist = Math.hypot(this._xcor - tower._xcor, this._ycor - tower._ycor);
     	return dist <= (_range * this.getAttackRange() );
         }
 
 
-    public int compareTo(Object o){return 0;}
+    public int compareTo(Monster o){return 0;}
 
-    //void draw(){
-	//rect(_xcor*100, _ycor*100 , 10, 10);
-  //  }
+    void draw(){
+	rect(_xcor*100, _ycor*100 , 10, 10);
+    }
 }

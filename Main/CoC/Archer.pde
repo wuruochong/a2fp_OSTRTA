@@ -14,7 +14,7 @@ public class Archer extends Monster{
    }
 
    public int attack(){
-     //shoot arrows implementation
+     return 1;//shoot arrows implementation
    }
 
 

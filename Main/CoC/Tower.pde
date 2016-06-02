@@ -10,7 +10,7 @@ public abstract class Tower extends Unit{
     }
 
     // returns true if tower successfully upgraded
-    public abstract boolean upgrade();
+    public abstract void upgrade();
 
     void draw(){
 	rect(_xcor*100, _ycor*100 , 10, 10);
