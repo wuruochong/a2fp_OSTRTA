@@ -5,7 +5,7 @@ Ghost red;
 void setup() {
   size(560,720);
   background(0);
-  frameRate(2);
+  frameRate(2.5);
   pac = new Pac();
   red = new Ghost();  
  // board = new Board("file name here");

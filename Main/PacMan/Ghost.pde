@@ -29,7 +29,7 @@ public class Ghost extends Sprite{
   }
 
   public void drawSprite() {  
-    color eyes = color(40, 80, 251);
+   /* color eyes = color(40, 80, 251);
     color skin = skinColor;
     color mouth = skinColor;
     
@@ -37,7 +37,7 @@ public class Ghost extends Sprite{
       skin = color(40, 80, 251);
       mouth = color (255);
       eyes = color(255, 255, 255);
-    }
+    }*/
     
     fill(skinColor);
     rect((xcor*20+xpos*5)-12.5, (ycor*20+ypos*5+60)-1, 25, 9);
