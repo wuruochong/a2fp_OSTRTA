@@ -9,4 +9,13 @@ public boolean isAlive() {
 abstract void draw();
 
 abstract int getCost();
+
+void setX(int x) {
+  _xcor = x;
+}
+
+void setY(int y) {
+  _ycor = y;
+}
+
 }
