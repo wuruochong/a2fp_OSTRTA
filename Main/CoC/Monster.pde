@@ -12,6 +12,7 @@ public class Monster extends Unit implements Comparable{
     int _level;
     int _houseSpace;
     ArrayPriorityQueue _towersToShoot;
+    
 
     public Monster(){
 
@@ -37,15 +38,23 @@ public class Monster extends Unit implements Comparable{
     public boolean attack(Tower tower) {
   return tower.takeDamage( _dmgPerAttack);
     }
-
-  public  int levelup(){
-      _level++;
+    
+  public int levelup(){
+      _level++;  
+      _dmgPerAttack = (int) (_dmgPerAttack*1.3) ;
+      _hp = (int) (_hp * 1.3);
+      _mp = (int) (_mp * 1.5);
+      
       return _level;
 
     }
-
+    
   public int getAttackRange() {
     return (int)_attackRange;
+  }
+  
+  public int getCost() {
+    return _mp;
   }
 
   // determines exactly how to shoot towers

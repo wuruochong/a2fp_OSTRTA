@@ -7,4 +7,6 @@ public boolean isAlive() {
   return _hp > 0;
 }
 abstract void draw();
+
+abstract int getCost();
 }

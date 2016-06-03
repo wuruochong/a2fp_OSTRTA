@@ -20,6 +20,8 @@ public class Canon extends Defense {
 	_splashRadius = 50;
 	_attackAir = false;
 	_attackRate = 60; // once per second
+        
+        _mp = 200;
     }
 
     public void upgrade() {

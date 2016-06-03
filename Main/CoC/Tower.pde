@@ -1,6 +1,7 @@
 // represents any building in the game
 public abstract class Tower extends Unit implements Comparable{
     int _upgradeState;
+    int _mp = 100;
 
     // decreases tower hp by n
     // returns true if tower is destroyed as a result of this damage
@@ -21,6 +22,10 @@ public abstract class Tower extends Unit implements Comparable{
     }
     public boolean isAlive() {
   return _hp > 0;
-}
+  }
+  
+   public int getCost(){
+     return _mp;
+   }
     
 }

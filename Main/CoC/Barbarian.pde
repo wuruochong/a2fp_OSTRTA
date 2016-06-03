@@ -12,5 +12,7 @@ public class Barbarian extends Monster{
      _level = 1;
      _houseSpace = 1;
    }
+   
+
 
 }
