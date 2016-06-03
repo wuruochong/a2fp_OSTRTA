@@ -1,5 +1,6 @@
 6/2/16
 Calvin: 6:41 Drew up a preliminary UML diagram of the Defense Tower classes.
+Calvin: 8:00 Started debugging the tower and monster classes.
 Ruochong: Drew more of the flowchart and UML diagram.
 Calvin: 10:07 Improved on flowchart.
 -----------------------------------------------------------------------------------------------------------------------------------------
