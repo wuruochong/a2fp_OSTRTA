@@ -39,16 +39,16 @@ public class Defense extends Tower{
     // modify in subclasses to fit tower descriptions
     public void shoot() {
 	// remove left-over dead monsters from queue
-	while ( ! _monstersToShoot.peekTop().isAlive() )
+	while ( ! ((Monster)(_monstersToShoot.peekTop())).isAlive())
 	    _monstersToShoot.removeTop();
 
-	Monster target = _monstersToShoot.peekTop();
+	Monster target = (Monster)_monstersToShoot.peekTop();
 	attack(target, false);
 	if ( _splashRadius != 0 ) { // if there is splash damage
 	    // find all monsters in splash radius
-	    for ( Monster monster : _monstersToShoot ) {
-		if ( monster.isAlive() && inRadius(target, monster, _splashRadius) )
-		    attack(monster, true); // attack them w/ splash damage
+	    for ( Object monster : _monstersToShoot) {
+		if ( ((Monster)monster).isAlive() && inRadius((((Unit)target)),(Unit) monster, _splashRadius) )
+		    attack((Monster)monster, true); // attack them w/ splash damage
 	    }
 	}
     }
@@ -92,7 +92,7 @@ public class Defense extends Tower{
     }
 
     // returns true if enemy2 is in specified radius of enemy1
-    private boolean inRadius(Monster enemy1, Monster enemy2, int radius) {
+    private boolean inRadius(Unit enemy1, Unit enemy2, int radius) {
 	return radius >= (int) ( Math.hypot(enemy1._xcor - enemy2._xcor, enemy1._ycor - enemy2._ycor) );
     }
 

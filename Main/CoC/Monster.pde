@@ -30,10 +30,12 @@ public class Monster extends Unit implements Comparable{
 	_hp -= n;
 	return ! isAlive();
     }
+    
+
 
     // deals damage to tower
     public boolean attack(Tower tower) {
-  return enemy.takeDamage( _dmgPerAttack);
+  return tower.takeDamage( _dmgPerAttack);
     }
 
   public  int levelup(){
@@ -43,22 +45,22 @@ public class Monster extends Unit implements Comparable{
     }
 
   public int getAttackRange() {
-    return _attackRange;
+    return (int)_attackRange;
   }
 
   // determines exactly how to shoot towers
     public void shoot() {
-    	while ( ! _towersToShoot.peekTop().isAlive() )
+    	while ( ! ((Tower)(_towersToShoot.peekTop())).isAlive() )
     	    _towersToShoot.removeTop();
 
-    	Tower tower = _monstersToShoot.peekTop();
+    	Tower tower = (Tower)_towersToShoot.peekTop();
     	attack(tower);
     	    }
 
 
 
         // queues Towers into things to attack
-        public void queueTowers(List<Tower> towerList) {
+        public void queueTowers(ArrayList<Tower> towerList) {
     	for ( Tower tower : towerList ) {
     	    if ( inRadius(tower) && ! towerList.contains(tower) )
     		    _towersToShoot.add(tower);
@@ -72,7 +74,7 @@ public class Monster extends Unit implements Comparable{
         }
 
 
-    public int compareTo(Monster o){return 0;}
+    public int compareTo(Object o){return 0;}
 
     void draw(){
 	rect(_xcor*100, _ycor*100 , 10, 10);
