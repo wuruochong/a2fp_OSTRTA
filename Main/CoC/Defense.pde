@@ -7,6 +7,7 @@ public class Defense extends Tower{
     int _splashRadius;
     ArrayPriorityQueue<Monster> _monstersToShoot;
     boolean _attackAir;
+    int _mp;
 
     int _attackRate; // fires once per every _fireRate draw()
     int _drawTicks; // keeps track of how many draws

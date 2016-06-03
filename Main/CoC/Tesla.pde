@@ -11,12 +11,12 @@
 
 public class Tesla extends Defense {
 
-    static int cost = 300;
     int _timesPerShoot = 3;
 
     public Tesla(int x, int y) {
 	super(x, y); 
 	_hp = 350;
+  _mp = 300;
 	_attackPower = 100;
 	_critChance = .1;
 	_range = 150;
