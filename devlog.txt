@@ -6,6 +6,7 @@ Calvin: 6:41 Drew up a preliminary UML diagram of the Defense Tower classes
 Calvin: 12:25 Wrote most basic methods for Defense towers and implemented splash damage functionality for defense towers.
 Calvin: 03:55 Handled tower firing rate and wrote basic draw() method for defense towers.
 Calvin: 11:29 Wrote tower upgrade() methods and wrote many defense tower subclasses.
+Kathy: Added priority queueing to Monsters. Gave pacman moving functionality. 
 -----------------------------------------------------------------------------------------------------------------------------------------
 5/31/16
 Kathy, Calvin, Ruochong: Developed plan and delegated tasks to complete over day off.
