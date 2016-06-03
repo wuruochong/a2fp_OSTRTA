@@ -59,3 +59,30 @@ static int cost
 + void shoot()
 + void upgrade()
 + void draw()
+
+
+Monster (extends Unit) (abstract)
+---------------------------------
+int  _hp;
+int _mp;
+int _xcor;
+int _ycor;
+boolean isFlying = false;
+int _range;
+int _trainingTime;
+int _moveSpeed;
+double _attackRange;
+int _dmgPerAttack;
+int _level;
+int _houseSpace;
+ArrayPriorityQueue _towersToShoot;
+
++ takeDamage(int)    
++ boolean attack(Tower tower) 
++ int levelup()
++ int getAttackRange() 
++ void shoot() 
++ void queueTowers(ArrayList<Tower> towerList) 
++ boolean inRadius(Tower tower) 
++ int compareTo(Object o)
++ void draw()
