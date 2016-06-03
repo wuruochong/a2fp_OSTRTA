@@ -86,3 +86,22 @@ ArrayPriorityQueue _towersToShoot;
 + boolean inRadius(Tower tower) 
 + int compareTo(Object o)
 + void draw()
+
+
+Player	(Serves as control of homebase)
+---------------------------------
+String _name;
+int _gold;
+int _elixir;
+ArrayList<Tower> _towersOwned;
+ArrayList<Monster> _monstersOwned;
+    
++ String getName()
++ int getGold()
++ int getElixir()
++ void pay(int payment)  
++ boolean buyTower(Tower) 
++ boolean buyMonster(Monster) 
++ boolean upgradeTower(Tower)
++ void placeItem(Unit)
+

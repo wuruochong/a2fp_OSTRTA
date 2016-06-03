@@ -38,6 +38,7 @@ public class Player{
   
   public boolean buyTower(Tower property) {
     if (_gold >= property.getCost()) {
+          pay(property.getCost());
           placeItem(property);
           _towersOwned.add(property);
           return true;
@@ -47,6 +48,7 @@ public class Player{
   
   public boolean buyMonster(Monster mon) {
       if (_gold >= mon.getCost()){
+        pay(property.getCost());
         _monstersOwned.add(mon);
     return true;
     }
