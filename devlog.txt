@@ -1,5 +1,9 @@
+6/4/16
+Calvin: 11:34 Fixed a critical bug pertaining to the Button
+
 6/3/16
 Kathy: Added Player/Homebase Class. Worked on UML.
+Calvin: Wrote majority of the Button class and its event listeners.
 
 6/2/16
 Kathy: 11:00 - 1:00 Worked on Players class, added upgrade for monsters, added board imgs for pacman.
