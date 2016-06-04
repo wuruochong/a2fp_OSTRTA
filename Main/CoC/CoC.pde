@@ -3,7 +3,7 @@ PImage bImg;
 Unit[][] grid;
 PFont font;
 void setup(){
-  size(1000,1000);
+  size(1000,800);
   background(0);
   bImg = loadImage("grass.jpg");
   image(bImg,0,0);
