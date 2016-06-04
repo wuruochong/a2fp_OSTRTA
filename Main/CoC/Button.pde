@@ -6,6 +6,9 @@ public class Button {
   String displayText;
   int[] textColor;
   int[] buttonColor;
+  PImage img;
+  
+  boolean imgUsed;
   
   public Button(int[] coor1, int[] coor2, String tag, String text){
     topLeftCorner = coor1;
@@ -22,12 +25,26 @@ public class Button {
     buttonColor = rgbButton;
   }
   
+  public Button(int[] coor1, String tag, String i) {
+    topLeftCorner = coor1;
+    img = loadImage(i);
+    int [] coor2 = {img.width + coor1[0] ,img.height + coor1[1] };
+    bottomRightCorner = coor2;
+    identifier = tag;
+    imgUsed = true;
+  }
+  
   void draw() {
+    if (imgUsed) {
+    image(img,900,600);
+    }
+    else{
     fill(buttonColor[0], buttonColor[1], buttonColor[2]);
     rect(topLeftCorner[0], topLeftCorner[1], bottomRightCorner[0] - topLeftCorner[0], bottomRightCorner[1] - topLeftCorner[1]);
     
     fill(textColor[0], textColor[1], textColor[2]);
     text(displayText, (int ) (topLeftCorner[0] * 1.25), (int) (topLeftCorner[1] * 1.25));
+ }
   }
   
   public boolean buttonPressed() {

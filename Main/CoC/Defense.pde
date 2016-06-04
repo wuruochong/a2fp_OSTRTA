@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class Defense extends Tower{
     int _attackPower;
     float _critChance;
-    int _range;
     int _splashRadius;
     ArrayPriorityQueue<Monster> _monstersToShoot;
     boolean _attackAir;

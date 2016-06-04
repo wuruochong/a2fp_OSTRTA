@@ -2,20 +2,25 @@ public abstract class Unit{
   int _hp;
   int _xcor;
   int _ycor;
+  int _mp;
 
 public boolean isAlive() {
   return _hp > 0;
 }
 abstract void draw();
 
-abstract int getCost();
+int getCost(){
+     return _mp;
+   }
 
-void setX(int x) {
-  _xcor = x;
-}
+   void setCoor(int x, int y) {
+   _xcor = x;
+   _ycor = y;
+ }
 
-void setY(int y) {
-  _ycor = y;
-}
-
+ boolean takeDamage(int n) {
+  _hp -= n;
+  return ! isAlive();
+    }
+    
 }

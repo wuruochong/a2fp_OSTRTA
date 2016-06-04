@@ -1,8 +1,5 @@
 public class Monster extends Unit implements Comparable{
-    int  _hp;
-    int _mp;
-    int _xcor;
-    int _ycor;
+
     boolean isFlying = false;
     int _range;
     int _trainingTime;
@@ -26,12 +23,6 @@ public class Monster extends Unit implements Comparable{
   _towersToShoot = new ArrayPriorityQueue<Tower>();
     }
 
-    // reduces HP by n, returns true if monster is now dead
-    public boolean takeDamage(int n) {
-	_hp -= n;
-	return ! isAlive();
-    }
-    
 
 
     // deals damage to tower

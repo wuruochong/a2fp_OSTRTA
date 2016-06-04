@@ -1,8 +1,9 @@
 // represents any building in the game
 public abstract class Tower extends Unit implements Comparable{
     int _upgradeState;
-    int _mp = 100;
-
+    int _range;
+    boolean _show; //show range
+    
     // decreases tower hp by n
     // returns true if tower is destroyed as a result of this damage
     public boolean takeDamage(int n) {
@@ -24,8 +25,18 @@ public abstract class Tower extends Unit implements Comparable{
   return _hp > 0;
   }
   
-   public int getCost(){
-     return _mp;
-   }
-    
+   
+   void setCoor(int x, int y) {
+   _xcor = x;
+   _ycor = y;
+ }
+ 
+ int[][] showRange() {
+   int[] topLC = {_xcor, _ycor };
+   int[] bottomRC = {_xcor + _range, _ycor + _range}; 
+   int [][] coords = {topLC,bottomRC};    
+   return coords;
+ }
+ 
+ 
 }
