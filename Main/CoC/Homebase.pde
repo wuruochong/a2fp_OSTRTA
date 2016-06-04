@@ -1,24 +1,45 @@
 import java.util.ArrayList; //for inventory?
 
-public class Player{
+public class Homebase{
   String _name;
   int _gold;
   int _elixir;
   ArrayList<Tower> _towersOwned;
   ArrayList<Monster> _monstersOwned;
-    
+  ArrayList<Button> _buttons;
   
- public Player() {
+ public Homebase() {
+  _name = "default";
   _gold = 9999;
   _elixir = 9999;
   _towersOwned = new ArrayList<Tower>();
   _monstersOwned = new ArrayList<Monster>();
+  _buttons = new ArrayList<Button>();
+  _buttons.add( new Button(new int[] {200, 100}, new int[] {300,150}, "genText", "Click") );
   }
   
-  public Player(String newName){
+  public Homebase(String newName){
     this();
     _name = newName;
   }
+  
+  void draw() {
+    for ( Tower building : _towersOwned )
+      building.draw();
+    for ( Button button : _buttons )
+      button.draw();
+  }
+  
+  void mousePressed() {
+    println("hi");
+    for ( Button button : _buttons ) {
+      if ( button.buttonPressed() ) {
+        String tag = button.getID();
+        println(tag);
+      }
+    }
+  }
+        
   
   public String getName(){
     return _name;
@@ -48,7 +69,7 @@ public class Player{
   
   public boolean buyMonster(Monster mon) {
       if (_gold >= mon.getCost()){
-        pay(property.getCost());
+        pay(mon.getCost());
         _monstersOwned.add(mon);
     return true;
     }
@@ -56,7 +77,7 @@ public class Player{
   }
   
  public boolean upgradeTower(Tower t) {
-   
+   return true;
  }
   
   void placeItem(Unit p) {
