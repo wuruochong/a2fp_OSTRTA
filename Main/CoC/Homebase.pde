@@ -24,6 +24,7 @@ public class Homebase{
   }
   
   void draw() {
+    //image(bImg,0,0);
     for ( Tower building : _towersOwned )
       building.draw();
     for ( Button button : _buttons )
@@ -31,11 +32,11 @@ public class Homebase{
   }
   
   void mousePressed() {
-    println("hi");
     for ( Button button : _buttons ) {
       if ( button.buttonPressed() ) {
         String tag = button.getID();
-        println(tag);
+        if ( tag.equals("genText") )
+          text("hello, it's me", 500, 500);
       }
     }
   }

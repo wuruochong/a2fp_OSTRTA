@@ -1,26 +1,26 @@
 
-
 PImage bImg;
-//Unit[][] grid;
 PFont font;
+Homebase base;
+int state; // 0 for normal, 1 for attacking, 2 for being attacked
+
 void setup(){
   size(1280,720);
-  background(0);
   bImg = loadImage("grass.jpg");
   image(bImg,0,0);
-  //grid = new Unit[10][10];
-  //grid[0][0] = new Monster(0,0);
-  //grid[5][6] = new Defense(5,6);
+  state = 0;
+  base = new Homebase();
+  
 }
 
-//void mousePressed() {
-  //println("hi");
-//}
+void mousePressed() {
+  if ( state == 0 )
+    base.mousePressed();
+}
 
 void draw(){
-  Homebase game = new Homebase();
-  //println(mouseX);
-  game.draw();
+  //image(bImg,0,0);
+  base.draw();
   /*
   for (Unit[] x : grid){
     for (Unit y : x){
