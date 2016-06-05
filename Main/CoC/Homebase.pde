@@ -10,6 +10,7 @@ public class Homebase{
   PImage bImg;
   PImage shopImg;
   
+  //choices of towers and monsters that can be beought from the shop at level
   ArrayList<Tower> _towerChoices;
   ArrayList<Monster> _monsterChoices;
   
@@ -40,7 +41,8 @@ public class Homebase{
   }
   
   void draw() {
-    if (state == 1) {
+    //SHOP MODE
+    if (state == 1) { 
       rect(0, 0, 1280, 720);
       fill(210,180,140);;
       rect(0, 0, 1280, 100);
@@ -50,6 +52,8 @@ public class Homebase{
       rect(1100, 40, 40, 40);
       fill(255);
     }
+    
+    //VIEW MODE
     else if (state == 0) {
       
       //to reset
@@ -60,7 +64,7 @@ public class Homebase{
       for ( Tower building : _towersOwned ) {
         if (building.isAlive())
         {
-          //to show range, paint green box under tower
+          //to show range of tower, paint green box under tower
           if (building._show)
             {
               fill(0, 255, 0);
@@ -78,6 +82,7 @@ public class Homebase{
         else 
           _monstersOwned.remove(m);
       }
+      //draw all buttons
       for ( Button button : _buttons )
         button.draw();
       }
@@ -97,7 +102,7 @@ public class Homebase{
         //clicked on shop icon
         if (tag.equals("shop") )
           {
-            state = 1;
+            state = 1; //set mode to shop mode
           }
         }
     }
@@ -110,14 +115,15 @@ public class Homebase{
         && (mouseY + 50) <= t._ycor
         && t._show == false ) {
           t._show = true;
+          //store coordinates of tower range
           coords = t.showRange();
         }
-        
+        //unshow range when unclicked
           if (t._show == true)
           t._show = false;
     }
     
-    //exit to homebase
+    //exit to homebase, back to VIEW MODE
     if (state == 1 && 
         mouseX>= 1100 && 
         mouseX <= 1140 &&
@@ -149,6 +155,9 @@ public class Homebase{
     _elixir -= e;
   }
   
+  //purchases Tower with gold
+  //places tower according to mouse specified position
+  //addes to towersOwned array
   public boolean buyTower(Tower property) {
     if (_gold >= property.getCost()) {
           payGold(property.getCost());
@@ -164,7 +173,8 @@ public class Homebase{
       if (_elixir >= mon.getCost()){
         payElixir(mon.getCost());
         _monstersOwned.add(mon);
-        
+     
+        /*
         //walk monster to campfire location
         //walking x coordinate
         while  (mon._xcor != campFireLoc[0]) {
@@ -180,6 +190,7 @@ public class Homebase{
           else
             mon._ycor--;
         }
+        */
     return true;
     }
     return false;
@@ -189,7 +200,7 @@ public class Homebase{
    return true;
  }
  
-  
+ //to place tower after its bought at mouse position 
   void placeItem(Tower p) {
     if (mousePressed && (mouseX - 50) >= p._xcor 
         && (mouseX + 50) <= p._xcor 

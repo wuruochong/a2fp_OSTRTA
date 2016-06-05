@@ -25,6 +25,10 @@ public class Button {
     buttonColor = rgbButton;
   }
   
+  
+  //constructuor to take name of image, 
+  //button will display the image and be clickable
+  
   public Button(int[] coor1, String tag, String i) {
     topLeftCorner = coor1;
     img = loadImage(i);
@@ -35,9 +39,12 @@ public class Button {
   }
   
   void draw() {
+    //if the constructor of a button image is used, load image
     if (imgUsed) {
     image(img,900,600);
     }
+    
+    //else fill with rectanglular button with text
     else{
     fill(buttonColor[0], buttonColor[1], buttonColor[2]);
     rect(topLeftCorner[0], topLeftCorner[1], bottomRightCorner[0] - topLeftCorner[0], bottomRightCorner[1] - topLeftCorner[1]);

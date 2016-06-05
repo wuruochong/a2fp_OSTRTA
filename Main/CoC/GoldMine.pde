@@ -21,6 +21,11 @@ public class GoldMine extends Tower{
 
     }
 
+  //if the gold mine contains gold, and is clicked on
+  //measure the time ellapsed from when gold was last collected
+  //restart the time
+  //return gold
+  
   int collectGold(){
     if (mousePressed && _goldCollected >= 1) {
       endTime = System.nanoTime() - startTime;
@@ -31,7 +36,8 @@ public class GoldMine extends Tower{
     }
     return 0;
   }
-
+  
+//Upgrading gold mine increases max gold that can be collected and HP level
     public void upgrade() {
   _maxGold+=500;
   _hp += 40;

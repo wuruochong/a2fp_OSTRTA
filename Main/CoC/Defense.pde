@@ -26,7 +26,7 @@ public class Defense extends Tower{
 	_attackAir = false;
 	_attackRate = 60; // once per second
 
-        _mp = 100; //subject to change
+   _mp = 100; //subject to change
     }
 
     void draw(ArrayList<Monster> monsterList) {
