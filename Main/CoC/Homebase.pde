@@ -32,7 +32,7 @@ public class Homebase{
   _monsterChoices.add(new Barbarian());
   _buttons = new ArrayList<Button>();
   _buttons.add(new Button(new int[] {900, 600}, "shop", "shop.jpg"));
-  _buttons.add( new Button(new int[] {200, 100}, new int[] {300,150}, "genText", "Click") );
+//  _buttons.add( new Button(new int[] {200, 100}, new int[] {300,150}, "genText", "Click") );
   }
   
   public Homebase(String newName){

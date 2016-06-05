@@ -12,7 +12,7 @@ void setup(){
   image(bImg,0,0);
   state = 0;
   base = new Homebase();
-  attack  =new Button(new int[] {100, 200}, new int[] {500,600},"attack", "attack");
+  attack  =new Button(new int[] {200, 100}, new int[] {300,150},"attack", "attack");
   test = new TestBase(base._monstersOwned, base._gold);
 }
 
@@ -25,15 +25,19 @@ void mousePressed() {
 }
 
 void draw(){
-  attack.draw();
+
   if (state==0){
   image(bImg,0,0);
     base.draw();
+      attack.draw();
   }
     
     
   if (state == 1){
     test.draw();
+    if (!test.cont){
+      state = 0;
+    }
   }
     
   /*

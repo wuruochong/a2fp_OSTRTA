@@ -14,6 +14,8 @@ public class TestBase{
   ArrayList<Monster> _monstersOwned;
   ArrayList<Monster> _monsterChoices;
   ArrayList<Tower> _enemyTowers;
+  Button win;
+  boolean cont;
   
   int state;  // 0 = attacking, 1 = shopping
   
@@ -26,12 +28,20 @@ public class TestBase{
     _buttons = new ArrayList<Button>();
     _monstersOwned = new ArrayList<Monster>();
     _enemyTowers = new ArrayList<Tower>();
-    _enemyTowers.add(new Canon(3,3));
+ //   _enemyTowers.add(new Canon(3,3));
+    win  = new Button(new int[] {300, 200}, new int[] {400,250},"win", "return");
+    cont = true;
   }
   void draw(){
     if (state == 0){
+      
       if (_enemyTowers.size()==0){
         text("Attack Successful!", 500, 500);
+        win.draw();
+        if (win.buttonPressed()){
+          cont = false;
+        }
+      
       }
       else{
         image(bImg,0,0);
@@ -39,6 +49,7 @@ public class TestBase{
           enemy.draw();
         }
       }
+
     }
   }
 
