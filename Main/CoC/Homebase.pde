@@ -1,4 +1,5 @@
 import java.util.ArrayList; //for inventory?
+import java.util.Stack; //to store actions
 
 public class Homebase{
   String _name;
@@ -9,6 +10,9 @@ public class Homebase{
   ArrayList<Button> _buttons;
   PImage bImg;
   PImage shopImg;
+  PImage resources;
+  
+  boolean showResources; //for shop
   
   //choices of towers and monsters that can be beought from the shop at level
   ArrayList<Tower> _towerChoices;
@@ -21,19 +25,31 @@ public class Homebase{
   
   
  public Homebase() {
+   //attributes 
   _name = "default";
   _gold = 9999;
   _elixir = 9999;
+  
   _towersOwned = new ArrayList<Tower>();
   _monstersOwned = new ArrayList<Monster>();
+  
+  //default items owned
+  _towersOwned.add(new Canon(500, 300));
+  _towersOwned.add(new TownHall(600, 450));
+  _towersOwned.add(new GoldMine(300, 200));
+  
   _towerChoices = new ArrayList<Tower>();
   _monsterChoices = new ArrayList<Monster>();
+  
   _towerChoices.add(new Defense(600, 350));
   _monsterChoices.add(new Barbarian());
+  
   _buttons = new ArrayList<Button>();
   _buttons.add(new Button(new int[] {900, 600}, "shop", "shop.jpg"));
 //  _buttons.add( new Button(new int[] {200, 100}, new int[] {300,150}, "genText", "Click") );
-  }
+  
+   Stack actions = new Stack();
+}
   
   public Homebase(String newName){
     this();
@@ -41,18 +57,19 @@ public class Homebase{
   }
   
   void draw() {
+    
     //SHOP MODE
     if (state == 1) { 
-      rect(0, 0, 1280, 720);
-      fill(210,180,140);;
-      rect(0, 0, 1280, 100);
-      fill(255);
-      text( "SHOP", 600, 50);
-      fill(255, 0, 0);
-      rect(1100, 40, 40, 40);
-      fill(255);
+    
+      shopImg = loadImage("shop.png");
+      image(shopImg, 0, 0, 1280, 720);
       text("Gold: " + _gold, 50, 50);
       text("Elixers: " + _elixir, 50, 70);
+      
+      if (showResources) {
+       resources = loadImage("resources.jpg");
+       image(resources, 0, 0, 1280, 720);
+      }
     }
     
     //VIEW MODE
@@ -60,7 +77,7 @@ public class Homebase{
       
       //to reset
       bImg = loadImage("grass.jpg");
-      image(bImg,0,0);
+      image(bImg,0,0, 1280, 720);
       
       //draw tower if alive, remove from array if not
       for ( Tower building : _towersOwned ) {
@@ -77,6 +94,8 @@ public class Homebase{
         else 
           _towersOwned.remove(building);
       }
+      
+      
       //draw monster if alive, remove from array if not
       for ( Monster m : _monstersOwned ) {
         if (m.isAlive())
@@ -84,16 +103,19 @@ public class Homebase{
         else 
           _monstersOwned.remove(m);
       }
+      
+      
       //draw all buttons
       for ( Button button : _buttons )
         button.draw();
       }
     }
   
+  
   void mousePressed() { 
     
     // if clicked on a button
-    
+    println(mouseX + ":" + mouseY);
     for ( Button button : _buttons ) {
       if ( button.buttonPressed() ) {
         String tag = button.getID();
@@ -108,28 +130,48 @@ public class Homebase{
         }
     }
     
+    //IF IN SHOP MODE
+    if (state == 1) {
+      
+      //IF BUYING RESOURCES
+    if (mouseX >= 510 && mouseY >= 145 && mouseY <= 390 && mouseX <= 770) {
+      showResources = true;
+    }
+    //BUYING gold mine
+    if (showResources && mouseX >= 410 && mouseY >= 65 && mouseY <= 430 && mouseX <= 755)
+      buyTower(new GoldMine(mouseX, mouseY));
+    
+    
+    //STILL NEEDS TO BE IMPLEMENTED
+    //BUYING ELIXIR
+    
+    //IF BUYING MONSTERS
+    }
+    
+    
     //if clicked on a tower
     for (Tower t : _towersOwned) {
-        if (mousePressed && (mouseX - 50) >= t._xcor 
-        && (mouseX + 50) <= t._xcor 
-        && (mouseY - 50) >= t._ycor 
-        && (mouseY + 50) <= t._ycor
-        && t._show == false ) {
+        if (hoveredOver(t) && t._show == false ) {
           t._show = true;
           //store coordinates of tower range
           coords = t.showRange();
+          placeItem(t);
         }
+        
+        
         //unshow range when unclicked
-          if (t._show == true)
-          t._show = false;
+         /*
+         IMPLEMENTATION HERE
+         */
     }
     
     //exit to homebase, back to VIEW MODE
     if (state == 1 && 
         mouseX>= 1100 && 
-        mouseX <= 1140 &&
-        mouseY >= 40 &&
+        mouseX <= 1260 &&
+        mouseY >= 20 &&
         mouseY <= 80) {
+           showResources = false;
         state = 0;
     }
     
@@ -155,6 +197,14 @@ public class Homebase{
   public void payElixir(int e) {
     _elixir -= e;
   }
+  
+  boolean hoveredOver(Tower t) {
+  return (mousePressed && mouseX >= (t._xcor - 50) 
+        && mouseX <= (t._xcor + 50) 
+        && mouseY >= (t._ycor - 50) 
+        && mouseY <= (t._ycor + 50)
+        );
+      }
   
   //purchases Tower with gold
   //places tower according to mouse specified position
@@ -202,13 +252,10 @@ public class Homebase{
  }
  
  //to place tower after its bought at mouse position 
-  void placeItem(Tower p) {
-    if (mousePressed && (mouseX - 50) >= p._xcor 
-        && (mouseX + 50) <= p._xcor 
-        && (mouseY - 50) >= p._ycor 
-        && (mouseY + 50) <= p._ycor ) {
+  void placeItem(Tower t) {
+    if (hoveredOver(t)) {
       if (!mousePressed) 
-        p.setCoor(mouseX, mouseY);
+        t.setCoor(mouseX, mouseY);
   }
  }
   

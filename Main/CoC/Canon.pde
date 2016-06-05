@@ -11,6 +11,8 @@
 
 public class Canon extends Defense {
     
+  PImage icon;
+  
     public Canon(int x, int y) {
 	super(x, y); 
 	_hp = 350;
@@ -30,6 +32,11 @@ public class Canon extends Defense {
 	_hp = (int) (_hp * 1.1);
 	_splashRadius = (int) (_splashRadius * 1.1);
 	_upgradeState += 1;
+    }
+    
+    void draw() {
+    icon = loadImage("canon.png");
+    image(icon, _xcor, _ycor, 50, 50); 
     }
 
 }

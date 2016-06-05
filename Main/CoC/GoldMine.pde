@@ -5,6 +5,7 @@ public class GoldMine extends Tower{
   int _maxGold;
   long startTime;
   long endTime;
+  PImage icon;
   
     // constructor
     public GoldMine(int x, int y) {
@@ -18,8 +19,10 @@ public class GoldMine extends Tower{
   }
 
     void draw() {
-
+    icon = loadImage("goldmine.png");
+    image(icon, _xcor, _ycor, 60, 60); 
     }
+
 
   //if the gold mine contains gold, and is clicked on
   //measure the time ellapsed from when gold was last collected
