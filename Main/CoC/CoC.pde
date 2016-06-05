@@ -55,12 +55,7 @@ void draw(){
     test.draw();
     
     
-    int tmpX = 0; //for panels
-    for (Monster m : base._monstersOwned){
-      m.setCoor(tmpX, 600);
-      m.draw(); // replace with m.drawSprite() and make this into a button
-      tmpX+=50;
-    }
+    
     
     /*
     //how to make it generate the rest?
