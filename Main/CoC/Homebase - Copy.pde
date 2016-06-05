@@ -51,8 +51,6 @@ public class Homebase{
       fill(255, 0, 0);
       rect(1100, 40, 40, 40);
       fill(255);
-      text("Gold: " + _gold, 50, 50);
-      text("Elixers: " + _elixir, 50, 70);
     }
     
     //VIEW MODE
@@ -100,6 +98,7 @@ public class Homebase{
         
         if ( tag.equals("genText") )
           text("hello, it's me", 500, 500);
+          
         //clicked on shop icon
         if (tag.equals("shop") )
           {
