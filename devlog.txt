@@ -1,6 +1,7 @@
 6/4/16
 Kathy: Updates to homebase class, mouse press graphics, displaying range for towers, added gold mines
 Calvin: 11:34 Fixed a critical bug pertaining to the Button
+Ruochong: Added a basic TestBase level for developing attacking. Small improvements to user interface. Added Attack button in HomeBase to load TestBase level.
 
 6/3/16
 Kathy: Added Player/Homebase Class. Worked on UML.
@@ -12,6 +13,7 @@ Calvin: 6:41 Drew up a preliminary UML diagram of the Defense Tower classes.
 Calvin: 8:00 Started debugging the tower and monster classes.
 Ruochong: Drew more of the flowchart and UML diagram.
 Calvin: 10:07 Improved on flowchart.
+Ruochong: Sorted through all bugs. Code compiles correctly.
 -----------------------------------------------------------------------------------------------------------------------------------------
 6/1/16
 Calvin: 12:25 Wrote most basic methods for Defense towers and implemented splash damage functionality for defense towers.

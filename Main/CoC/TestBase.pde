@@ -1,4 +1,10 @@
-
+/*
+TestBase class is a test level of an enemy base. Accessed by clicking the attack button from HomeBase.
+TestBase constructer takes an ArrayList of Queued monsters (by the player at homebase, to be implemented) and also player gold
+for purchasing items during attack.
+Attack succeeds if ArrayList of enmey owned buildings reaches 0
+Fails if player runs out of monsters (to be implemented)
+*/
 import java.util.ArrayList;
 public class TestBase{
   String name;

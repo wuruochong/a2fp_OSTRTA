@@ -105,3 +105,15 @@ ArrayList<Monster> _monstersOwned;
 + boolean upgradeTower(Tower)
 + void placeItem(Unit)
 
+TestBase (Test level for attacking)
+--------------------------------
+String _name;
+int _gold;
+ArrayList<Button> _buttons;
+ArrayList<Monster> _monstersOwned;
+ArrayList<Monster> _monsterChoices;
+ArrayList<Tower> _enemyTowers;
+
+int state;
+
+public TestBase(ArrayList<Monster> pMonsters, int pGold) (Constructor takes ArrayList of queued monsters and player gold)
