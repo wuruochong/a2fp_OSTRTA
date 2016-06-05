@@ -41,7 +41,7 @@ public class Button {
   void draw() {
     //if the constructor of a button image is used, load image
     if (imgUsed) {
-    image(img,900,600);
+    image(img,topLeftCorner[0],topLeftCorner[1]);
     }
     
     //else fill with rectanglular button with text

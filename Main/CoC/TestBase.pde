@@ -24,11 +24,14 @@ public class TestBase{
     gold = pGold;
   //  _enemyTowers.add(new Canon(3,3));
     bImg = loadImage("grass.jpg");
-    image(bImg,0,0);
+    image(bImg,0,0, 1280, 720);
     _buttons = new ArrayList<Button>();
+ 
     _monstersOwned = new ArrayList<Monster>();
+      
     _enemyTowers = new ArrayList<Tower>();
- //   _enemyTowers.add(new Canon(3,3));
+    _enemyTowers.add(new Canon(250,300));
+    _enemyTowers.add (new TownHall(500, 270));
     win  = new Button(new int[] {300, 200}, new int[] {400,250},"win", "return");
     cont = true;
   }
@@ -44,7 +47,7 @@ public class TestBase{
       
       }
       else{
-        image(bImg,0,0);
+        image(bImg,0,0, 1280, 720);
         for (Tower enemy : _enemyTowers){
           enemy.draw();
         }

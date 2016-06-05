@@ -45,7 +45,7 @@ public class Homebase{
   _monsterChoices.add(new Barbarian());
   
   _buttons = new ArrayList<Button>();
-  _buttons.add(new Button(new int[] {900, 600}, "shop", "shop.jpg"));
+  _buttons.add(new Button(new int[] {1100, 600}, "shop", "shop.jpg"));
 //  _buttons.add( new Button(new int[] {200, 100}, new int[] {300,150}, "genText", "Click") );
   
    Stack actions = new Stack();
@@ -109,6 +109,7 @@ public class Homebase{
       for ( Button button : _buttons )
         button.draw();
       }
+      
     }
   
   
