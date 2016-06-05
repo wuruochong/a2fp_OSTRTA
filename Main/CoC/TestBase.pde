@@ -17,6 +17,10 @@ public class TestBase{
   //  _enemyTowers.add(new Canon(3,3));
     bImg = loadImage("grass.jpg");
     image(bImg,0,0);
+    _buttons = new ArrayList<Button>();
+    _monstersOwned = new ArrayList<Monster>();
+    _enemyTowers = new ArrayList<Tower>();
+    _enemyTowers.add(new Canon(3,3));
   }
   void draw(){
     if (state == 0){

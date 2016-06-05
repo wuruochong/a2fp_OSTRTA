@@ -10,9 +10,10 @@ void setup(){
   size(1280,720);
   bImg = loadImage("grass.jpg");
   image(bImg,0,0);
-  state = 0;
+  state = 1;
   base = new Homebase();
   attack  =new Button(new int[] {900, 1000}, new int[] {500,600},"attack", "attack");
+  test = new TestBase(base._monstersOwned, base._gold);
 }
 
 void mousePressed() {
@@ -24,13 +25,15 @@ void mousePressed() {
 }
 
 void draw(){
+  if (state==0){
   image(bImg,0,0);
     base.draw();
-   // test = new TestBase(base._monstersOwned, base._gold);
+  }
     
-  /*if (state == 1){
+    
+  if (state == 1){
     test.draw();
-  }*/
+  }
     
   /*
   for (Unit[] x : grid){
