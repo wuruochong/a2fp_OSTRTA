@@ -1,0 +1,34 @@
+Team OSTRTA -- Kathy Lau, Calvin Vuong, Ruochong Wu
+APCS2
+Plan 2016/05/31
+
+All of the following tasks will be worked on collaboratively, but certain classes or files for these tasks will be delegated accordingly when the time arrives.
+If our team feels that we are working at a good pace, we may work on two different tasks at the same time and delegate responsibilites accordingly.
+
+Completion date goals for the following tasks are listed next to the name.
+
+Priorities in order of planned completion:
+
+Planning Operations:
+  1. Game flow charts (6/2)
+  2. UML diagrams (6/3)
+  3. Decide on order of implementation of classes (top-down/bottom-up) (6/3)
+
+Core Applications:
+  1. Tower Defense Game - half of the classes, gain basic understanding (6/10)
+        -core gameplay functions first (e.g. tower shooting, monster spawning) (6/8) 
+	      o get all tower and monster classes done (6/3)
+	      o get player class done (6/4)
+	      o build a main driver file which will make the above classes interact with each other (6/6)
+	      o work on algorithms and AI to produce enemy bases (6/8)
+        -improved graphics and animation later (6/10)
+  2. Clock system + alarm (6/10)
+  3. Calculator (6/11)
+  4. Calendar (6/11)
+  5. PacMan (6/12)
+  6. Solitaire (6/13)
+
+Supplemental Applications (with concepts that need to be researched):
+  1. Weather (need to know about APIs)
+  2. Messenger(need to know about sockets/ports)
+
