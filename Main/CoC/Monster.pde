@@ -77,6 +77,6 @@ public class Monster extends Unit implements Comparable{
     public int compareTo(Object o){return 0;}
 
     void draw(){
-	rect(_xcor*100, _ycor*100 , 10, 10);
+	rect(_xcor, _ycor , 10, 10);
     }
 }

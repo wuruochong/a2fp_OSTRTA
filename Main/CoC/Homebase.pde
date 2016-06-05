@@ -44,6 +44,9 @@ public class Homebase{
   _towerChoices.add(new Defense(600, 350));
   _monsterChoices.add(new Barbarian());
   
+  _monstersOwned.add(new Barbarian());
+  _monstersOwned.add(new Goblin());
+  
   _buttons = new ArrayList<Button>();
   _buttons.add(new Button(new int[] {1100, 600}, "shop", "shop.jpg"));
 //  _buttons.add( new Button(new int[] {200, 100}, new int[] {300,150}, "genText", "Click") );

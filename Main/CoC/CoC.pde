@@ -4,10 +4,6 @@ Homebase base;
 TestBase test;
 int state; // 0 for normal, 1 for attacking, 2 for being attacked
 Button attack;
-
-int tmpX; //for panels
-
-int panelsUsed; //for attack mode to show monsters available
 PImage tmp;
 
 
@@ -59,19 +55,20 @@ void draw(){
     test.draw();
     
     
-    
+    int tmpX = 0; //for panels
     for (Monster m : base._monstersOwned){
       m.setCoor(tmpX, 600);
-      m.draw();
-      panelsUsed++;
+      m.draw(); // replace with m.drawSprite() and make this into a button
       tmpX+=50;
     }
     
+    /*
     //how to make it generate the rest?
 for (int i = 0; i < 9- panelsUsed; i ++ ){
       tmp = loadImage("square.png");
       image(tmp, tmpX, 600);
-      }
+      tmpX += 50;
+      } */
     
     
   //  if (!test.cont){
