@@ -7,7 +7,6 @@ public abstract class Unit{
 public boolean isAlive() {
   return _hp > 0;
 }
-abstract void draw();
 
 int getCost(){
      return _mp;

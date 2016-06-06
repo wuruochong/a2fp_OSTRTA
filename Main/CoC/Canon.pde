@@ -36,7 +36,7 @@ public class Canon extends Defense {
     
     void draw() {
     icon = loadImage("canon.png");
-    image(icon, _xcor, _ycor, 50, 50); 
+    image(icon, _xcor + icon.width/2, _ycor + icon.height/2, 50, 50); 
     }
 
 }

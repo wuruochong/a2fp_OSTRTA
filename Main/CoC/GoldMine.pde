@@ -20,7 +20,7 @@ public class GoldMine extends Tower{
 
     void draw() {
     icon = loadImage("goldmine.png");
-    image(icon, _xcor, _ycor, 60, 60); 
+    image(icon, _xcor + icon.width/2, _ycor + icon.height/2, 60, 60); 
     }
 
 

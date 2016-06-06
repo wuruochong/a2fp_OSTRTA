@@ -43,8 +43,8 @@ public class Homebase{
   _towerChoices.add(new Defense(600, 350));
   _monsterChoices.add(new Barbarian());
   
-  _monstersOwned.add(new Barbarian());
-  _monstersOwned.add(new Goblin());
+  _monstersOwned.add(new Barbarian(600,400));
+  _monstersOwned.add(new Goblin(845, 220));
   
   _buttons = new ArrayList<Button>();
   _buttons.add(new Button(new int[] {1100, 600}, "shop", "shop.jpg"));
@@ -80,28 +80,23 @@ public class Homebase{
       //to reset
       bImg = loadImage("grass.jpg");
       image(bImg,0,0, 1280, 720);
-      
-      //draw tower if alive, remove from array if not
+  
       for ( Tower building : _towersOwned ) {
-        if (building.isAlive())
-        {
           //to show range of tower, paint green box under tower
           if (building._show)
             {
-              fill(0, 255, 0, 100);
+              fill(0, 255, 0, 50);
               ellipse(building._xcor, building._ycor, building._range, building._range);
             }
+          fill(0,0,0); // reset
           building.draw();
-        }
-        else 
-          _towersOwned.remove(building);
       }
-      
+       
       
       //draw monster if alive, remove from array if not
       for ( Monster m : _monstersOwned ) {
         if (m.isAlive())
-          m.draw();
+          m.draw(false, _towersOwned);
         else 
           _monstersOwned.remove(m);
       }
@@ -127,9 +122,7 @@ public class Homebase{
           text("hello, it's me", 500, 500);
         //clicked on shop icon
         if (tag.equals("shop") )
-          {
             state = 1; //set mode to shop mode
-          }
         }
     }
     
@@ -154,8 +147,8 @@ public class Homebase{
     
     //if clicked on a tower
     for (Tower t : _towersOwned) {
-        if (hoveredOver(t) && t._show == false ) {
-          t._show = true;
+        if (hoveredOver(t) ) {//&& t._show == false ) {
+          t._show = ! t._show;
           //store coordinates of tower range
           placeItem(t);
         }
@@ -183,7 +176,11 @@ public class Homebase{
   public String getName(){
     return _name;
     }
-    
+  
+  public ArrayList<Monster> getMonsters() {
+    return _monstersOwned;
+  }
+  
   public int getGold(){
     return _gold;
     }

@@ -15,8 +15,8 @@ void setup(){
   state = 0;
   base = new Homebase();
   //attack  =new Button(new int[] {200, 100}, new int[] {300,150},"attack", "attack");
-   attack=new Button(new int[] {0, 600}, "attack", "attack.jpg");
-  test = new TestBase(base._monstersOwned, base._gold);
+  attack=new Button(new int[] {0, 600}, "attack", "attack.jpg");
+  //test = new TestBase(base._monstersOwned, base._gold);
 }
 
 void mousePressed() {
@@ -47,14 +47,11 @@ void draw(){
   if (state==0){
   image(bImg,0,0);
     base.draw();
-      attack.draw();
+    attack.draw();
   }
-    
-  
-    if (state == 1){
+  else if (state == 1){
+    test = new TestBase(base);
     test.draw();
-    
-    
-    
-    }
+    // implement if button pushed to quit, make state == 0 
+  }
 }
