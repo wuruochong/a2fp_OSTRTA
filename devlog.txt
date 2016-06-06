@@ -1,3 +1,6 @@
+6/6/16
+Calvin: 7:21 Implemented monster moving system; expanded on monster attacking system; restructured class interactions;
+
 6/5/16
 Calvin: 7:46 Fixed bug pertaining to monster selection
 Calvin: 11:00 Worked on generating monster selection when attacking and fixed display issues
