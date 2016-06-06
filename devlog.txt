@@ -1,5 +1,6 @@
 6/5/16
 Calvin: 7:46 Fixed bug pertaining to monster selection
+Calvin: 11:00 Worked on generating monster selection when attacking and fixed display issues
 
 6/4/16
 Kathy: Updates to homebase class, mouse press graphics, displaying range for towers, added gold mines
