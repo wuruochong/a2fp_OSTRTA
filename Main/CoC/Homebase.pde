@@ -21,7 +21,6 @@ public class Homebase{
   int[] campFireLoc = {700, 700}; //random location
   
   int state; // 0 - viewing , 1 - shopping, 2- placing
-  int[][] coords; // to store tower coordinates for showing range
   
   
  public Homebase() {
@@ -89,8 +88,8 @@ public class Homebase{
           //to show range of tower, paint green box under tower
           if (building._show)
             {
-              fill(0, 255, 0);
-              rect(coords[0][0], coords[0][1], coords[1][0] - coords[0][0], coords[1][1] - coords[0][1]);
+              fill(0, 255, 0, 100);
+              ellipse(building._xcor, building._ycor, building._range, building._range);
             }
           building.draw();
         }
@@ -158,7 +157,6 @@ public class Homebase{
         if (hoveredOver(t) && t._show == false ) {
           t._show = true;
           //store coordinates of tower range
-          coords = t.showRange();
           placeItem(t);
         }
         

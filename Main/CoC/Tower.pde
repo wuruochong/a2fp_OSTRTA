@@ -31,12 +31,5 @@ public abstract class Tower extends Unit implements Comparable{
    _ycor = y;
  }
  
- int[][] showRange() {
-   int[] topLC = {_xcor, _ycor };
-   int[] bottomRC = {_xcor + _range, _ycor + _range}; 
-   int [][] coords = {topLC,bottomRC};    
-   return coords;
- }
- 
  
 }
