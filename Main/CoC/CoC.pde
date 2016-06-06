@@ -56,27 +56,5 @@ void draw(){
     
     
     
-    
-    /*
-    //how to make it generate the rest?
-for (int i = 0; i < 9- panelsUsed; i ++ ){
-      tmp = loadImage("square.png");
-      image(tmp, tmpX, 600);
-      tmpX += 50;
-      } */
-    
-    
-  //  if (!test.cont){
-   //   state = 0;
-   // }
-  }
-    
-  /*
-  for (Unit[] x : grid){
-    for (Unit y : x){
-      if (y!=null){
-        y.draw();
-      }
     }
-  } */
 }
