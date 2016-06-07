@@ -33,8 +33,8 @@ public class Monster extends Unit implements Comparable{
 
     // if attacking is true, the monsters are in attack mode
     void draw(boolean attacking, ArrayList<Tower> towers){
-      fill(0,0,0);
-      rect(_xcor, _ycor , 10, 10);
+      fill(0);
+      text(_hp + "", _xcor, _ycor , 50, 50);
       if ( _drawTicks % 30 == 0) { // every half second...
         if ( attacking ) {
           face(); //orient x and y velocity to move to the nearest tower
@@ -65,7 +65,7 @@ public class Monster extends Unit implements Comparable{
     double slope = ( closestTower._ycor - _ycor  ) / ( closestTower._xcor -  _xcor + 0.0 );
        
         dir = Math.atan(slope);
-       println(slope);
+       //println(slope);
    
       }
     }
@@ -106,6 +106,7 @@ public class Monster extends Unit implements Comparable{
     	while ( ! _towersToShoot.isEmpty() && ! ((Tower)(_towersToShoot.peekTop())).isAlive() )
     	    _towersToShoot.removeTop();
 
+      
     	Tower tower = (Tower)_towersToShoot.peekTop();
       if ( inAttackRadius(tower) )
     	  attack(tower);
@@ -115,8 +116,8 @@ public class Monster extends Unit implements Comparable{
     public void queueTowers(ArrayList<Tower> towerList) {
     	for ( Tower tower : towerList ) {
               
-            if ( inSightRadius(tower) && !_towersToShoot.contains(tower ))
-{    		    _towersToShoot.add(tower);
+            if ( inSightRadius(tower) && !_towersToShoot.contains(tower )){ 
+               _towersToShoot.add(tower);
            // println("hi");
     	     }
     }       
@@ -135,10 +136,10 @@ public class Monster extends Unit implements Comparable{
         }
             
     public int compareTo(Object o){
-      if ( o instanceof Monster ) {
-        Monster other = (Monster) o;
-        return _hp - other._hp;
-      }
+      //if ( o instanceof Monster ) {
+      //  Monster other = (Monster) o;
+      //  return _hp - other._hp;
+      //}
       return 0;
     }
 

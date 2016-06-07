@@ -50,10 +50,13 @@ public class TestBase{
       else{
         image(bImg,0,0, 1280, 720);
         for (Tower enemy : _enemyTowers){
-          enemy.draw();
+          if ( enemy instanceof Defense ) {
+          ((Defense) enemy).draw(_monstersOwned);
+          }
         }
         for ( Monster m : _monstersOwned ) {
           m.draw(true, _enemyTowers);
+          
       }
         /*
         int tmpX = 0; //for panels

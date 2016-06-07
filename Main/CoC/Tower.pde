@@ -21,8 +21,9 @@ public abstract class Tower extends Unit implements Comparable{
     public int compareTo(Object o){
       return 0;
     }
+    
     public boolean isAlive() {
-  return _hp > 0;
+      return _hp > 0;
   }
   
    

@@ -31,8 +31,9 @@ public class Defense extends Tower implements Comparable{
 
     void draw(ArrayList<Monster> monsterList) {
 	    queueMonsters(monsterList);
-	    if ( ! _monstersToShoot.isEmpty() && _drawTicks % _attackRate == 0 )
+	    if ( (! _monstersToShoot.isEmpty() )&& _drawTicks % _attackRate == 0 ){
 	      shoot();
+      }
 	    _drawTicks += 1;
     }
 
@@ -69,12 +70,15 @@ public class Defense extends Tower implements Comparable{
 
     // queues Monsters into things to shoot for this tower if not already in queue and in radius
     public void queueMonsters(ArrayList<Monster> monsterList) {
+      println(monsterList);
 	    for ( Monster monster : monsterList ) {
 	      if ( (! _attackAir) && monster.isFlying ) // do not queue flying monsters if tower cannot attack them
-		      ; // do nothing
-	      else if ( inRadius(monster) && ! monsterList.contains(monster) )
+		      println("bye"); // do nothing
+	      else if ( inRadius(monster) && ! _monstersToShoot.contains(monster) ){
 		      _monstersToShoot.add(monster);
-	}
+          println("hi");
+        }
+    	}
     }	
 
     public void upgrade() {

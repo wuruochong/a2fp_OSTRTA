@@ -50,9 +50,10 @@ public class ArrayPriorityQueue<T> implements Iterable {
 
     /** peekTop() - returns the next element to be dequeued from the queue **/
     public Comparable peekTop() {
-	if (isEmpty())
+	if ( isEmpty())
 	    throw new NoSuchElementException();
 	return _queue.get(_queue.size()-1);
+
     }
 
     /** remove(object o) - removes the specified object from the queue, specified in API **/
@@ -67,7 +68,7 @@ public class ArrayPriorityQueue<T> implements Iterable {
 	
     /** isEmpty - returns a boolean indicating whether the queue is empty **/
     public boolean isEmpty() {
-	return _queue.size() == 0;
+	      return _queue.size() == 0;
     }
 
     /** swap - swaps locations of two objects in _queue **/

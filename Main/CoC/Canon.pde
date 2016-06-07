@@ -16,7 +16,7 @@ public class Canon extends Defense {
     public Canon(int x, int y) {
 	super(x, y); 
 	_hp = 350;
-	_attackPower = 25;
+	_attackPower = 15;
 	_critChance = .05;
 	_range = 100;
 	_splashRadius = 50;
@@ -34,7 +34,9 @@ public class Canon extends Defense {
 	_upgradeState += 1;
     }
     
-    void draw() {
+    
+    void draw(ArrayList<Monster> monsterList) {
+    super.draw(monsterList);
     icon = loadImage("canon.png");
     image(icon, _xcor + icon.width/2, _ycor + icon.height/2, 50, 50); 
     }
