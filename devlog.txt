@@ -1,7 +1,9 @@
 6/6/16
+Kathy: Targeting a tower finally sort of works, but not the closest tower right now probably because our sight range is too large :)
 Calvin: 7:21 Implemented monster moving system; expanded on monster attacking system; restructured class interactions;
 
 6/5/16
+Kathy: Worked on game graphics and shop. Interacting with test base.
 Calvin: 7:46 Fixed bug pertaining to monster selection
 Calvin: 11:00 Worked on generating monster selection when attacking and fixed display issues
 
