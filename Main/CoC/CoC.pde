@@ -20,6 +20,8 @@ void setup(){
 }
 
 void mousePressed() {
+  
+println(mouseX + " " + mouseY);
    if (attack.buttonPressed()){
      state = 1;
    }
@@ -43,7 +45,6 @@ image(holder, x, y);
 }
 
 void draw(){
-
   if (state==0){
   image(bImg,0,0);
     base.draw();

@@ -2,15 +2,18 @@ public class Monster extends Unit implements Comparable{
 
     boolean isFlying = false;
     int _trainingTime;
-    double _xvelocity = 1;
-    double _yvelocity = 1;
+    double _xvelocity = 10;
+    double _yvelocity = 10;
     int _basicSpeed = 10;
     int _sightRange;
     int _attackRange;
     int _dmgPerAttack;
     int _level;
     int _houseSpace;
+    
     ArrayPriorityQueue _towersToShoot;
+    
+    double dir;
     
     int _drawTicks;
 
@@ -23,7 +26,7 @@ public class Monster extends Unit implements Comparable{
 	  _ycor = ycor;
 	  _hp = 10;
 	  _mp = 10;
-    _sightRange = 1000000;
+    _sightRange = 1000;
     _towersToShoot = new ArrayPriorityQueue<Tower>();
     _drawTicks = 0;
   }
@@ -42,7 +45,7 @@ public class Monster extends Unit implements Comparable{
     }
     
     // calculate x and y velocity components to move in correction
-    public void face() {
+    /*public void face() {
       if ( ! _towersToShoot.isEmpty() ) {
         Tower closestTower = (Tower) _towersToShoot.peekTop();
         double slope = ( _ycor - closestTower._ycor ) / ( _xcor - closestTower._xcor + 0.0 );
@@ -53,14 +56,25 @@ public class Monster extends Unit implements Comparable{
         _yvelocity *= scaleFactor;
       }
       //println("hi");
+    }*/
+    
+    public void face() {
+      if ( ! _towersToShoot.isEmpty() ) {
+        Tower closestTower = (Tower) _towersToShoot.peekTop();
+       // println("X" + closestTower._xcor + "Y" + closestTower._ycor);
+    double slope = ( closestTower._ycor - _ycor  ) / ( closestTower._xcor -  _xcor + 0.0 );
+       
+        dir = Math.atan(slope);
+       println(slope);
+   
+      }
     }
-        
     public void move() {
-      _xcor += (int) _xvelocity;
-      _ycor += (int) _yvelocity;
+      _xcor -= ((int) _xvelocity * Math.cos(dir));
+      _ycor -= ((int) _yvelocity* Math.sin(dir));
       
-      _xvelocity = 1;
-      _yvelocity = 1;
+      //_xvelocity = 1;
+      //_yvelocity = 1;
     }
     
     
@@ -100,11 +114,12 @@ public class Monster extends Unit implements Comparable{
         // queues Towers into things to attack
     public void queueTowers(ArrayList<Tower> towerList) {
     	for ( Tower tower : towerList ) {
-    	    if ( inSightRadius(tower) && ! towerList.contains(tower) )
-    		    _towersToShoot.add(tower);
-            println("hi");
+              
+            if ( inSightRadius(tower) && !_towersToShoot.contains(tower ))
+{    		    _towersToShoot.add(tower);
+           // println("hi");
     	     }
-        
+    }       
       }
 
         // returns true if tower is in sight radius of the monster
