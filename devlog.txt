@@ -1,3 +1,6 @@
+6/8/15
+Calvin: 7:57 Transformed non-button click areas into actual buttons using the custom written button class
+
 6/7/16
 Kathy: Fixed bug leftover from class
 
