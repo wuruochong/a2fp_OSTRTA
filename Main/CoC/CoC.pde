@@ -15,26 +15,16 @@ void setup(){
   state = 0;
   base = new Homebase();
   //attack  =new Button(new int[] {200, 100}, new int[] {300,150},"attack", "attack");
-  attack=new Button(new int[] {0, 600}, "attack", "attack.jpg");
+  attack=new Button(new int[] {0, 600}, "attack", 0, "attack.jpg");
   //test = new TestBase(base._monstersOwned, base._gold);
 }
 
 void mousePressed() {
   
 println(mouseX + " " + mouseY);
-   if (attack.buttonPressed()){
+   if (attack.buttonPressed(0))
      state = 1;
-   }
-   
-   if (state == 1) {
-     //Needs implementation>
-     //check for click on monsters available in squares
-     //if clicked on monster, release it to AI base
-     // monster move and attack
-   
-   }
-   
-   
+     
    else if ( state == 0 )
     base.mousePressed();
 }

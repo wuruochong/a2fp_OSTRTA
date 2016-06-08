@@ -33,7 +33,7 @@ public class TestBase{
     _enemyTowers.add(new Canon(100, 250));
     
     _enemyTowers.add (new TownHall(500, 270));
-    win  = new Button(new int[] {300, 200}, new int[] {400,250},"win", "return");
+    win  = new Button(new int[] {300, 200}, new int[] {400,250}, "win", "return", 0);
     cont = true;
   }
   
@@ -41,7 +41,7 @@ public class TestBase{
       if (_enemyTowers.size()==0){ // fix later
         text("Attack Successful!", 500, 500);
         win.draw();
-        if (win.buttonPressed()){
+        if (win.buttonPressed(0)){
           cont = false;
         }
       
