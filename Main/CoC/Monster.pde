@@ -106,10 +106,11 @@ public class Monster extends Unit implements Comparable{
     	while ( ! _towersToShoot.isEmpty() && ! ((Tower)(_towersToShoot.peekTop())).isAlive() )
     	    _towersToShoot.removeTop();
 
-      
+      if (! _towersToShoot.isEmpty()){
     	Tower tower = (Tower)_towersToShoot.peekTop();
       if ( inAttackRadius(tower) )
     	  attack(tower);
+      }
      }
 
         // queues Towers into things to attack

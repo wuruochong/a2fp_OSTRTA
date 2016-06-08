@@ -41,10 +41,11 @@ public class Defense extends Tower implements Comparable{
     // modify in subclasses to fit tower descriptions
     public void shoot() {
 	    // remove left-over dead monsters from queue
-	    while ( ! ((Monster)(_monstersToShoot.peekTop())).isAlive())
-	      _monstersToShoot.removeTop();
+	    while ( !_monstersToShoot.isEmpty() && ! ((Monster)(_monstersToShoot.peekTop())).isAlive() )
+	        _monstersToShoot.removeTop();
 
-	    Monster target = (Monster)_monstersToShoot.peekTop();
+       if ( !_monstersToShoot.isEmpty() )
+	 {   Monster target = (Monster)_monstersToShoot.peekTop();
 	    attack(target, false);
 	    if ( _splashRadius != 0 ) { // if there is splash damage
 	      // find all monsters in splash radius
@@ -54,6 +55,8 @@ public class Defense extends Tower implements Comparable{
 	      }
 	    }
    }
+    }
+    
 
     // deals damage to enemy equal to damage instance var, with crit chance factored in, to enemy
     // if splash is true, that means this damage is due to splash damage
