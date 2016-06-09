@@ -54,6 +54,9 @@ public class Homebase{
   _monsterChoices.add(new Barbarian());
   
   _monstersOwned.add(new Barbarian(600,400));
+  _monstersOwned.add(new Barbarian(7600,400));
+  _monstersOwned.add(new Barbarian(800,400));
+  _monstersOwned.add(new Wizard(900,400));
   _monstersOwned.add(new Goblin(845, 220));
   
   // load ALL buttons
@@ -240,6 +243,7 @@ public class Homebase{
         else if (tag.equals("Sniper")) {
             state = 0;
             buyTower(new Sniper(mouseX, mouseY) );
+            println("yay");
         
         }
         

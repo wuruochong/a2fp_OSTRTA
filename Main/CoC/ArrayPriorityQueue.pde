@@ -50,7 +50,6 @@ public class ArrayPriorityQueue<T> implements Iterable {
 
     /** peekTop() - returns the next element to be dequeued from the queue **/
     public Comparable peekTop() {
-       println(_queue);
 	if ( isEmpty())
 	    throw new NoSuchElementException();
 	return _queue.get(_queue.size()-1);

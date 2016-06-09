@@ -12,7 +12,8 @@
 public class Tesla extends Defense {
 
     int _timesPerShoot = 3;
-
+    PImage icon;
+    
     public Tesla(int x, int y) {
 	super(x, y); 
 	_hp = 350;
@@ -28,7 +29,16 @@ public class Tesla extends Defense {
 	for ( int i = 0; i < _timesPerShoot; i++ )
 	    super.shoot(); // shoot three times
     }
-	
+    
+    
+    void draw(){
+      icon = loadImage("tesla.gif");
+    image(icon, _xcor + icon.width/2, _ycor + icon.height/2, 50, 50); 
+        fill(0); 
+   text(_hp + " ", _xcor+70,  _ycor+40 ); 
+    
+    }
+    
     public void upgrade() {
 	_attackPower = (int) (_attackPower * 1.2);
 	_range = (int) (_range * 1.2);

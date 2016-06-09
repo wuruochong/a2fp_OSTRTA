@@ -8,7 +8,7 @@ public abstract class Tower extends Unit implements Comparable{
     // returns true if tower is destroyed as a result of this damage
     public boolean takeDamage(int n) {
 	_hp -= n;
-	return ! isAlive();
+	return isAlive();
     }
 
     // returns true if tower successfully upgraded

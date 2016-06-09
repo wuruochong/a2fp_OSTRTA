@@ -51,10 +51,12 @@ public class TestBase{
         image(bImg,0,0, 1280, 720);
         for (Tower enemy : _enemyTowers){
           if ( enemy instanceof Defense ) {
+            if (enemy.isAlive())
           ((Defense) enemy).draw(_monstersOwned);
           }
         }
         for ( Monster m : _monstersOwned ) {
+          if (m.isAlive())
           m.draw(true, _enemyTowers);
           
       }

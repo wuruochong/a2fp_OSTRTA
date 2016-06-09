@@ -34,11 +34,19 @@ public class Canon extends Defense {
 	_upgradeState += 1;
     }
     
+    void draw(){
+      icon = loadImage("canon.png");
+    image(icon, _xcor + icon.width/2, _ycor + icon.height/2, 50, 50);
+    fill(0); 
+   text(_hp + " ", _xcor+70,  _ycor+40 ); 
+    
+    }
     
     void draw(ArrayList<Monster> monsterList) {
     super.draw(monsterList);
     icon = loadImage("canon.png");
     image(icon, _xcor + icon.width/2, _ycor + icon.height/2, 50, 50); 
+
     }
 
 }

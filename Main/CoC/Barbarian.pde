@@ -7,7 +7,7 @@ public class Barbarian extends Monster{
      _mp = 25;
      _trainingTime = 30;
       _basicSpeed = 100;
-     _attackRange = 5;
+     _attackRange = 150;
      _dmgPerAttack=11;
      _level = 1;
      _houseSpace = 1;

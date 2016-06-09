@@ -6,7 +6,7 @@ public class Wizard extends Monster{
      _mp = 1500;
      _trainingTime = 300;
      _basicSpeed = 15;
-     _attackRange = 3;
+     _attackRange = 300;
      _dmgPerAttack=75;
      _level = 1;
      _houseSpace = 4;
