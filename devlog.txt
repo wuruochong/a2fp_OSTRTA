@@ -1,27 +1,28 @@
 6/8/15
-Calvin: 7:57 Transformed non-button click areas into actual buttons using the custom written button class
-
+Calvin: 07:57 Transformed non-button click areas into actual buttons using the custom written button class
+Calvin: 11:04 New resource tower created; Restructured class interaction system; Laid groundwork for visually seeing where to place tower after it is bought
+-----------------------------------------------------------------------------------------------------------------------------------------
 6/7/16
 Kathy: Fixed bug leftover from class
-
+-----------------------------------------------------------------------------------------------------------------------------------------
 6/6/16
 Kathy: Targeting a tower finally sort of works, but not the closest tower right now probably because our sight range is too large :)
 Calvin: 7:21 Implemented monster moving system; expanded on monster attacking system; restructured class interactions;
-
+-----------------------------------------------------------------------------------------------------------------------------------------
 6/5/16
 Kathy: Worked on game graphics and shop. Interacting with test base.
 Calvin: 7:46 Fixed bug pertaining to monster selection
 Calvin: 11:00 Worked on generating monster selection when attacking and fixed display issues
-
+-----------------------------------------------------------------------------------------------------------------------------------------
 6/4/16
 Kathy: Updates to homebase class, mouse press graphics, displaying range for towers, added gold mines
 Calvin: 11:34 Fixed a critical bug pertaining to the Button
 Ruochong: Added a basic TestBase level for developing attacking. Small improvements to user interface. Added Attack button in HomeBase to load TestBase level.
-
+-----------------------------------------------------------------------------------------------------------------------------------------
 6/3/16
 Kathy: Added Player/Homebase Class. Worked on UML.
 Calvin: Wrote majority of the Button class and its event listeners.
-
+-----------------------------------------------------------------------------------------------------------------------------------------
 6/2/16
 Kathy: 11:00 - 1:00 Worked on Players class, added upgrade for monsters, added board imgs for pacman.
 Calvin: 6:41 Drew up a preliminary UML diagram of the Defense Tower classes.
