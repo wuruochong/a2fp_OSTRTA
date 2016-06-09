@@ -11,7 +11,7 @@ PImage tmp;
 void setup(){
   size(1280,720);
   bImg = loadImage("grass.jpg");
-  image(bImg,0,0);
+  image(bImg,0,0, 1280, 720);
   state = 0;
   base = new Homebase();
   //attack  =new Button(new int[] {200, 100}, new int[] {300,150},"attack", "attack");
@@ -36,7 +36,7 @@ image(holder, x, y);
 
 void draw(){
   if (state==0){
-  image(bImg,0,0);
+  image(bImg,0,0, 1280, 720);
     base.draw();
     attack.draw();
   }

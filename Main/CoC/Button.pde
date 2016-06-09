@@ -39,6 +39,7 @@ public class Button {
     bottomRightCorner = coor2;
     identifier = tag;
     imgUsed = true;
+        displayScreen = screen;
   }
   
   void draw() {

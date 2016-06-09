@@ -10,11 +10,16 @@ public class Homebase{
   ArrayList<Button> _buttons;
   PImage bImg;
   PImage shopImg;
+  PImage bShopImg;
   PImage resources;
+  PImage troopPanel;
     
   //choices of towers and monsters that can be beought from the shop at level
   ArrayList<Tower> _towerChoices;
   ArrayList<Monster> _monsterChoices;
+  
+  String[] _monsterNames = { "Archer", "Wall breaker", "Wizard", "Barbarian", "Giant", "Goblin"}; //for generating buttons
+  String[] _towerNames = { "Tesla", "Canon", "Sniper", "idk", "idk2"};//for generating buttons
   
   int[] campFireLoc = {700, 700}; //random location
   
@@ -54,9 +59,25 @@ public class Homebase{
   _buttons = new ArrayList<Button>();
   _buttons.add(new Button(new int[] {1100, 600}, "shop", 0, "shop.jpg"));
   // transparent buttons
-  _buttons.add(new Button(new int[] {510, 145}, new int[] {770, 390}, "resourceShop", null, 1, new int[] {0,0,0}, new int[] {0,0,0,0}) );
-  _buttons.add(new Button(new int[] {410, 65}, new int[] {755, 350}, "buyGoldmine", null, 2, new int[] {0,0,0}, new int[] {0,0,0,0}) );
-  _buttons.add(new Button(new int[] {30,60}, new int[] {380, 350}, "buyElixircollector", null, 2, new int[] {0,0,0}, new int[] {0,0,0,0}) );
+  _buttons.add(new Button(new int[] {110, 145}, "resourceShop", 1, "resources.png") );
+  _buttons.add(new Button(new int[] {510, 145}, "armyShop", 1, "army.png" ) );
+  _buttons.add(new Button(new int[] {910, 145}, "defenseShop", 1,"defenses.png" ) );
+  
+  _buttons.add(new Button(new int[] {410, 65}, "buyGoldmine", 2, "goldmine.png") );
+  _buttons.add(new Button(new int[] {30,60}, "buyElixircollector", 2, "elixircollector.png") );
+  
+  //TROOP SELECTION
+  int tmpX = 225;
+  for (int i = 0; i < _monsterNames.length; i ++ ){
+  _buttons.add (new Button (new int[] {tmpX, 225}, new int[] {tmpX+93, 340}, _monsterNames[i], null, 3, new int[] {0,0,0}, new int[] {0,0,0,0} ));
+  tmpX +=  112;
+  }  // Archer, Wall breaker, Wizard, Barbarian, Giant, Goblin
+  
+  tmpX=225;
+  for (int i = 0; i < _towerNames.length; i ++ ){
+  _buttons.add (new Button (new int[] {tmpX, 225}, new int[] {tmpX+93, 340}, _towerNames[i], null, 4, new int[] {0,0,0}, new int[] {0,0,0,0} ));
+  tmpX +=  112;
+  }
   
   // add exit button for each state
   for ( int i = 0; i <= 4; i++ )
@@ -73,18 +94,31 @@ public class Homebase{
   
   void draw() {
     //SHOP MODE
-    if (state == 1) { 
     
-      shopImg = loadImage("shop.png");
-      image(shopImg, 0, 0, 1280, 720);
-      text("Gold: " + _gold, 50, 50);
-      text("Elixers: " + _elixir, 50, 70);
+    
+    bShopImg = loadImage("bgd.jpg");
+    image(bShopImg, 0, 0, 1280, 720);
+    
+    if (state == 1) { 
+      fill(0);
+      text("SHOP", 600, 50);
+      text("Gold: " + _gold, 98, 120);
+      text("Elixers: " + _elixir, 520, 120);
     }
      
      
     else if ( state == 2 ) {
-       resources = loadImage("resources.jpg");
-       image(resources, 0, 0, 1280, 720);
+      fill(0);
+      text("RESOURCES", 600, 50);
+      text("Your Gold: " + _gold, 800, 50);
+      text("Cost: 150", 98, 310);
+      text("Cost: 150", 520, 310);
+   }
+   
+   else if (state == 3) {
+     troopPanel= loadImage("troops.jpg");
+     image(troopPanel, 200, 200, 700, 150);
+   
    }
     
     //VIEW MODE
@@ -145,6 +179,12 @@ public class Homebase{
             state = 0;
             buyTower(new ElixirCollector(mouseX, mouseY) );
         }
+         else if (tag.equals("armyShop") ) {
+           state = 3;
+         }
+            else if (tag.equals("defenseShop") ) {
+           state = 4;
+         }
         else if (tag.equals("exitToHome") )
             state = 0;  
         break;
