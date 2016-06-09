@@ -18,6 +18,10 @@ public abstract class Tower extends Unit implements Comparable{
 	rect(_xcor*100, _ycor*100 , 10, 10);
     }
     
+    void draw(int xcor, int ycor) {
+      rect(xcor * 100, ycor * 100, 10, 10);
+    }
+    
     public int compareTo(Object o){
       return 0;
     }

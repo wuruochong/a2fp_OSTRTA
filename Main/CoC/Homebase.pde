@@ -56,6 +56,8 @@ public class Homebase{
   // transparent buttons
   _buttons.add(new Button(new int[] {510, 145}, new int[] {770, 390}, "resourceShop", null, 1, new int[] {0,0,0}, new int[] {0,0,0,0}) );
   _buttons.add(new Button(new int[] {410, 65}, new int[] {755, 350}, "buyGoldmine", null, 2, new int[] {0,0,0}, new int[] {0,0,0,0}) );
+  _buttons.add(new Button(new int[] {30,60}, new int[] {380, 350}, "buyElixircollector", null, 2, new int[] {0,0,0}, new int[] {0,0,0,0}) );
+  
   // add exit button for each state
   for ( int i = 0; i <= 4; i++ )
     _buttons.add(new Button(new int[] {1100, 20}, new int[] {1260, 80}, "exitToHome", null, i, new int[] {0,0,0}, new int[] {0,0,0,0}) );
@@ -70,7 +72,6 @@ public class Homebase{
   }
   
   void draw() {
-    println(state);
     //SHOP MODE
     if (state == 1) { 
     
@@ -123,7 +124,6 @@ public class Homebase{
   
   
   void mousePressed() { 
-    
     // if clicked on a button
     println(mouseX + ":" + mouseY);
     for ( Button button : _buttons ) {
@@ -137,32 +137,20 @@ public class Homebase{
             state = 1; //set mode to shop mode
         else if (tag.equals("resourceShop") )
             state = 2;
-        else if (tag.equals("buyGoldmine") )
+        else if (tag.equals("buyGoldmine") ) {
+            state = 0;
             buyTower(new GoldMine(mouseX, mouseY));
+        }
+        else if (tag.equals("buyElixircollector") ) {
+            state = 0;
+            buyTower(new ElixirCollector(mouseX, mouseY) );
+        }
         else if (tag.equals("exitToHome") )
             state = 0;  
+        break;
       }
     }
-    
-    //IF IN SHOP MODE
-    if (state == 1) {
-      
-      //IF BUYING RESOURCES
-    //if (mouseX >= 510 && mouseY >= 145 && mouseY <= 390 && mouseX <= 770) {
-    //  showResources = true;
-    //}
-    
-    //BUYING gold mine
-    //if (showResources && mouseX >= 410 && mouseY >= 65 && mouseY <= 430 && mouseX <= 755)
-    //  buyTower(new GoldMine(mouseX, mouseY));
-    
-    
-    //STILL NEEDS TO BE IMPLEMENTED
-    //BUYING ELIXIR
-    
-    //IF BUYING MONSTERS
-    }
-    
+
     
     //if clicked on a tower
     for (Tower t : _towersOwned) {
@@ -179,16 +167,6 @@ public class Homebase{
          */
     }
     
-    //exit to homebase, back to VIEW MODE
-    /*
-    if (state == 1 && 
-        mouseX>= 1100 && 
-        mouseX <= 1260 &&
-        mouseY >= 20 &&
-        mouseY <= 80) {
-           showResources = false;
-        state = 0;
-    } */
     
   }
         
@@ -231,6 +209,7 @@ public class Homebase{
   public boolean buyTower(Tower property) {
     if (_gold >= property.getCost()) {
           payGold(property.getCost());
+          // DO THE MOVE THING HERE; TRY NOT TO CHANGE ANYTHING ELSE
           placeItem(property);
           _towersOwned.add(property);
           return true;
@@ -270,8 +249,13 @@ public class Homebase{
    return true;
  }
  
+   public void placeItem(Tower t) {
+     t.setCoor(mouseX, mouseY);
+   }
+   
  //to place tower after its bought at mouse position 
-  void placeItem(Tower t) {
+ // IS THIS DRAGGING?
+  void moveItem(Tower t) {
     if (hoveredOver(t)) {
       if (!mousePressed) 
         t.setCoor(mouseX, mouseY);
