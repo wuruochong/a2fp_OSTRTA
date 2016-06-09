@@ -3,13 +3,16 @@ public abstract class Tower extends Unit implements Comparable{
     int _upgradeState;
     int _range;
     boolean _show; //show range
+    Monster _tmpMonster;
     
+   /*
     // decreases tower hp by n
     // returns true if tower is destroyed as a result of this damage
     public boolean takeDamage(int n) {
-	_hp -= n;
-	return isAlive();
-    }
+	      _hp -= n;
+        println(_hp);
+	      return isAlive();
+    } */
 
     // returns true if tower successfully upgraded
     public abstract void upgrade();
@@ -23,13 +26,22 @@ public abstract class Tower extends Unit implements Comparable{
     }
     
     public int compareTo(Object o){
-      return 0;
+      double dist1 = Math.hypot( _tmpMonster._xcor - this._xcor, _tmpMonster._ycor - this._ycor );
+      double dist2 = Math.hypot( _tmpMonster._xcor - ((Tower) o)._xcor, _tmpMonster._ycor - ((Tower) o)._ycor);
+      return (int)(dist2 - dist1);
     }
     
     public boolean isAlive() {
       return _hp > 0;
   }
   
+   public void setMonster(Monster m) {
+     _tmpMonster = m;
+   }
+   
+   public void setHP(int n){
+     _hp = n;
+   }
    
    void setCoor(int x, int y) {
    _xcor = x;

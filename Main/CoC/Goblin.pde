@@ -3,11 +3,11 @@ public class Goblin extends Monster{
 
    public Goblin(){
      super();
-     _hp = 25;
+     _hp = 999;
      _mp = 25;
      _trainingTime = 30;
-     _basicSpeed = 32;
-     _attackRange = 50;
+     _basicSpeed = 5;
+     _attackRange = 5;
      _dmgPerAttack=11;
      _level = 1;
      _houseSpace = 1;

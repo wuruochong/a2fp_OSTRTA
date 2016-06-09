@@ -1,4 +1,7 @@
-6/8/15
+6/9/16
+Calvin&Ruochong: Fixed bugs, restructured data structure use, Queuing kinda works, Towers attack Monsters.
+
+6/8/16
 Calvin: 07:57 Transformed non-button click areas into actual buttons using the custom written button class
 Calvin: 11:04 New resource tower created; Restructured class interaction system; Laid groundwork for visually seeing where to place tower after it is bought
 -----------------------------------------------------------------------------------------------------------------------------------------

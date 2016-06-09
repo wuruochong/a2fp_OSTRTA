@@ -2,11 +2,11 @@ public class Giant extends Monster{
 
    public Giant(){
      super();
-     _hp = 300;
+     _hp = 999;
      _mp = 250;
      _trainingTime = 120;
-      _basicSpeed = 12;
-     _attackRange = 100;
+      _basicSpeed = 5;
+     _attackRange = 5;
      _dmgPerAttack=22;
      _level = 1;
      _houseSpace = 5;

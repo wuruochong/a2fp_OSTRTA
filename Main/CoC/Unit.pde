@@ -19,7 +19,7 @@ int getCost(){
 
  boolean takeDamage(int n) {
   _hp -= n;
-  return ! isAlive();
+  return isAlive();
     }
     
 }

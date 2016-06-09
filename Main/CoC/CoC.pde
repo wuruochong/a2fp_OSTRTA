@@ -21,7 +21,7 @@ void setup(){
 
 void mousePressed() {
   
-println(mouseX + " " + mouseY);
+//println(mouseX + " " + mouseY);
    if (attack.buttonPressed(0))
      state = 1;
      

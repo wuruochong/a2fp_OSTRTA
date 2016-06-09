@@ -43,23 +43,23 @@ public class Homebase{
   _monstersOwned = new ArrayList<Monster>();
   
   //default items owned
-  _towersOwned.add(new Canon(500, 300));
+  _towersOwned.add(new Canon(900, 300));
   _towersOwned.add(new TownHall(600, 450));
   _towersOwned.add(new GoldMine(300, 200));
   
   _towerChoices = new ArrayList<Tower>();
   _monsterChoices = new ArrayList<Monster>();
   
-  _towerChoices.add(new Defense(600, 350));
+  _towerChoices.add(new Defense(900, 350));
   _monsterChoices.add(new Barbarian());
   
-  _monstersOwned.add(new Barbarian(600,400));
-  _monstersOwned.add(new Barbarian(7600,400));
+   _monstersOwned.add(new Barbarian(600,400));
+  _monstersOwned.add(new Barbarian(700,400));
   _monstersOwned.add(new Barbarian(800,400));
-  _monstersOwned.add(new Wizard(900,400));
-  _monstersOwned.add(new Goblin(845, 220));
+  _monstersOwned.add(new Wizard(500,400));
+  //_monstersOwned.add(new Goblin(845, 220));
   
-  // load ALL buttons
+  // load ALL buttonswadse
   _buttons = new ArrayList<Button>();
   _buttons.add(new Button(new int[] {1100, 600}, "shop", 0, "shop.jpg"));
   // transparent buttons

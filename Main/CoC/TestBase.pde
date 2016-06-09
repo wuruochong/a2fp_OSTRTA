@@ -28,11 +28,11 @@ public class TestBase{
     _buttons = new ArrayList<Button>();
    
     _enemyTowers = new ArrayList<Tower>();
-    _enemyTowers.add(new Canon(250,300));
-    _enemyTowers.add(new Canon(600,500));
-    _enemyTowers.add(new Canon(100, 250));
+    //_enemyTowers.add(new Canon(250,300));
+    _enemyTowers.add(new Canon(150,250));
+    _enemyTowers.add(new Canon(600, 250));
     
-    _enemyTowers.add (new TownHall(500, 270));
+    //_enemyTowers.add (new TownHall(500, 270));
     win  = new Button(new int[] {300, 200}, new int[] {400,250}, "win", "return", 0);
     cont = true;
   }
@@ -57,7 +57,7 @@ public class TestBase{
         }
         for ( Monster m : _monstersOwned ) {
           if (m.isAlive())
-          m.draw(true, _enemyTowers);
+            m.draw(true, _enemyTowers);
           
       }
         /*
