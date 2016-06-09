@@ -18,8 +18,9 @@ public class Homebase{
   ArrayList<Tower> _towerChoices;
   ArrayList<Monster> _monsterChoices;
   
-  String[] _monsterNames = { "Archer", "Wall breaker", "Wizard", "Barbarian", "Giant", "Goblin"}; //for generating buttons
-  String[] _towerNames = { "Tesla", "Canon", "Sniper", "idk", "idk2"};//for generating buttons
+  String[] _monsterNames = { "Archer", "WallBreaker", "Wizard", "Barbarian", "Giant", "Goblin"}; //for generating buttons
+  String[] _towerNames = { "Tesla", "Canon", "Sniper"};// "idk", "idk2"};//for generating buttons
+  String[] _towerPics = {"tesla.gif", "canon.png", "sniper.gif"};//, null, null};
   
   int[] campFireLoc = {700, 700}; //random location
   
@@ -75,9 +76,9 @@ public class Homebase{
   
   tmpX=225;
   for (int i = 0; i < _towerNames.length; i ++ ){
-  _buttons.add (new Button (new int[] {tmpX, 225}, new int[] {tmpX+93, 340}, _towerNames[i], null, 4, new int[] {0,0,0}, new int[] {0,0,0,0} ));
-  tmpX +=  112;
-  }
+  _buttons.add (new Button (new int[] {tmpX, 225}, _towerNames[i], 4, _towerPics[i]));
+  tmpX +=  162;
+  }//Button(int[] coor1, String tag, int screen, String i)
   
   // add exit button for each state
   for ( int i = 0; i <= 4; i++ )
@@ -119,6 +120,13 @@ public class Homebase{
      troopPanel= loadImage("troops.jpg");
      image(troopPanel, 200, 200, 700, 150);
    
+   }
+  
+  else if (state == 4) {
+     fill(0);
+     text("TESLA", 225,400);
+     text("CANON", 392,400);
+     text("SNIPER", 550,400);
    }
     
     //VIEW MODE
@@ -167,6 +175,7 @@ public class Homebase{
         if ( tag.equals("genText") )
           text("hello, it's me", 500, 500);
         //clicked on shop icon
+        
         else if (tag.equals("shop") )
             state = 1; //set mode to shop mode
         else if (tag.equals("resourceShop") )
@@ -185,6 +194,56 @@ public class Homebase{
             else if (tag.equals("defenseShop") ) {
            state = 4;
          }
+         
+        else if (tag.equals("buyElixircollector") ) {
+            state = 0;
+            buyTower(new ElixirCollector(mouseX, mouseY) );
+        }
+        
+        //BUYING MONSTERS
+        else if (tag.equals("Archer") ) {
+            state = 0;
+            buyMonster(new Archer(mouseX, mouseY) );
+        }
+        else if (tag.equals("Wizard") ) {
+            state = 0;
+            buyMonster(new Wizard(mouseX, mouseY) );
+        } 
+        else if (tag.equals("Barbarian") ) {
+            state = 0;
+            buyMonster(new Barbarian(mouseX, mouseY) );
+        } 
+        else if (tag.equals("Giant") ) {
+            state = 0;
+            buyMonster(new Giant(mouseX, mouseY) );
+        } 
+        else if (tag.equals("Goblin") ) {
+            state = 0;
+            buyMonster(new Goblin(mouseX, mouseY) );
+        }
+        else if (tag.equals("WallBreaker") ) {
+            state = 0;
+            buyMonster(new WallBreaker(mouseX, mouseY) );
+        }
+        
+        //BUYING DEFENSES
+        else if (tag.equals("Tesla")) {
+            state = 0;
+            buyTower(new Tesla(mouseX, mouseY) );
+        
+        }
+        else if (tag.equals("Canon")) {
+            state = 0;
+            buyTower(new Canon(mouseX, mouseY) );
+        
+        }
+        else if (tag.equals("Sniper")) {
+            state = 0;
+            buyTower(new Sniper(mouseX, mouseY) );
+        
+        }
+        
+        //EXIT
         else if (tag.equals("exitToHome") )
             state = 0;  
         break;
