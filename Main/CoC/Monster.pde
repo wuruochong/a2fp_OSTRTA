@@ -38,9 +38,6 @@ public class Monster extends Unit implements Comparable{
       text(_hp + "", _xcor, _ycor , 50, 50);
       if ( _drawTicks % 15 == 0) { // every half second...
         if ( attacking ) {
-while ( _target != null && !_target.isAlive() )
-{println(_target._hp);
-             towers.remove(_target);}
           getTarget(towers);
           if (!_target.isAlive()){
            // println("hi");
