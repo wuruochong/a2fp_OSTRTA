@@ -7,7 +7,7 @@ public class Giant extends Monster{
      _trainingTime = 120;
       _basicSpeed = 5;
      _attackRange = 5;
-     _dmgPerAttack=22;
+     _dmgPerAttack=10;
      _level = 1;
      _houseSpace = 5;
    }

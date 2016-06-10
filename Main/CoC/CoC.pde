@@ -17,14 +17,15 @@ void setup(){
   //attack  =new Button(new int[] {200, 100}, new int[] {300,150},"attack", "attack");
   attackButton =new Button(new int[] {0, 600}, "attack", 0, "attack.jpg");
   //test = new TestBase(base._monstersOwned, base._gold);
-  test = new TestBase(base);
 }
 
 void mousePressed() {
   
 //println(mouseX + " " + mouseY);
-   if (attackButton.buttonPressed(0))
+   if (attackButton.buttonPressed(0)) {
      state = 1;
+     test = new TestBase(base);
+   }
      
    else if ( state == 0 )
     base.mousePressed();

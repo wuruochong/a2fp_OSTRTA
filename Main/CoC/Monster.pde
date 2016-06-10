@@ -37,7 +37,7 @@ public class Monster extends Unit implements Comparable{
       //println(towers);
       fill(0);
       text(_hp + "", _xcor, _ycor , 50, 50);
-      if ( _drawTicks % 15 == 0) { // every half second...
+      if ( _drawTicks % 30 == 0) { // every half second...
         if ( attacking ) {
           getTarget(towers);
           if (!_target.isAlive()){
@@ -48,9 +48,6 @@ public class Monster extends Unit implements Comparable{
           shoot();
         }
       }
-      //if ( _drawTicks % 30 == 0 ) {
-      //  shoot();
-      //}
     }
 
     public void face() {
@@ -140,7 +137,7 @@ public class Monster extends Unit implements Comparable{
        }       
       }
       */
-
+    //gets closest tower
     public void getTarget(ArrayList<Tower> towerList) {
       double sDist = Double.MAX_VALUE;
       for ( Tower tower : towerList ) {

@@ -81,10 +81,18 @@ public class Defense extends Tower implements Comparable{
         ((Monster)monster).setTower(this);
       }
       // remove out of range monsters
+      Iterator<Comparable> iter = _monstersToShoot.iterator();
+      while ( iter.hasNext() ) {
+        Monster monster = (Monster)(iter.next());
+        if ( ! inRadius(monster) )
+          iter.remove();
+      }
+      
+      /*
       for ( Object monster : _monstersToShoot ) {
         if ( ! inRadius( (Monster) monster ) )
           _monstersToShoot.remove((Monster) monster);
-      }
+      } */
       
 	    for ( Monster monster : monsterList ) {
 	      if ( (! _attackAir) && monster.isFlying ) // do not queue flying monsters if tower cannot attack them
