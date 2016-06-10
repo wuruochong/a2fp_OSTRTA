@@ -1,0 +1,31 @@
+Team One Syste to Ruel Them All -- Kathy Lau, Calvin Vuong, Ruochong Wu
+APCS2
+Plan 2016/06/10
+
+All of the following tasks will be worked on collaboratively, but certain classes or files for these tasks will be delegated accordingly when the time arrives.
+
+Completion dates have been pushed back by a day or two since the last plan, as we expect the "non-game" applications to be easily implemented. We will therefore allot ourselvese more time on completing the game.
+
+We plan on holding 2-3 hour collaboration sessions on Fri June 10 and Sun Jun 12 to maximize communication and effectiveness.
+Priorities in order of planned completion:
+
+Planning Operations: COMPLETE
+	 Planning operations, listed in our previous plan, have been completed. We will continue to update UMLs, but everything else is done.
+
+Core Applications:
+  1. Tower Defense Game - half of the classes, gain basic understanding (6/10)
+     	-Tower, monster, and player classes have been completed. COMPLETE
+        -work on implementing the gameplay flowchart and actual actions (6/11) IN PROGRESS 
+	      o build a main driver file which will make the above classes interact with each other (6/11) IN PROGRESS
+	      o work on algorithms and AI to produce enemy bases (6/11)
+        -improved graphics and animation later (6/11)
+  2. Clock system + alarm (6/12)
+  3. Calculator (6/13)
+  4. Calendar (6/13)
+  5. PacMan (6/13)
+
+The following supplemental applications will most likely be scratched due to time constraints. 
+Supplemental Applications (with concepts that need to be researched):
+  1. Weather (need to know about APIs)
+  2. Messenger(need to know about sockets/ports)
+
