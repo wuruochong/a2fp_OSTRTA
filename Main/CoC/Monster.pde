@@ -38,7 +38,14 @@ public class Monster extends Unit implements Comparable{
       text(_hp + "", _xcor, _ycor , 50, 50);
       if ( _drawTicks % 15 == 0) { // every half second...
         if ( attacking ) {
+while ( _target != null && !_target.isAlive() )
+{println(_target._hp);
+             towers.remove(_target);}
           getTarget(towers);
+          if (!_target.isAlive()){
+           // println("hi");
+          towers.remove(_target);
+          }
           face(); //orient x and y velocity to move to the nearest tower
           move();
           shoot();
@@ -110,8 +117,10 @@ public class Monster extends Unit implements Comparable{
 
       if (! _towersToShoot.isEmpty()){
     	Tower tower = (Tower)_towersToShoot.peekTop(); */
+
       if ( inAttackRadius(_target) ) {
     	  attack(_target); 
+   // println(_target._hp);
       }
    //  println(_target._hp);
       }
@@ -142,6 +151,7 @@ public class Monster extends Unit implements Comparable{
         if ( tmp < sDist ) {
           sDist = tmp;
           _target = tower;
+        
         }
         
         }
