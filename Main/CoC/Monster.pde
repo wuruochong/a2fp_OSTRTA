@@ -34,14 +34,14 @@ public class Monster extends Unit implements Comparable{
 
     // if attacking is true, the monsters are in attack mode
     void draw(boolean attacking, ArrayList<Tower> towers){
+      //println(towers);
       fill(0);
       text(_hp + "", _xcor, _ycor , 50, 50);
       if ( _drawTicks % 15 == 0) { // every half second...
         if ( attacking ) {
           getTarget(towers);
           if (!_target.isAlive()){
-           // println("hi");
-          towers.remove(_target);
+            towers.remove(_target);
           }
           face(); //orient x and y velocity to move to the nearest tower
           move();
@@ -81,8 +81,8 @@ public class Monster extends Unit implements Comparable{
     
     // deals damage to tower
     public boolean attack(Tower tower) {
-      tower.takeDamage( _dmgPerAttack );
-      return true;
+      //println("hi");
+      return tower.takeDamage( _dmgPerAttack );
     }
     
   public int levelup(){
@@ -170,7 +170,7 @@ public class Monster extends Unit implements Comparable{
     public int compareTo(Object o){
       double dist =  Math.hypot((_tmpTower._xcor - this._xcor),(_tmpTower._ycor - this._ycor));
       double distO = Math.hypot(_tmpTower._xcor - ((Monster)o)._xcor, _tmpTower._ycor - ((Monster)o)._ycor);
-      return (int)(distO - dist);
+      return (int)(dist - distO);
       //if ( o instanceof Monster ) {
       //  Monster other = (Monster) o;
       //  return _hp - other._hp;

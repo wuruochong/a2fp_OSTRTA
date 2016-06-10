@@ -1,9 +1,10 @@
 // represents any building in the game
-public abstract class Tower extends Unit implements Comparable{
+public abstract class Tower extends Unit {
     int _upgradeState;
     int _range;
     boolean _show; //show range
     Monster _tmpMonster;
+    int _id;
     
    /*
     // decreases tower hp by n
@@ -25,11 +26,13 @@ public abstract class Tower extends Unit implements Comparable{
       rect(xcor * 100, ycor * 100, 10, 10);
     }
     
+    /*
     public int compareTo(Object o){
       double dist1 = Math.hypot( _tmpMonster._xcor - this._xcor, _tmpMonster._ycor - this._ycor );
       double dist2 = Math.hypot( _tmpMonster._xcor - ((Tower) o)._xcor, _tmpMonster._ycor - ((Tower) o)._ycor);
-      return (int)(dist2 - dist1);
+      return (int)(dist1 - dist2);
     }
+    */
     
     public boolean isAlive() {
       return _hp > 0;

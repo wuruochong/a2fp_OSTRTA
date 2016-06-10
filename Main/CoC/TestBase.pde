@@ -28,7 +28,7 @@ public class TestBase{
     _buttons = new ArrayList<Button>();
    
     _enemyTowers = new ArrayList<Tower>();
-    //_enemyTowers.add(new Canon(250,300));
+    _enemyTowers.add(new Canon(250,300));
     _enemyTowers.add(new Canon(150,250));
     _enemyTowers.add(new Canon(600, 250));
     
@@ -38,6 +38,7 @@ public class TestBase{
   }
   
   void draw(){
+      
       if (_enemyTowers.size()==0){ // fix later
         text("Attack Successful!", 500, 500);
         win.draw();
@@ -48,18 +49,23 @@ public class TestBase{
       }
       
       else{
+       
         image(bImg,0,0, 1280, 720);
         for (Tower enemy : _enemyTowers){
           if ( enemy instanceof Defense ) {
-            if (enemy.isAlive())
-          ((Defense) enemy).draw(_monstersOwned);
+            if (enemy.isAlive()) {   
+            //  println(((Defense)enemy)._id + "  1");
+              ((Defense)enemy).draw(_monstersOwned);
+              
+            }
           }
         }
+        
         for ( Monster m : _monstersOwned ) {
           if (m.isAlive())
             m.draw(true, _enemyTowers);
           
-      }
+        }
         /*
         int tmpX = 0; //for panels
     for (Monster m : base._monstersOwned){
@@ -68,9 +74,8 @@ public class TestBase{
       tmpX+=50;
     } */
       }
-
-    }
   }
+    }
 
       
   

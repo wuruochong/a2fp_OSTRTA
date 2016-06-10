@@ -25,18 +25,20 @@ public class Defense extends Tower implements Comparable{
 	_monstersToShoot = new ArrayPriorityQueue<Monster>();
 	_attackAir = false;
 	_attackRate = 60; // once per second
+  _id = (int) (Math.random() * 500);
 
    _mp = 100; //subject to change
     }
 
     void draw(ArrayList<Monster> monsterList) {
           fill(0); 
-         text(_hp + " ", _xcor+70,  _ycor+40, 50, 50 ); 
-	    queueMonsters(monsterList);
-	    if ( (! _monstersToShoot.isEmpty() )&& _drawTicks % _attackRate == 0 ){
-	      shoot();
-      }
-	    _drawTicks += 1;
+          text(_hp + " ", _xcor+70,  _ycor+40, 50, 50 ); 
+	        queueMonsters(monsterList);
+        //  println(_id+ "  1");
+	        if ( (! _monstersToShoot.isEmpty() )&& _drawTicks % _attackRate == 0 ){
+	          shoot();
+          }
+	      _drawTicks += 1;
     }
 
     // determines exactly how to attack monsters (e.g. individual damage, collateral damage, etc.)
@@ -69,7 +71,7 @@ public class Defense extends Tower implements Comparable{
 	      multiplier *= 10;
 	    if ( splash )
 	      multiplier /= 5;
-
+      //println("hi");
 	    return enemy.takeDamage( (int) multiplier * _attackPower);
     }
 
