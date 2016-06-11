@@ -10,7 +10,10 @@ public class ElixirCollector extends Resource{
 
     void draw() {
       icon = loadImage("elixircollector.png");
-      image(icon, _xcor + icon.width/2, _ycor + icon.height/2, 60, 60); 
+          imageMode(CENTER);
+    image(icon, _xcor, _ycor, 50, 50);
+    imageMode(CORNER);
+     // image(icon, _xcor + icon.width/2, _ycor + icon.height/2, 60, 60); 
     }
 
 

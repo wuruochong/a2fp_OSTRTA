@@ -38,7 +38,7 @@ public class Monster extends Unit implements Comparable{
       text(_hp + "", _xcor, _ycor , 50, 50);
       if ( attacking ) {
         getTarget(towers);
-        while ( ! _target.isAlive() ) {
+        if ( ! _target.isAlive() ) {
           towers.remove(_target);
           getTarget(towers);
         }
