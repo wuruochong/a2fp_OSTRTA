@@ -43,9 +43,9 @@ public class Canon extends Defense {
     
     }
     
-    void draw(ArrayList<Monster> monsterList) {
-    super.draw(monsterList);
-    rect(_xcor, _ycor, 10, 10);
+    void draw(LList<Monster> monsterList) {
+      super.draw(monsterList);
+      rect(_xcor, _ycor, 10, 10);
     //println(_hp);
     //icon = loadImage("canon.png");
     //image(icon, _xcor + icon.width/2, _ycor + icon.height/2, 50, 50); 

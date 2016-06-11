@@ -20,6 +20,9 @@ public interface List<T> extends Iterable<T> {
 
     //remove element at index i
     public T remove( int i );
+    
+    //remove item from list
+    public boolean remove( T x );
 
     //return element at index i
     public T get( int i ); 

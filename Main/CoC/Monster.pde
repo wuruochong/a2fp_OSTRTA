@@ -12,7 +12,6 @@ public class Monster extends Unit implements Comparable{
     
     Tower _tmpTower;
     Tower _target;
-    //ArrayPriorityQueue _towersToShoot;
     double dir;
     int _drawTicks;
 
@@ -29,7 +28,7 @@ public class Monster extends Unit implements Comparable{
   }
 
     // if attacking is true, the monsters are in attack mode
-    void draw(boolean attacking, ArrayList<Tower> towers){
+    void draw(boolean attacking, LList<Tower> towers){
       //println(towers);
       fill(0);
       text(_hp + "", _xcor, _ycor , 50, 50);
@@ -76,7 +75,6 @@ public class Monster extends Unit implements Comparable{
     
     // deals damage to tower
     public boolean attack(Tower tower) {
-      //println("hi");
       return tower.takeDamage( _dmgPerAttack );
     }
     
@@ -117,26 +115,8 @@ public class Monster extends Unit implements Comparable{
    //  println(_target._hp);
       }
 
-        // queues Towers into things to attack
-/*    public void queueTowers(ArrayList<Tower> towerList) {
-      for ( Object tower : _towersToShoot ) {
-        ((Tower) tower).setMonster(this);
-      }
-        // remove out of range monsters
-      for ( Object tower : _towersToShoot ) {
-        if ( ! inRadius( (Tower) tower ) )
-          _towersToShoot.remove((Tower) tower);
-      }
-    	for ( Tower tower : towerList ) {
-            if ( ! _towersToShoot.contains(tower) && inSightRadius(tower) ){
-               tower.setMonster(this);
-               _towersToShoot.add(tower);    	     
-             }
-       }       
-      }
-      */
     //gets closest tower
-    public void getTarget(ArrayList<Tower> towerList) {
+    public void getTarget(LList<Tower> towerList) {
       double sDist = Double.MAX_VALUE;
       for ( Tower tower : towerList ) {
         double tmp = Math.hypot(tower._xcor - this._xcor, tower._ycor - this._ycor);

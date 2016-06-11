@@ -10,9 +10,9 @@ public class TestBase{
   int maxGold;
   PImage bImg;
   ArrayList<Button> _buttons;
-  ArrayList<Monster> _monstersOwned;
+  LList<Monster> _monstersOwned;
   //ArrayList<Monster> _monsterChoices;
-  ArrayList<Tower> _enemyTowers;
+  LList<Tower> _enemyTowers;
   Button win;
   boolean cont;
   
@@ -27,7 +27,7 @@ public class TestBase{
     image(bImg,0,0, 1280, 720);
     _buttons = new ArrayList<Button>();
    
-    _enemyTowers = new ArrayList<Tower>();
+    _enemyTowers = new LList<Tower>();
     _enemyTowers.add(new Canon(250,300));
     _enemyTowers.add(new Canon(150,250));
     _enemyTowers.add(new Canon(600, 250));
@@ -38,12 +38,11 @@ public class TestBase{
   }
   
   void draw(){
-      
+      println(_enemyTowers.size());
       if (_enemyTowers.size()==0){ // fix later
         text("Attack Successful!", 500, 500);
         win.draw();
         if (win.buttonPressed(0)){
-          
           cont = false;
         }
       
@@ -52,21 +51,42 @@ public class TestBase{
       else{
        
         image(bImg,0,0, 1280, 720);
+        // draw enemy towers, delete if dead
+        Iterator<Tower> iter = _enemyTowers.iterator();
+        while ( iter.hasNext() ) {
+          Tower enemyT = (Tower)(iter.next());
+          if ( enemyT.isAlive() ) {
+            if ( enemyT instanceof Defense )
+              ((Defense) enemyT).draw(_monstersOwned);
+             else
+               enemyT.draw();
+          }
+          else // if enemyT is dead, just remove it from list
+            iter.remove();
+        }
+            
+        /*
         for (Tower enemy : _enemyTowers){
           if ( enemy instanceof Defense ) {
-            if (enemy.isAlive()) {   
-            //  println(((Defense)enemy)._id + "  1");
+            if (enemy.isAlive())   
               ((Defense)enemy).draw(_monstersOwned);
-              
-            }
           }
         }
-        
+        */
+        // draw monsters, delte if dead
+        Iterator<Monster> it = _monstersOwned.iterator();
+        while ( it.hasNext() ) {
+          Monster mon = (Monster) (it.next());
+          if ( mon.isAlive() )
+            mon.draw(true, _enemyTowers);
+          else
+            it.remove();
+        }
+        /*
         for ( Monster m : _monstersOwned ) {
           if (m.isAlive())
             m.draw(true, _enemyTowers);
-          
-        }
+        } */
         /*
         int tmpX = 0; //for panels
     for (Monster m : base._monstersOwned){

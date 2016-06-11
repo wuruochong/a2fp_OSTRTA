@@ -5,8 +5,8 @@ public class Homebase{
   String _name;
   int _gold;
   int _elixir;
-  ArrayList<Tower> _towersOwned;
-  ArrayList<Monster> _monstersOwned;
+  LList<Tower> _towersOwned;
+  LList<Monster> _monstersOwned;
   ArrayList<Button> _buttons;
   PImage bImg;
   PImage shopImg;
@@ -39,8 +39,8 @@ public class Homebase{
   _gold = 9999;
   _elixir = 9999;
   
-  _towersOwned = new ArrayList<Tower>();
-  _monstersOwned = new ArrayList<Monster>();
+  _towersOwned = new LList<Tower>();
+  _monstersOwned = new LList<Monster>();
   
   //default items owned
   _towersOwned.add(new Canon(900, 300));
@@ -53,7 +53,7 @@ public class Homebase{
   _towerChoices.add(new Defense(900, 350));
   _monsterChoices.add(new Barbarian());
   
-   _monstersOwned.add(new Archer(600,400));
+  _monstersOwned.add(new Archer(600,400));
   _monstersOwned.add(new Archer(700,400));
   _monstersOwned.add(new Archer(800,400));
   _monstersOwned.add(new Archer(500,400));
@@ -99,7 +99,6 @@ public class Homebase{
   void draw() {
     //SHOP MODE
     
-    
     bShopImg = loadImage("bgd.jpg");
     image(bShopImg, 0, 0, 1280, 720);
     
@@ -141,23 +140,32 @@ public class Homebase{
   
       for ( Tower building : _towersOwned ) {
           //to show range of tower, paint green box under tower
-          if (building._show)
-            {
+          if (building._show){
               fill(0, 255, 0, 50);
               ellipse(building._xcor, building._ycor, building._range, building._range);
-            }
+          }
           fill(0,0,0); // reset
           building.draw();
       }
        
+      // draw monsters
+      Iterator<Monster> iter = _monstersOwned.iterator();
+      while ( iter.hasNext() ) {
+        Monster m = (Monster)(iter.next());
+        if ( m.isAlive() )
+          m.draw(false, _towersOwned);
+        else
+          iter.remove();
+      }
       
-      //draw monster if alive, remove from array if not
+      /*
       for ( Monster m : _monstersOwned ) {
         if (m.isAlive())
           m.draw(false, _towersOwned);
         else 
           _monstersOwned.remove(m);
       }
+      */
     }
     
     for ( Button button : _buttons ) {
@@ -278,7 +286,7 @@ public class Homebase{
     return _name;
     }
   
-  public ArrayList<Monster> getMonsters() {
+  public LList<Monster> getMonsters() {
     return _monstersOwned;
   }
   

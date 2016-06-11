@@ -103,7 +103,19 @@ public class LList<T> implements List<T>
 	}
     }//end remove()
 
-
+    //remove node with specified cargo from linked list
+    public boolean remove( T x ) {
+      Iterator<T> iter = iterator();
+      while ( iter.hasNext() ) {
+        T item = iter.next();
+        if ( item.equals(x) ){
+          iter.remove();
+          return true;
+        }
+      }
+      return false;
+    }
+ 
     public T get( int index ) 
     { 
 	if ( index < 0 || index >= size() )
