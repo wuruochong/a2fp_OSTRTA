@@ -35,20 +35,15 @@ public class Monster extends Unit implements Comparable{
       text(_hp + "", _xcor, _ycor , 50, 50);
       if ( attacking ) {
         getTarget(towers);
-        if ( ! _target.isAlive() )
+        while ( ! _target.isAlive() ) {
           towers.remove(_target);
+          getTarget(towers);
+        }
         face();
         move();
       }
-      if ( _drawTicks % 30 == 0) { // every half second...
-        if ( attacking ) {
-          //getTarget(towers);
-          //if (!_target.isAlive())
-          //  towers.remove(_target);
-          //face(); //orient x and y velocity to move to the nearest tower
-          //move();
-          shoot();
-        }
+      if ( attacking && _drawTicks % 10 == 0) { // every half second...
+        shoot();
       }
       _drawTicks += 1;
     }
