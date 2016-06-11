@@ -15,7 +15,7 @@ public class Canon extends Defense {
   
     public Canon(int x, int y) {
 	super(x, y); 
-	_hp = 999;
+	_hp = 350;
 	_attackPower = 15;
 	_critChance = .05;
 	_range = 100;

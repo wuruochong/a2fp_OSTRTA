@@ -6,7 +6,7 @@ public class Goblin extends Monster{
      _hp = 999;
      _mp = 25;
      _trainingTime = 30;
-     _basicSpeed = 5;
+     _basicSpeed = 15;
      _attackRange = 5;
      _dmgPerAttack=11;
      _level = 1;

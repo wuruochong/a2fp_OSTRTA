@@ -24,7 +24,7 @@ public class Defense extends Tower implements Comparable{
 	_splashRadius = 0;
 	_monstersToShoot = new ArrayPriorityQueue<Monster>();
 	_attackAir = false;
-	_attackRate = 60; // once per second
+	_attackRate = 30; // once per second
   _id = (int) (Math.random() * 500);
 
    _mp = 100; //subject to change
@@ -34,7 +34,6 @@ public class Defense extends Tower implements Comparable{
           fill(0); 
           text(_hp + " ", _xcor+70,  _ycor+40, 50, 50 ); 
 	        queueMonsters(monsterList);
-        //  println(_id+ "  1");
 	        if ( (! _monstersToShoot.isEmpty() )&& _drawTicks % _attackRate == 0 ){
 	          shoot();
           }
@@ -48,17 +47,18 @@ public class Defense extends Tower implements Comparable{
 	    while ( !_monstersToShoot.isEmpty() && ! ((Monster)(_monstersToShoot.peekTop())).isAlive() )
 	        _monstersToShoot.removeTop();
 
-       if ( !_monstersToShoot.isEmpty() )
-	 {   Monster target = (Monster)_monstersToShoot.peekTop();
-	    attack(target, false);
-	    if ( _splashRadius != 0 ) { // if there is splash damage
-	      // find all monsters in splash radius
-	      for ( Object monster : _monstersToShoot) {
-		      if ( ((Monster)monster).isAlive() && inRadius((((Unit)target)),(Unit) monster, _splashRadius) )
-		        attack((Monster)monster, true); // attack them w/ splash damage
-	      }
-	    }
-   }
+       if ( !_monstersToShoot.isEmpty() ) {   
+         Monster target = (Monster)_monstersToShoot.peekTop();
+	      attack(target, false);
+        /*
+	      if ( _splashRadius != 0 ) { // if there is splash damage
+	        // find all monsters in splash radius
+	        for ( Object monster : _monstersToShoot) {
+		        if ( ((Monster)monster).isAlive() && inRadius((((Unit)target)),(Unit) monster, _splashRadius) )
+		          attack((Monster)monster, true); // attack them w/ splash damage
+	        }
+	      } */
+       }
     }
     
 

@@ -2,10 +2,10 @@ public class Archer extends Monster{
 
    public Archer(){
      super();
-     _hp = 999;
+     _hp = 100;
      _mp = 50;
      _trainingTime = 25;
-     _basicSpeed = 5;
+     _basicSpeed = 10;
      _attackRange = 50;
      _dmgPerAttack=7;
      _level = 1;
@@ -17,10 +17,6 @@ public class Archer extends Monster{
      this();
      _xcor = x;
      _ycor = y;
-   }
-
-   public int attack(){
-     return 1;//shoot arrows implementation
    }
 
 

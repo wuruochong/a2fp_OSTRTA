@@ -3,10 +3,10 @@ public class Barbarian extends Monster{
 
    public Barbarian(){
      super();
-     _hp = 999;
+     _hp = 100;
      _mp = 25;
      _trainingTime = 30;
-      _basicSpeed = 10;
+      _basicSpeed = 5;
      _attackRange = 5;
      _dmgPerAttack=10;
      _level = 1;

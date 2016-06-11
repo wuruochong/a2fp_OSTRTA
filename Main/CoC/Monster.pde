@@ -2,10 +2,9 @@ public class Monster extends Unit implements Comparable{
 
     boolean isFlying = false;
     int _trainingTime;
-    double _xvelocity = 10;
-    double _yvelocity = 10;
-    int _basicSpeed = 10;
-    int _sightRange;
+    double _xvelocity;
+    double _yvelocity;
+    int _basicSpeed;
     int _attackRange;
     int _dmgPerAttack = 10;
     int _level;
@@ -26,10 +25,7 @@ public class Monster extends Unit implements Comparable{
 	  _ycor = ycor;
 	  _hp = 10;
 	  _mp = 10;
-    _sightRange = 10000000;
- //   _towersToShoot = new ArrayPriorityQueue<Tower>();
-    _drawTicks = 0;
-    
+    _drawTicks = 0;    
   }
 
     // if attacking is true, the monsters are in attack mode
@@ -37,17 +33,24 @@ public class Monster extends Unit implements Comparable{
       //println(towers);
       fill(0);
       text(_hp + "", _xcor, _ycor , 50, 50);
+      if ( attacking ) {
+        getTarget(towers);
+        if ( ! _target.isAlive() )
+          towers.remove(_target);
+        face();
+        move();
+      }
       if ( _drawTicks % 30 == 0) { // every half second...
         if ( attacking ) {
-          getTarget(towers);
-          if (!_target.isAlive()){
-            towers.remove(_target);
-          }
-          face(); //orient x and y velocity to move to the nearest tower
-          move();
+          //getTarget(towers);
+          //if (!_target.isAlive())
+          //  towers.remove(_target);
+          //face(); //orient x and y velocity to move to the nearest tower
+          //move();
           shoot();
         }
       }
+      _drawTicks += 1;
     }
 
     public void face() {

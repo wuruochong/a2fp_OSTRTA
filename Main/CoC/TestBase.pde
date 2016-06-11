@@ -43,6 +43,7 @@ public class TestBase{
         text("Attack Successful!", 500, 500);
         win.draw();
         if (win.buttonPressed(0)){
+          
           cont = false;
         }
       

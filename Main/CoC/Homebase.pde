@@ -53,10 +53,10 @@ public class Homebase{
   _towerChoices.add(new Defense(900, 350));
   _monsterChoices.add(new Barbarian());
   
-   _monstersOwned.add(new Barbarian(600,400));
-  _monstersOwned.add(new Barbarian(700,400));
-  _monstersOwned.add(new Barbarian(800,400));
-  _monstersOwned.add(new Wizard(500,400));
+   _monstersOwned.add(new Archer(600,400));
+  _monstersOwned.add(new Archer(700,400));
+  _monstersOwned.add(new Archer(800,400));
+  _monstersOwned.add(new Archer(500,400));
   //_monstersOwned.add(new Goblin(845, 220));
   
   // load ALL buttonswadse
