@@ -5,6 +5,10 @@ public class Monster extends Unit implements Comparable{
     double _xvelocity;
     double _yvelocity;
     int _basicSpeed;
+    
+    int _roamSpeedX;
+    int _roamSpeedY;
+    
     int _attackRange;
     int _dmgPerAttack = 10;
     int _level;
@@ -24,6 +28,10 @@ public class Monster extends Unit implements Comparable{
 	  _xcor = xcor;
 	  _ycor = ycor;
 	  _hp = 10;
+    
+    _roamSpeedX = (int) (Math.random() * 5) + 1;
+    _roamSpeedY = (int) (Math.random() * 5) + 1;
+    
 	  _mp = 10;
     _drawTicks = 0;    
     _name = "mon";
@@ -45,11 +53,32 @@ public class Monster extends Unit implements Comparable{
         face();
         move();
       }
-      if ( attacking && _drawTicks % 5 == 0) { // every half second...
+      if ( attacking && _drawTicks % 15 == 0) { // every half second...
         shoot();
       }
       _drawTicks += 1;
     }
+    
+    // draw monsters walking around in their homes
+    void drawRoaming(MonsterHouse house) {
+      fill(0);
+      text(_hp + "", _xcor, _ycor);
+      int upperWall = house._ycor;
+      int lowerWall = house._ycor + house.size;
+      int leftWall = house._xcor;
+      int rightWall = house._xcor + house.size;
+      
+      if ( _xcor >= rightWall || _xcor <= leftWall )
+        _roamSpeedX *= -1;
+      if ( _ycor >= lowerWall || _ycor <= upperWall )
+        _roamSpeedY *= -1;
+      
+       _xcor += _roamSpeedX;
+       _ycor += _roamSpeedY;
+       
+       _drawTicks += 1;
+    }
+      
 
     public void face() {
     /*  if ( ! _towersToShoot.isEmpty() ) { 

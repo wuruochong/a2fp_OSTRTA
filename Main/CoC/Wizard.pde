@@ -1,3 +1,4 @@
+
 public class Wizard extends Monster{
 
    public Wizard(){
@@ -18,6 +19,4 @@ public class Wizard extends Monster{
      _xcor = x;
      _ycor = y;
    }
-
-
 }

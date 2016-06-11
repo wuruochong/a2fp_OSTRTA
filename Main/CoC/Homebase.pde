@@ -6,7 +6,8 @@ public class Homebase{
   int _gold;
   int _elixir;
   LList<Tower> _towersOwned;
-  LList<Monster> _monstersOwned;
+  MonsterHouse _house;
+  //LList<Monster> _monstersOwned;
   ArrayList<Button> _buttons;
   PImage bImg;
   PImage shopImg;
@@ -43,24 +44,34 @@ public class Homebase{
   _elixir = 9999;
   exp = 0;
   _towersOwned = new LList<Tower>();
-  _monstersOwned = new LList<Monster>();
+  _house = new MonsterHouse(900, 400);
+  //_monstersOwned = new LList<Monster>();
   
   //default items owned
   _towersOwned.add(new Canon(900, 300));
   _towersOwned.add(new TownHall(600, 450));
   _towersOwned.add(new GoldMine(300, 200));
+  _towersOwned.add(_house);
   
   _towerChoices = new ArrayList<Tower>();
   _monsterChoices = new ArrayList<Monster>();
   
   _towerChoices.add(new Defense(900, 350));
   _monsterChoices.add(new Barbarian());
+ 
+  _house.addMonster(new Archer(100,100));
+  _house.addMonster(new Barbarian(100,100));
+  _house.addMonster(new Wizard(100,100));
+  _house.addMonster(new Goblin(100,100));
+  _house.addMonster(new Giant(100,100));
   
+  /*
   _monstersOwned.add(new Archer(600,400));
   _monstersOwned.add(new Archer(700,400));
   _monstersOwned.add(new Archer(800,400));
   _monstersOwned.add(new Archer(500,400));
   //_monstersOwned.add(new Goblin(845, 220));
+  */
   
   // load ALL buttonswadse
   _buttons = new ArrayList<Button>();
@@ -153,7 +164,7 @@ public class Homebase{
       }
        
       // draw monsters
-      Iterator<Monster> iter = _monstersOwned.iterator();
+      Iterator<Monster> iter = getMonsters().iterator();
       while ( iter.hasNext() ) {
         Monster m = (Monster)(iter.next());
         if ( m.isAlive() )
@@ -266,7 +277,6 @@ public class Homebase{
       }
     }
 
-    
     //if clicked on a tower
     for (Tower t : _towersOwned) {
         if (hoveredOver(t) ) {//&& t._show == false ) {
@@ -275,14 +285,11 @@ public class Homebase{
           placeItem(t);
         }
         
-        
         //unshow range when unclicked
          /*
          IMPLEMENTATION HERE
          */
     }
-    
-    
   }
         
   
@@ -291,7 +298,7 @@ public class Homebase{
     }
   
   public LList<Monster> getMonsters() {
-    return _monstersOwned;
+    return _house.getMonsters();
   }
   
   public int getGold(){
@@ -336,7 +343,7 @@ public class Homebase{
   public boolean buyMonster(Monster mon) {
       if (_elixir >= mon.getCost()){
         payElixir(mon.getCost());
-        _monstersOwned.add(mon);
+        _house.addMonster(mon);
      
         /*
         //walk monster to campfire location
@@ -367,6 +374,7 @@ public class Homebase{
    public void placeItem(Tower t) {
      t.setCoor(mouseX, mouseY);
    }
+
    
  //to place tower after its bought at mouse position 
  // IS THIS DRAGGING?
