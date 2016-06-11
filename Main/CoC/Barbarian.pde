@@ -11,6 +11,7 @@ public class Barbarian extends Monster{
      _dmgPerAttack=10;
      _level = 1;
      _houseSpace = 1;
+     _name = "Barbarian";
    }
    
    public Barbarian(int x, int y){

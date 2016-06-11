@@ -39,6 +39,12 @@ public class TestBase{
 
     state = 0;
     cont = true;
+    
+     int tmpX = 200;
+    for (Monster m: _monsterList) {
+    _buttons.add(new Button(new int[] {tmpX, 600}, new int[] {tmpX + 100, 700}, m._name, m.getName() + "", 0));
+    tmpX+=150;
+    }
   }
   
   void mousePressed() {
@@ -99,6 +105,10 @@ public class TestBase{
       else{
        
         image(bImg,0,0, 1280, 720);
+        
+        for (Button b: _buttons)
+          {b.draw();}
+          
         // draw enemy towers, delete if dead
         Iterator<Tower> iter = _enemyTowers.iterator();
         while ( iter.hasNext() ) {

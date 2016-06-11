@@ -10,7 +10,7 @@ public class Archer extends Monster{
      _dmgPerAttack=7;
      _level = 1;
      _houseSpace = 1;
-
+  _name = "Archer";
    }
    
    public Archer(int x, int y){

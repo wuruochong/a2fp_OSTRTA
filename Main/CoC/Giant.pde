@@ -10,6 +10,7 @@ public class Giant extends Monster{
      _dmgPerAttack=10;
      _level = 1;
      _houseSpace = 5;
+     _name = "Giant";
    }
 
    public Giant(int x, int y){

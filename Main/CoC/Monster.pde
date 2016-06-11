@@ -14,7 +14,8 @@ public class Monster extends Unit implements Comparable{
     Tower _target;
     double dir;
     int _drawTicks;
-
+  String _name;
+  
     public Monster() {
       this(0,0);
     }
@@ -25,6 +26,7 @@ public class Monster extends Unit implements Comparable{
 	  _hp = 10;
 	  _mp = 10;
     _drawTicks = 0;    
+    _name = "mon";
   }
 
     // if attacking is true, the monsters are in attack mode
