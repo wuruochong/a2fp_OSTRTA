@@ -5,10 +5,14 @@ public class Homebase{
   String _name;
   int _gold;
   int _elixir;
+  
   LList<Tower> _towersOwned;
   MonsterHouse _house;
+  Deque _makeMonsterQueue;
   //LList<Monster> _monstersOwned;
+  
   ArrayList<Button> _buttons;
+  
   PImage bImg;
   PImage shopImg;
   PImage bShopImg;
@@ -64,14 +68,7 @@ public class Homebase{
   _house.addMonster(new Wizard(100,100));
   _house.addMonster(new Goblin(100,100));
   _house.addMonster(new Giant(100,100));
-  
-  /*
-  _monstersOwned.add(new Archer(600,400));
-  _monstersOwned.add(new Archer(700,400));
-  _monstersOwned.add(new Archer(800,400));
-  _monstersOwned.add(new Archer(500,400));
-  //_monstersOwned.add(new Goblin(845, 220));
-  */
+
   
   // load ALL buttonswadse
   _buttons = new ArrayList<Button>();
