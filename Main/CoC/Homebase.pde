@@ -2,13 +2,15 @@ import java.util.ArrayList; //for inventory?
 import java.util.Stack; //to store actions
 
 public class Homebase{
+  int _drawTicks;
+  
   String _name;
   int _gold;
   int _elixir;
   
   LList<Tower> _towersOwned;
   MonsterHouse _house;
-  Deque _makeMonsterQueue;
+  Deque<Monster> _makeMonsterQueue;
   //LList<Monster> _monstersOwned;
   
   ArrayList<Button> _buttons;
@@ -43,12 +45,16 @@ public class Homebase{
   */
  public Homebase() {
    //attributes 
+   _drawTicks = 0;
   _name = "default";
   _gold = 9999;
   _elixir = 9999;
   exp = 0;
+  
   _towersOwned = new LList<Tower>();
   _house = new MonsterHouse(900, 400);
+  _makeMonsterQueue = new Deque<Monster>();
+  
   //_monstersOwned = new LList<Monster>();
   
   //default items owned
@@ -64,10 +70,10 @@ public class Homebase{
   _monsterChoices.add(new Barbarian());
  
   _house.addMonster(new Archer(100,100));
-  _house.addMonster(new Barbarian(100,100));
-  _house.addMonster(new Wizard(100,100));
-  _house.addMonster(new Goblin(100,100));
-  _house.addMonster(new Giant(100,100));
+  //_house.addMonster(new Barbarian(100,100));
+  //_house.addMonster(new Wizard(100,100));
+  //_house.addMonster(new Goblin(100,100));
+  //_house.addMonster(new Giant(100,100));
 
   
   // load ALL buttonswadse
@@ -108,6 +114,7 @@ public class Homebase{
   }
   
   void draw() {
+    _drawTicks += 1;
     //SHOP MODE
     
     bShopImg = loadImage("bgd.jpg");
@@ -149,6 +156,17 @@ public class Homebase{
       bImg = loadImage("grass.jpg");
        //bImg = loadImage("maze3.jpg");
       image(bImg,0,0, 1280, 720);
+    
+      // make monsters in queue
+      if ( ! _makeMonsterQueue.isEmpty() ){
+        Monster monster = _makeMonsterQueue.peekFront();
+        if ( monster._trainingTime > 0 ) // not ready to be made yet
+          monster._trainingTime -= 1;
+        else {// ready
+          _makeMonsterQueue.dequeueFront(); // remove monster from queue  
+          _house.addMonster(monster);
+        }
+      }
   
       for ( Tower building : _towersOwned ) {
           //to show range of tower, paint green box under tower
@@ -169,22 +187,12 @@ public class Homebase{
         else
           iter.remove();
       }
-      
-      /*
-      for ( Monster m : _monstersOwned ) {
-        if (m.isAlive())
-          m.draw(false, _towersOwned);
-        else 
-          _monstersOwned.remove(m);
-      }
-      */
     }
     
     for ( Button button : _buttons ) {
         if ( state == button.displayScreen ) // only draw appropriate buttons
           button.draw();
-      }
-      
+      } 
   }
   
   
@@ -340,28 +348,10 @@ public class Homebase{
   public boolean buyMonster(Monster mon) {
       if (_elixir >= mon.getCost()){
         payElixir(mon.getCost());
-        _house.addMonster(mon);
-     
-        /*
-        //walk monster to campfire location
-        //walking x coordinate
-        while  (mon._xcor != campFireLoc[0]) {
-          if (mon._xcor < campFireLoc[0])
-            mon._xcor++;
-          else
-            mon._xcor--;
-        }
-        //walking y coordinate
-        while (mon._ycor != campFireLoc[1]) {
-          if (mon._ycor < campFireLoc[0])
-            mon._ycor++;
-          else
-            mon._ycor--;
-        }
-        */
-    return true;
-    }
-    return false;
+        _makeMonsterQueue.enqueueBack(mon);
+        return true;
+      }
+      return false;
   }
   
  public boolean upgradeTower(Tower t) {
