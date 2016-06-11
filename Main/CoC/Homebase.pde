@@ -24,6 +24,7 @@ public class Homebase{
   
   int[] campFireLoc = {700, 700}; //random location
   int exp;
+  int tierChosen;
   
   int state;
   /*
@@ -32,6 +33,7 @@ public class Homebase{
    2 - resources shopping screen, (aka new show resources boolean)
    3 - army shopping screen,
    4 - defenses shopping screen,
+   5- choosing tier
   
   */
  public Homebase() {
