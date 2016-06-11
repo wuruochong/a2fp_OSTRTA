@@ -36,16 +36,10 @@ public class Defense extends Tower implements Comparable{
           fill(0); 
           text(_hp + " ", _xcor+70,  _ycor+40, 50, 50 ); 
 	        queueMonsters(monsterList);
+
 	        if ( (! _monstersToShoot.isEmpty() ) && _drawTicks % _attackRate == 0 ){
   
   //shooting stuff :(
-   Monster target = (Monster)_monstersToShoot.peekTop();
-        double slope = ( target._ycor - _ycor  ) / ( target._xcor -  _xcor + 0.0 );
-        //dir = Math.atan(slope);
-        dir = Math.atan2( target._ycor - _ycor ,  target._xcor - _xcor );
-        Bullet b = new Bullet(_xcor, _ycor, dir);
-        b.draw();
-        
 	          shoot();
   
  
@@ -65,7 +59,8 @@ public class Defense extends Tower implements Comparable{
 
        if ( !_monstersToShoot.isEmpty() ) {   
          Monster target = (Monster)_monstersToShoot.peekTop();
-         
+      Bullet b = new Bullet(_xcor, _ycor, target);
+        b.display();         
          /*
          face monster         
          */

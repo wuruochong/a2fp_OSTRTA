@@ -155,7 +155,7 @@ public class Homebase{
       while ( iter.hasNext() ) {
         Monster m = (Monster)(iter.next());
         if ( m.isAlive() )
-          m.draw(false, _towersOwned);
+          m.drawAttack(false, _towersOwned);
         else
           iter.remove();
       }

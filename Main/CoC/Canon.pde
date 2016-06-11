@@ -18,7 +18,7 @@ public class Canon extends Defense {
 	_hp = 350;
 	_attackPower = 15;
 	_critChance = .05;
-	_range = 100;
+	_range = 1000;
 	_splashRadius = 50;
 	_attackAir = false;
 	_attackRate = 60; // once per second

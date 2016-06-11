@@ -92,13 +92,13 @@ public class TestBase{
       for (int i = 0; i < numTowers; i ++){
       int rand = (int) (Math.random() * 4);
       if (_towerChoices[rand].equals("Canon"))
-        _enemyTowers.add(new Canon( (int) (Math.random() * 1200), -100 + (int) (Math.random() * 700)) );
+        _enemyTowers.add(new Canon( (int) (Math.random() * 1200),  (int) (Math.random() * 500)) );
         
       if (_towerChoices[rand].equals("Tesla"))
-        _enemyTowers.add(new Tesla( (int) (Math.random() * 1200), -100 +(int) (Math.random() * 700)));
+        _enemyTowers.add(new Tesla( (int) (Math.random() * 1200), (int) (Math.random() * 500)));
       
       if (_towerChoices[rand].equals("Sniper"))
-        _enemyTowers.add(new Sniper( (int) (Math.random() * 1200), -100 +(int) (Math.random() * 700)));
+        _enemyTowers.add(new Sniper( (int) (Math.random() * 1200), (int) (Math.random() * 500)));
       
    // if (_towerChoices[i].equals("Wall"))
      //  _enemyTowers.add(new Wall( (int) (Math.random() * 1200), (int) (Math.random() * 700)));
@@ -267,7 +267,7 @@ public class TestBase{
         while ( it.hasNext() ) {
           Monster mon = (Monster) (it.next());
           if ( mon.isAlive() )
-            mon.draw(true, _enemyTowers);
+            mon.drawAttack(true, _enemyTowers);
           else
             it.remove();
         }
