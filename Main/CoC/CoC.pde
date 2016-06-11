@@ -26,7 +26,8 @@ void mousePressed() {
      state = 1;
      test = new TestBase(base);
    }
-     
+   else if ( state == 1 )
+     test.mousePressed();
    else if ( state == 0 )
     base.mousePressed();
 }
