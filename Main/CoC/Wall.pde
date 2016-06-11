@@ -18,6 +18,8 @@ _xcor = x;
 _ycor = y;
   _hp = 150;
   _mp = 100;
+   icon = loadImage("walls.png");
+   
     }
 
     public void upgrade() {
@@ -27,8 +29,7 @@ _ycor = y;
     
     void draw(){
       super.draw();
-      icon = loadImage("walls.png");
-    image(icon, _xcor + icon.width/2, _ycor + icon.height/2, 50, 50);
+     image(icon, _xcor + icon.width/2, _ycor + icon.height/2, 50, 50);
     fill(0); 
    text(_hp + " wall ", _xcor+70,  _ycor+40 ); 
     

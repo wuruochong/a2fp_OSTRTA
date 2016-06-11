@@ -11,7 +11,7 @@ public class TestBase{
   PImage bImg;
   ArrayList<Button> _buttons;
   LList<Monster> _monsterList;
-  String[] _towerChoices = {"Canon", "Sniper", "Tesla", "Wall"};
+  String[] _towerChoices = {"Canon", "Sniper", "Tesla", "Wall", "Gold", "Elixir"};
   LList<Tower> _enemyTowers;
   Button win;
   Button lose;
@@ -21,7 +21,7 @@ public class TestBase{
   
   PImage maze;
   
-  public TestBase(Homebase player) {
+  public TestBase(Homebase player, int t) {
     _monsterList = player.getMonsters();
     maxGold = (int) (Math.random() * 1000);
     
@@ -35,8 +35,8 @@ public class TestBase{
     //_enemyTowers.add(new Canon(250,300));
     //_enemyTowers.add(new Canon(150,250));
     //_enemyTowers.add(new Canon(600, 250));
-    
-    loadTowers(player.exp, 1);
+    tier =t;
+    loadTowers(player.exp, tier);
     
     //_enemyTowers.add (new TownHall(500, 270));
     win  = new Button(new int[] {300, 200}, new int[] {400,250}, "win", "return", 0);
@@ -152,9 +152,30 @@ public class TestBase{
    */
    
   if (tier == 3) {
-    maze = loadImage("maze3.jpg");
-    image(maze, 0, 0, 1280, 760);
-    _enemyTowers.add(new ElixirCollector(635,400));   
+
+  for (int i = 100; i < 900; i += 100) {
+    for (int j = 100; j < 500; j +=100) {
+      if (i == 100 || i == 800 || j == 100 || j == 400)
+          _enemyTowers.add( new Wall(i, j) );
+      else 
+      {  
+         int rand = (int) (Math.random() * 6);
+        if (_towerChoices[rand].equals("Canon"))
+          _enemyTowers.add(new Canon( i, j)) ;
+          
+        if (_towerChoices[rand].equals("Tesla"))
+          _enemyTowers.add(new Tesla( i, j));
+        
+        if (_towerChoices[rand].equals("Sniper"))
+          _enemyTowers.add(new Sniper( i, j));
+        if (_towerChoices[rand].equals("Gold"))
+          _enemyTowers.add(new GoldMine( i, j));
+        if (_towerChoices[rand].equals("Elixir"))
+          _enemyTowers.add(new ElixirCollector( i, j));
+        
+      }
+    }
+  }
   
   
   }
@@ -239,11 +260,9 @@ public class TestBase{
       }
       
       else{
-       if (tier < 3)
+
         image(bImg,0,0, 1280, 720);
-       if (tier == 3) { 
-          image(maze, 0, 0, 1280, 760);
-       }
+
         for (Button b: _buttons)
           {b.draw();}
           
