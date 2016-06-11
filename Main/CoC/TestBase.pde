@@ -11,12 +11,12 @@ public class TestBase{
   PImage bImg;
   ArrayList<Button> _buttons;
   LList<Monster> _monsterList;
-  //ArrayList<Monster> _monsterChoices;
+  String[] _towerChoices = {"Canon", "Sniper", "Tesla", "Wall"};
   LList<Tower> _enemyTowers;
   Button win;
   Button lose;
   boolean cont;
-  
+  int tier; //1, 2, 3
   int state;  // 0 = placing, 1 = attacking
   
   public TestBase(Homebase player) {
@@ -29,9 +29,11 @@ public class TestBase{
     _buttons = new ArrayList<Button>();
    
     _enemyTowers = new LList<Tower>();
-    _enemyTowers.add(new Canon(250,300));
-    _enemyTowers.add(new Canon(150,250));
-    _enemyTowers.add(new Canon(600, 250));
+    //_enemyTowers.add(new Canon(250,300));
+    //_enemyTowers.add(new Canon(150,250));
+    //_enemyTowers.add(new Canon(600, 250));
+    
+    loadTowers(player.exp);
     
     //_enemyTowers.add (new TownHall(500, 270));
     win  = new Button(new int[] {300, 200}, new int[] {400,250}, "win", "return", 0);
@@ -52,6 +54,46 @@ public class TestBase{
       if ( ! placeMonsters() ) return; // if monsters unsuccesfully placed, remain at state one
       state = 1;
     }
+  }
+  
+  /*
+  adds tower to enemyTowers depending on use level/exp
+  */
+  void loadTowers(int level){
+    if (level<= 50)
+    {
+    int numTowers = 3 + (int) (Math.random() * 5);
+    for (int i = 0; i < numTowers; i ++){
+      int rand = (int) (Math.random() * 4);
+      if (_towerChoices[rand].equals("Canon"))
+        _enemyTowers.add(new Canon( (int) (Math.random() * 1200), -100 + (int) (Math.random() * 700)) );
+        
+      if (_towerChoices[rand].equals("Tesla"))
+        _enemyTowers.add(new Tesla( (int) (Math.random() * 1200), -100 +(int) (Math.random() * 700)));
+      
+      if (_towerChoices[rand].equals("Sniper"))
+        _enemyTowers.add(new Sniper( (int) (Math.random() * 1200), -100 +(int) (Math.random() * 700)));
+    }
+     
+      //if (_towerChoices[i].equals("Wall")
+       // _enemyTowers.add(new Wall( (int) (Math.random() * 1200), (int) (Math.random() * 700)));
+    }
+    else if (level <=100) {
+    
+    }
+    else if (level <=200) {
+    
+    }
+    
+    else if (level<= 400) {
+    
+    }
+    
+    else if (level >= 600){
+    
+    }
+    
+  
   }
   
   public boolean placeMonsters() {
@@ -90,6 +132,7 @@ public class TestBase{
       if (_enemyTowers.size()==0){ // fix later
         text("Attack Successful!", 500, 500);
         win.draw();
+        base.exp+=50;
         if (win.buttonPressed(0)){
           cont = false;
         }

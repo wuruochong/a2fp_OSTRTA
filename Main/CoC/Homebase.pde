@@ -23,6 +23,7 @@ public class Homebase{
   String[] _towerPics = {"tesla.gif", "canon.png", "sniper.gif"};//, null, null};
   
   int[] campFireLoc = {700, 700}; //random location
+  int exp;
   
   int state;
   /*
@@ -38,7 +39,7 @@ public class Homebase{
   _name = "default";
   _gold = 9999;
   _elixir = 9999;
-  
+  exp = 0;
   _towersOwned = new LList<Tower>();
   _monstersOwned = new LList<Monster>();
   
@@ -87,7 +88,7 @@ public class Homebase{
   for ( int i = 0; i <= 4; i++ )
     _buttons.add(new Button(new int[] {1100, 20}, new int[] {1260, 80}, "exitToHome", null, i, new int[] {0,0,0}, new int[] {0,0,0,0}) );
     
- 
+   
    Stack actions = new Stack();
 }
   

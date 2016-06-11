@@ -12,7 +12,7 @@
 public class Canon extends Defense {
     
   PImage icon;
-  
+
     public Canon(int x, int y) {
 	super(x, y); 
 	_hp = 350;
