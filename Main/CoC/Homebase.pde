@@ -137,6 +137,7 @@ public class Homebase{
       
       //to reset
       bImg = loadImage("grass.jpg");
+       //bImg = loadImage("maze3.jpg");
       image(bImg,0,0, 1280, 720);
   
       for ( Tower building : _towersOwned ) {

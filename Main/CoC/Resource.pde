@@ -7,10 +7,12 @@ public class Resource extends Tower{
   boolean _isGold; //true if a gold mine, false otherwise
   long startTime;
   PImage icon;
+  int _gold;
+  int _elixir;
   
     // constructor
     public Resource(int x, int y) {
-      _hp = 400;
+      _hp = 200;
       _xcor = x;
       _ycor = y;
       _rate = .5;
@@ -19,7 +21,12 @@ public class Resource extends Tower{
       _capacity = 500;
       _isGold = true;
       startTime = System.nanoTime();
+      
+      _gold = 5;
+      _elixir = 5;
     }
+    
+    
 
     void draw() {
       icon = loadImage("goldmine.png");

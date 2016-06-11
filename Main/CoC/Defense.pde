@@ -9,7 +9,9 @@ public class Defense extends Tower implements Comparable{
 
     int _attackRate; // fires once per every _fireRate draw()
     int _drawTicks; // keeps track of how many draws
-
+  double dir; //direction to shoot
+  PImage cBall; //canon ball
+  
     static final int cost = 100;
 
     // constructor
@@ -35,7 +37,21 @@ public class Defense extends Tower implements Comparable{
           text(_hp + " ", _xcor+70,  _ycor+40, 50, 50 ); 
 	        queueMonsters(monsterList);
 	        if ( (! _monstersToShoot.isEmpty() ) && _drawTicks % _attackRate == 0 ){
+  
+  //shooting stuff :(
+   Monster target = (Monster)_monstersToShoot.peekTop();
+        double slope = ( target._ycor - _ycor  ) / ( target._xcor -  _xcor + 0.0 );
+        //dir = Math.atan(slope);
+        dir = Math.atan2( target._ycor - _ycor ,  target._xcor - _xcor );
+        Bullet b = new Bullet(_xcor, _ycor, dir);
+        b.draw();
+        
 	          shoot();
+  
+ 
+        
+ //Bullet b = new Bullet(_xcor, _ycor, dir);
+    //    b.draw();
           }
 	      _drawTicks += 1;
     }
@@ -49,6 +65,14 @@ public class Defense extends Tower implements Comparable{
 
        if ( !_monstersToShoot.isEmpty() ) {   
          Monster target = (Monster)_monstersToShoot.peekTop();
+         
+         /*
+         face monster         
+         */
+
+         
+          
+         
 	      attack(target, false);
         /*
 	      if ( _splashRadius != 0 ) { // if there is splash damage

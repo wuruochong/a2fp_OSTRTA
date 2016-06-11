@@ -58,8 +58,7 @@ public class Monster extends Unit implements Comparable{
       double slope = ( _target._ycor - _ycor  ) / ( _target._xcor -  _xcor + 0.0 );
         //dir = Math.atan(slope);
         dir = Math.atan2( _target._ycor - _ycor ,  _target._xcor - _xcor );
-        println(_target + " : " + slope);
-   
+
     }
     
     public void move() {

@@ -5,7 +5,16 @@ public class ElixirCollector extends Resource{
     // constructor
     public ElixirCollector(int x, int y) {
       super(x,y);
-      _isGold = false;   
+      _isGold = false;
+      
+     _elixir = 50;   
+    }
+    
+    public ElixirCollector(int x, int y, int e){
+      this(x,y);
+      
+      _elixir = e;
+    
     }
 
     void draw() {

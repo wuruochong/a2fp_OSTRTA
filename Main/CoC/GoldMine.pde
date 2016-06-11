@@ -6,6 +6,16 @@ public class GoldMine extends Resource{
     public GoldMine(int x, int y) {
       super(x,y);
       _isGold = true;   
+      
+      _gold = 50; // to give out during battle
+  
+    }
+    
+    public GoldMine(int x, int y, int gold) {
+    
+    this(x, y);
+    _gold = gold;
+    
     }
 
     void draw() {

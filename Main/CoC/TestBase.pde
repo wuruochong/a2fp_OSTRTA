@@ -19,12 +19,15 @@ public class TestBase{
   int tier; //1, 2, 3
   int state;  // 0 = placing, 1 = attacking
   
+  PImage maze;
+  
   public TestBase(Homebase player) {
     _monsterList = player.getMonsters();
     maxGold = (int) (Math.random() * 1000);
     
   //  _enemyTowers_monsterList.add(new Canon(3,3));
     bImg = loadImage("grass.jpg");
+    //bImg = loadImage("maze3.jpg");
     image(bImg,0,0, 1280, 720);
     _buttons = new ArrayList<Button>();
    
@@ -33,7 +36,7 @@ public class TestBase{
     //_enemyTowers.add(new Canon(150,250));
     //_enemyTowers.add(new Canon(600, 250));
     
-    loadTowers(player.exp, 2);
+    loadTowers(player.exp, 1);
     
     //_enemyTowers.add (new TownHall(500, 270));
     win  = new Button(new int[] {300, 200}, new int[] {400,250}, "win", "return", 0);
@@ -63,6 +66,7 @@ public class TestBase{
   in scattered positions
   */
   void loadTowers(int level, int tier) {
+    this.tier = tier;
     //println(level);
     int numTowers;
     if (level<= 50)
@@ -96,8 +100,8 @@ public class TestBase{
       if (_towerChoices[rand].equals("Sniper"))
         _enemyTowers.add(new Sniper( (int) (Math.random() * 1200), -100 +(int) (Math.random() * 700)));
       
-    //if (_towerChoices[i].equals("Wall")
-       // _enemyTowers.add(new Wall( (int) (Math.random() * 1200), (int) (Math.random() * 700)));
+   // if (_towerChoices[i].equals("Wall"))
+     //  _enemyTowers.add(new Wall( (int) (Math.random() * 1200), (int) (Math.random() * 700)));
     }
     }
 
@@ -111,24 +115,31 @@ public class TestBase{
   if (tier == 2) {
     int centerX = 500;
     double t = Math.random()*Math.PI*2;
-    
+    int tx;
+    int ty;
     for (int i = 0; i < numTowers; i ++){
-    int tx = (int)(100*Math.cos(t) + 500);
-    int ty = (int)(100*Math.sin(t) + 200);
-          int rand = (int) (Math.random() * 4);
-      if (_towerChoices[rand].equals("Canon"))
-        _enemyTowers.add(new Canon( tx, ty)) ;
+    
+      tx = (int)(120*Math.cos(t) + 500);
+      ty = (int)(120*Math.sin(t) + 200);
+      int rand = (int) (Math.random() * 4);
+        if (_towerChoices[rand].equals("Canon"))
+          _enemyTowers.add(new Canon( tx, ty)) ;
+          
+        if (_towerChoices[rand].equals("Tesla"))
+          _enemyTowers.add(new Tesla( tx, ty));
         
-      if (_towerChoices[rand].equals("Tesla"))
-        _enemyTowers.add(new Tesla( tx, ty));
+        if (_towerChoices[rand].equals("Sniper"))
+          _enemyTowers.add(new Sniper( tx, ty));
+        
+      t+= (120);
+      }
       
-      if (_towerChoices[rand].equals("Sniper"))
-        _enemyTowers.add(new Sniper( tx, ty));
-      
-    t+= (90);
-    }
-  
-  
+     tx = (int)(10*Math.cos(t) + 500);
+     ty = (int)(10*Math.sin(t) + 200);
+     _enemyTowers.add(new GoldMine(tx, ty));
+     tx+=50;
+     ty+=50;
+     _enemyTowers.add(new ElixirCollector(tx,ty));
   }  
 
 
@@ -141,6 +152,9 @@ public class TestBase{
    */
    
   if (tier == 3) {
+    maze = loadImage("maze3.jpg");
+    image(maze, 0, 0, 1280, 760);
+    _enemyTowers.add(new ElixirCollector(635,400));   
   
   
   }
@@ -188,7 +202,6 @@ public class TestBase{
       int[] coor = genRandomPointWithinClickRadius(rad);
       m._xcor = coor[0];
       m._ycor = coor[1];
-      println(m._xcor + ":" + m._ycor);
     }
     return true;
   }
@@ -226,9 +239,11 @@ public class TestBase{
       }
       
       else{
-       
+       if (tier < 3)
         image(bImg,0,0, 1280, 720);
-        
+       if (tier == 3) { 
+          image(maze, 0, 0, 1280, 760);
+       }
         for (Button b: _buttons)
           {b.draw();}
           
