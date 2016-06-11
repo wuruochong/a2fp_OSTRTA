@@ -41,7 +41,7 @@ public class Monster extends Unit implements Comparable{
         face();
         move();
       }
-      if ( attacking && _drawTicks % 10 == 0) { // every half second...
+      if ( attacking && _drawTicks % 5 == 0) { // every half second...
         shoot();
       }
       _drawTicks += 1;
@@ -52,19 +52,24 @@ public class Monster extends Unit implements Comparable{
         Tower closestTower = (Tower) _target;
        // println("X" + closestTower._xcor + "Y" + closestTower._ycor); */
       double slope = ( _target._ycor - _ycor  ) / ( _target._xcor -  _xcor + 0.0 );
-        dir = Math.atan(slope);
+        //dir = Math.atan(slope);
+        dir = Math.atan2( _target._ycor - _ycor ,  _target._xcor - _xcor );
+        println(_target + " : " + slope);
    
     }
     
     public void move() {
-      if ( inAttackRadius(_target) ) return;
+      if ( inAttackRadius(_target) ) {
+      return;
+    }
       double xvel =  _basicSpeed * Math.cos(dir);
       double yvel = _basicSpeed * Math.sin(dir);
-      if ( xvel > 0 )
-        xvel *= -1;
-      if ( yvel > 0 )
-        yvel *= -1;
-        
+  
+   //   if ( xvel > 0 )
+     //   xvel *= -1;
+      //if ( yvel > 0 )
+       // yvel *= -1;
+
       _xcor += xvel;
       _ycor += yvel;
       
