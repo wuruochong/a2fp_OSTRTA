@@ -10,6 +10,7 @@ public class Wizard extends Monster{
      _dmgPerAttack=100;
      _level = 1;
      _houseSpace = 4;
+     _name = "Wizard";
    }
    
    public Wizard(int x, int y){

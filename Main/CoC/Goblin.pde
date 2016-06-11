@@ -11,6 +11,7 @@ public class Goblin extends Monster{
      _dmgPerAttack=11;
      _level = 1;
      _houseSpace = 1;
+     _name = "Goblin";
 
    }
   public Goblin(int x, int y){

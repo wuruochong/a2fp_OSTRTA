@@ -10,6 +10,7 @@ public class WallBreaker extends Monster{
      _dmgPerAttack=12;
      _level = 1;
      _houseSpace = 2;
+     _name = "WallBreaker";
    }
    
    public WallBreaker(int x, int y){
