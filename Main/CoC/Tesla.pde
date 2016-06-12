@@ -33,7 +33,7 @@ public class Tesla extends Defense {
     
     
     void draw(){
-      icon = loadImage("tesla.gif");
+      icon = loadImage("tesla.png");
       imageMode(CENTER);
       image(icon, _xcor, _ycor, 50, 50); 
       imageMode(CORNER);
