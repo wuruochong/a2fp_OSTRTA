@@ -274,7 +274,6 @@ public class Homebase{
         else if (tag.equals("Sniper")) {
             state = 0;
             buyTower(new Sniper(mouseX, mouseY) );
-            println("yay");
         
         }
         

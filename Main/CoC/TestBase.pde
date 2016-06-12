@@ -87,7 +87,7 @@ public class TestBase{
     else{
     numTowers = 3 + (int) (Math.random() * 12);
     }
-    println(numTowers);
+    //println(numTowers);
     
     if (tier == 1) {
       for (int i = 0; i < numTowers; i ++){
@@ -177,8 +177,7 @@ public class TestBase{
       }
     }
   }
-  
-  
+    
   }
 
 
@@ -192,11 +191,13 @@ public class TestBase{
   if (tier == 4) {
     QueensTour qBoard = new QueensTour(8);
     qBoard.solve();
-    int tmpX = 300;
+    int tmpX = 213;
     int tmpY = 200;
-    for (int r = 0; i < 8; i +_) {
+    for (int r = 0; r < 8; r ++) {
+      tmpX = 213;
+      
       for (int c = 0; c < 8; c ++) {
-        if (qBoard._board[r][c].equals("Q")) {
+        if (qBoard.board[r][c]==1) {
           
         int rand = (int) (Math.random() * 6);
         if (_towerChoices[rand].equals("Canon"))
@@ -213,10 +214,13 @@ public class TestBase{
           _enemyTowers.add(new ElixirCollector( tmpX, tmpY));
           
         }
-      
+      tmpX+=87;
+      println(tmpX + " " + tmpY);
+      println(qBoard.board[r][c] + " BOARD");
       }
+      tmpY+=43;
     }
-  
+  qBoard.printSolution();
   
   }
 

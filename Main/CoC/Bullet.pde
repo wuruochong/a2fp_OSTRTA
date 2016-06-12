@@ -19,7 +19,7 @@ void move() {
     dir = Math.atan2( target._ycor - _ycor ,  target._xcor - _xcor );
     double xvel =  100 * Math.cos(dir);
     double yvel = 100 * Math.sin(dir);
-    println(xvel + " " + yvel); 
+    //println(xvel + " " + yvel); 
     _xcor += xvel;
     _ycor += yvel;
       
