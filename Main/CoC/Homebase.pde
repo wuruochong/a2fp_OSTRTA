@@ -193,10 +193,14 @@ public class Homebase{
           exp += 50;
           _gold /= 2;
           _elixir /= 2;
-          
-          // regenerate towers
-          for ( int i = 0; i < _towersOwned.size(); i++ )
-            _towersOwned.get(i)._hp = _towersOwned.get(i)._maxHP;
+        
+        for ( Tower t : _towersOwned ) {
+          if ( t instanceof MonsterHouse && ((MonsterHouse) t)._hp <= 0 ) // if monster house destroyed
+            ((MonsterHouse) t)._monstersOwned = new LList<Monster>(); // kill all monsters
+        }
+        // regenerate towers
+        for ( int i = 0; i < _towersOwned.size(); i++ )
+          _towersOwned.get(i)._hp = _towersOwned.get(i)._maxHP;
           
           state = 0;
         }
@@ -210,7 +214,12 @@ public class Homebase{
           _gold = (_gold / 2) + (int) ( (_gold / 2) * percentAlive );
           _elixir = (_elixir / 2) + (int) ( (_elixir / 2) * percentAlive );
           exp += 150;
+          
           // regenerate towers
+          for ( Tower t : _towersOwned ) {
+            if ( t instanceof MonsterHouse && ((MonsterHouse) t)._hp <= 0 ) // if monster house destroyed
+              ((MonsterHouse) t)._monstersOwned = new LList<Monster>(); // kill all monsters
+          }
           for ( int i = 0; i < _towersOwned.size(); i++ )
             _towersOwned.get(i)._hp = _towersOwned.get(i)._maxHP;
           
@@ -232,6 +241,7 @@ public class Homebase{
           else // if enemyT is dead, just remove it from list
             iter.remove();
         }
+        
         // draw monsters, delete if dead
         Iterator<Monster> it = attackingMonsters.iterator();
         while ( it.hasNext() ) {
