@@ -121,7 +121,7 @@ public class Selecter{
     }
     if (GoblinButton.buttonPressed(0)){
       for (Monster m : HBMonsters){
-        if (m instanceof Barbarian){
+        if (m instanceof Goblin){
           HBMonsters.remove(m);
           SMonsters.add(new Barbarian());
           buttonUpdater();
