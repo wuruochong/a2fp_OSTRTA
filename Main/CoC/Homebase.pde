@@ -234,10 +234,14 @@ public class Homebase{
       bImg = loadImage("grass.jpg");
        //bImg = loadImage("maze3.jpg");
       image(bImg,0,0, 1280, 720);
+      println(locked);
+      if (locked){
       for (Tower t: _towersOwned){
       if (t.clicked) {
          t._xcor = mouseX;
          t._ycor = mouseY;
+         break;
+      }
       }
       }
       double rand = Math.random();
@@ -282,6 +286,19 @@ public class Homebase{
 
   }
   
+  void mouseDragged() {
+  
+      for (Tower t: _towersOwned) {
+        if (mouseX >= (t._xcor - 50) 
+        && mouseX <= (t._xcor + 50) 
+        && mouseY >= (t._ycor - 50) 
+        && mouseY <= (t._ycor + 50)) {
+          locked = true;
+          t.clicked = true;
+          break;
+        }
+    }
+  }
   
   void mousePressed() { 
     // if clicked on a button
@@ -291,9 +308,14 @@ public class Homebase{
       _towersOwned.add(placeTower);
       placeTower = null;
     }
-    
+   
     for (Tower t: _towersOwned) {
-        if (mouseX >= (t._xcor - 50) 
+      if (mouseBUtton == RIGHT) {
+        t.click = false;
+        locked = false;
+      }
+      
+      else  if (mouseX >= (t._xcor - 50) 
         && mouseX <= (t._xcor + 50) 
         && mouseY >= (t._ycor - 50) 
         && mouseY <= (t._ycor + 50)) {
@@ -574,6 +596,9 @@ public class Homebase{
  }
  
  void mouseReleased(){
+   for (Tower t: _towersOwned) {
+       t.clicked = false;
+   }
    locked = false;
  }
   
