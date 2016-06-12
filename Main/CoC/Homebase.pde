@@ -572,7 +572,7 @@ public class Homebase{
      int numMonsters = (int) (Math.random() * 7) + 4;
      for ( int i = 0; i < numMonsters; i++ ) {
        // generate random num between 0 and 5
-       int monsterChoice = (int) (Math.random() * 6);
+       int monsterChoice = (int) (Math.random() * 5);
        if ( monsterChoice == 0 )
          retList.add(new Archer(0,0));
        else if ( monsterChoice == 1 )
@@ -582,8 +582,6 @@ public class Homebase{
        else if ( monsterChoice == 3 )
          retList.add(new Goblin(0,0));
        else if ( monsterChoice == 4 )
-         retList.add(new WallBreaker(0,0));
-       else if ( monsterChoice == 5 )
          retList.add(new Wizard(0,0));
      }
      return retList;
