@@ -40,6 +40,13 @@ public class Tesla extends Defense {
       fill(0);     
     }
     
+    void draw(LList<Monster> monsterList) {
+      super.draw(monsterList);
+          imageMode(CENTER);
+    image(icon, _xcor, _ycor, 50, 50);
+    imageMode(CORNER);
+    }
+    
     public void upgrade() {
 	_attackPower = (int) (_attackPower * 1.2);
 	_range = (int) (_range * 1.2);

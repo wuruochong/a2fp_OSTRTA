@@ -39,5 +39,11 @@ public class Sniper extends Defense {
     imageMode(CORNER);
         fill(0);     
     }
+    void draw(LList<Monster> monsterList) {
+      super.draw(monsterList);
+          imageMode(CENTER);
+    image(icon, _xcor, _ycor, 50, 50);
+    imageMode(CORNER);
+    }
 }
 	

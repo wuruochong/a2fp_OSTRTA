@@ -50,8 +50,8 @@ public class Canon extends Defense {
           imageMode(CENTER);
     image(icon, _xcor, _ycor, 50, 50);
     imageMode(CORNER);
-    fill(0); 
-   text(_hp + " ", _xcor+70,  _ycor+40 ); 
+ //   fill(0); 
+  // text(_hp + " ", _xcor+70,  _ycor+40 ); 
       
       
       //rect(_xcor, _ycor, 10, 10);
@@ -60,6 +60,7 @@ public class Canon extends Defense {
     //image(icon, _xcor + icon.width/2, _ycor + icon.height/2, 50, 50); 
 
     }
+    
 
 }
 	
