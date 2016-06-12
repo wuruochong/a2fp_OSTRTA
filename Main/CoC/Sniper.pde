@@ -33,7 +33,7 @@ public class Sniper extends Defense {
     
     
     void draw(){
-      icon = loadImage("sniper.gif");
+      icon = loadImage("sniper.png");
       imageMode(CENTER);
     image(icon, _xcor, _ycor, 50, 50); 
     imageMode(CORNER);
