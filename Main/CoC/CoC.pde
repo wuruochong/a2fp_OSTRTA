@@ -58,6 +58,7 @@ void mousePressed() {
   
    else if ( state == 1 )
      test.mousePressed();
+     
    else if ( state == 0 ){
      if (attackButton.buttonPressed(0)) {
        if (base.state != 6){

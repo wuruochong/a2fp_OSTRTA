@@ -290,7 +290,6 @@ public class TestBase{
   }
     
   void draw(){
-      
       if (_enemyTowers.size()==0){ // fix later
         text("Attack Successful!", 500, 500);
         win.draw();
