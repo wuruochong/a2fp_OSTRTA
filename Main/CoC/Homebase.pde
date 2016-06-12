@@ -7,6 +7,7 @@ public class Homebase{
   String _name;
   int _gold;
   int _elixir;
+  Button back;
   
   // normal state home base
   ArrayList<Tower> _towersOwned;
@@ -68,6 +69,7 @@ public class Homebase{
   _elixir = 9999;
   exp = 0;
   placeTower = null;
+  back = new Button(new int[] {300, 200}, new int[] {400,250}, "back", "confirm", 0);
   
   _towersOwned = new ArrayList<Tower>();
   _house = new MonsterHouse(250, 350);
@@ -184,29 +186,32 @@ public class Homebase{
      
       if (defendingTowers.size()==0){ 
         text("You failed to defend your base! You lose half of your resources!", 500, 500);
-        exp += 50;
-        _gold /= 2;
-        _elixir /= 2;
-         delay(10000);
-        // regenerate towers
-        for ( int i = 0; i < _towersOwned.size(); i++ )
-          _towersOwned.get(i)._hp = _towersOwned.get(i)._maxHP;
-        
-        state = 0;
+        back.draw();
+        if (back.buttonPressed(0)){
+          exp += 50;
+          _gold /= 2;
+          _elixir /= 2;
+          // regenerate towers
+          for ( int i = 0; i < _towersOwned.size(); i++ )
+            _towersOwned.get(i)._hp = _towersOwned.get(i)._maxHP;     
+          state = 0;
+        }
       }
       
       else if (attackingMonsters.size() == 0){
         text("Yay! You successfully defended your home base! You did take some damage though, so you'll lose some resoures.", 500, 500);
-        double percentAlive = defendingTowers.size() / ( _towersOwned.size() + 0.0 );
-        _gold = (_gold / 2) + (int) ( (_gold / 2) * percentAlive );
-        _elixir = (_elixir / 2) + (int) ( (_elixir / 2) * percentAlive );
-        exp += 150;
-        delay(10000);
-        // regenerate towers
-        for ( int i = 0; i < _towersOwned.size(); i++ )
-          _towersOwned.get(i)._hp = _towersOwned.get(i)._maxHP;
-        
-        state = 0;
+        back.draw();
+        if (back.buttonPressed(0)){
+          double percentAlive = defendingTowers.size() / ( _towersOwned.size() + 0.0 );
+          _gold = (_gold / 2) + (int) ( (_gold / 2) * percentAlive );
+          _elixir = (_elixir / 2) + (int) ( (_elixir / 2) * percentAlive );
+          exp += 150;
+          // regenerate towers
+          for ( int i = 0; i < _towersOwned.size(); i++ )
+            _towersOwned.get(i)._hp = _towersOwned.get(i)._maxHP;
+          
+          state = 0;
+        }
       }
         
       else { // being attacked
