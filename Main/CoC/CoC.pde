@@ -92,6 +92,9 @@ void draw(){
     if (sel.cont){
       sel.draw();
     }
+    if (sel.back){
+      state = 0;
+    }
     if (!sel.cont){
       sel.baseUpdater(base);
       state = 3;

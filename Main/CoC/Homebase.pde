@@ -76,6 +76,7 @@ public class Homebase{
   //_house.addMonster(new Wizard(100,100));
   _house.addMonster(new Goblin(100,100));
   _house.addMonster(new Giant(100,100));
+  _house.addMonster(new Wizard(100,100));
 
   
   // load ALL buttonswadse
