@@ -12,9 +12,7 @@ public class ElixirCollector extends Resource{
     
     public ElixirCollector(int x, int y, int e){
       this(x,y);
-      
       _elixir = e;
-    
     }
 
     void draw() {
