@@ -22,7 +22,7 @@ public class Tesla extends Defense {
 	_attackPower = 100;
 	_critChance = .1;
 	_range = 150;
-	_attackRate = 180; // 3 times per second
+	_attackRate = 90; // 3 times per second
     }
 
     // override shoot()

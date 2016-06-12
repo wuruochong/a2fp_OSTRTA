@@ -53,7 +53,7 @@ void mousePressed() {
           } 
        }
        
-    
+    textSize(12);
      }
   
    else if ( state == 1 )

@@ -19,9 +19,9 @@ public class Sniper extends Defense {
   _maxHP = 250;
 	_attackPower = 50;
 	_critChance = .1;
-	_range = 200;
+	_range = 300;
 	_attackAir = true;
-	_attackRate = 120; // once per 2 seconds
+	_attackRate = 60; // once per 2 seconds
     }
 
     public void upgrade() {

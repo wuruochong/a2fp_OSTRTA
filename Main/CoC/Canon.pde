@@ -19,10 +19,10 @@ public class Canon extends Defense {
   _maxHP = 350;
 	_attackPower = 15;
 	_critChance = .05;
-	_range = 1000;
+	_range = 150;
 	_splashRadius = 50;
 	_attackAir = false;
-	_attackRate = 60; // once per second
+	_attackRate = 30; // once per second
       icon = loadImage("canon.png");
         
         _mp = 200;
