@@ -23,6 +23,7 @@ public class Button {
   
   public Button (int[] coor1, int[] coor2, String tag, String text, int screen, int[] rgbText, int[] rgbButton){
     this(coor1, coor2, tag, text, screen);
+    stroke(0,0, 0, 0);
     textColor = rgbText;
     buttonColor = rgbButton;
   }
