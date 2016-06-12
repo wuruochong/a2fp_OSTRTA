@@ -32,8 +32,8 @@ public class Homebase{
   boolean locked;
     
   //choices of towers and monsters that can be beought from the shop at level
-  ArrayList<Tower> _towerChoices;
-  ArrayList<Monster> _monsterChoices;
+  //ArrayList<Tower> _towerChoices;
+  //ArrayList<Monster> _monsterChoices;
   
   String[] _monsterNames = { "Barbarian", "Archer", "Goblin", "Giant", "WallBreaker", "Wizard"}; //for generating buttons
   String[] _towerNames = { "Tesla", "Canon", "Sniper"};// "idk", "idk2"};//for generating buttons
@@ -56,6 +56,11 @@ public class Homebase{
   */
   
  public Homebase() {
+   //image loading
+   bShopImg = loadImage("bgd.jpg");
+   bImg = loadImage("grass.jpg");
+   troopPanel= loadImage("troops.jpg");
+
    //attributes 
    _drawTicks = 0;
   _name = "default";
@@ -77,11 +82,11 @@ public class Homebase{
   _towersOwned.add(new GoldMine(300, 200));
   _towersOwned.add(_house);
   
-  _towerChoices = new ArrayList<Tower>();
-  _monsterChoices = new ArrayList<Monster>();
+  //_towerChoices = new ArrayList<Tower>();
+  //_monsterChoices = new ArrayList<Monster>();
   
-  _towerChoices.add(new Defense(900, 350));
-  _monsterChoices.add(new Barbarian());
+  //_towerChoices.add(new Defense(900, 350));
+  //_monsterChoices.add(new Barbarian());
  
   _house.addMonster(new Archer(100,100));
   _house.addMonster(new Barbarian(100,100));
@@ -132,21 +137,22 @@ public class Homebase{
   }
   
   void draw() {
+    println(frameRate);
     _drawTicks += 1;
     //SHOP MODE
     
-    bShopImg = loadImage("bgd.jpg");
-    image(bShopImg, 0, 0, 1280, 720);
     
-    /* SHOPING STATES */
+    //SHOPING STATES
     if (state == 1) { 
+      image(bShopImg, 0, 0, 1280, 720);
       fill(0);
       text("SHOP", 600, 50);
       text("Gold: " + _gold, 98, 120);
       text("Elixers: " + _elixir, 520, 120);
-    }
+    } 
      
     else if ( state == 2 ) {
+      image(bShopImg, 0, 0, 1280, 720);
       fill(0);
       text("RESOURCES", 600, 50);
       text("Your Gold: " + _gold, 800, 50);
@@ -155,23 +161,22 @@ public class Homebase{
    }
    
    else if (state == 3) {
-     troopPanel= loadImage("troops.jpg");
-     image(troopPanel, 200, 200, 700, 150);
+     //image(bShopImg, 0, 0, 1280, 720);
+     //image(troopPanel, 200, 200, 700, 150);
    
    }
   
   else if (state == 4) {
+     image(bShopImg, 0, 0, 1280, 720);
      fill(0);
      text("TESLA", 225,400);
      text("CANON", 392,400);
      text("SNIPER", 550,400);
    }
    
-
+    
     // AI ATTACKING USER STATE
-    else if ( state == 6 ) {
-      bImg = loadImage("grass.jpg");
-       //bImg = loadImage("maze3.jpg");
+     else if ( state == 6 ) {
       image(bImg,0,0, 1280, 720);
      
       if (defendingTowers.size()==0){ 
@@ -225,16 +230,13 @@ public class Homebase{
             it.remove();
         }
       } 
-    }
+    } 
     
     //VIEW MODE
-    else if (state == 0) {
-      
+     else if (state == 0) {
       //to reset
-      bImg = loadImage("grass.jpg");
-       //bImg = loadImage("maze3.jpg");
       image(bImg,0,0, 1280, 720);
-      println(locked);
+
       if (locked){
       for (Tower t: _towersOwned){
       if (t.clicked) {
@@ -244,6 +246,7 @@ public class Homebase{
       }
       }
       }
+
       double rand = Math.random();
       if ( rand < .00001 ){ // 1 in 1,666 seconds
         setupAIAttack();
@@ -253,6 +256,7 @@ public class Homebase{
       // make monsters in queue
       makeQueueMonsters();
   
+      
       // draw towers
       for ( Tower building : _towersOwned ) {
           //to show range of tower, paint green box under tower
@@ -261,12 +265,13 @@ public class Homebase{
               ellipse(building._xcor, building._ycor, building._range, building._range);
           }
           fill(0,0,0); // reset
+        //  if ( ! ( building instanceof MonsterHouse ) )
           building.draw();
       }
     } // close state == 0
     
+    
     else if ( state == 7 ) {
-      bShopImg = loadImage("bgd.jpg");
       image(bShopImg, 0, 0, 1280, 720);
       makeQueueMonsters();
       visualizeQueue();  
@@ -275,8 +280,9 @@ public class Homebase{
     for ( Button button : _buttons ) {
         if ( state == button.displayScreen ) // only draw appropriate buttons
           button.draw();
-      } 
-      
+      }
+       
+     
     if (placeTower != null){
       placeTower.setCoor(mouseX, mouseY);
       placeTower.draw();
@@ -539,6 +545,7 @@ public class Homebase{
      
      state = 6;
    }
+
    public LList<Monster> genRandomMonsters() {
      LList<Monster> retList = new LList<Monster>();
      // generate between 3 and 10 monsters
