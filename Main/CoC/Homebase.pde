@@ -140,7 +140,7 @@ public class Homebase{
   }
   
   void draw() {
-    println(frameRate);
+    //println(frameRate);
     _drawTicks += 1;
     //SHOP MODE
     
@@ -330,6 +330,18 @@ public class Homebase{
       if (mouseButton == RIGHT) {
         t.clicked = false;
         locked = false;
+        if ( t instanceof MonsterHouse ) {
+          // remove monsters from monster house and then re-add to place them correctly
+          MonsterHouse h = (MonsterHouse) t;
+          LList<Monster> tmp = new LList();
+          Iterator iter = h._monstersOwned.iterator();
+          while ( iter.hasNext() ) {
+            tmp.add( (Monster) (iter.next()) );
+            iter.remove();
+          }
+          for ( Monster m : tmp )
+            h.addMonster(m);
+        }
       }
       
       else  if (mouseX >= (t._xcor - 50) 
