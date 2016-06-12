@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 public class Clock {
   
   int cx, cy, radius;
@@ -6,15 +8,6 @@ public class Clock {
   PImage hImg;
   ArrayPriorityQueue alarm;
   Button addA;
-  Button hourSwitch;
-  Button minSwitch;
-  Button select;
-  int state; //0 - viewing, 1-adding alarm
-  
-  int hour;
-  int min;
-  boolean currH = true; //editing hour
-  
   public Clock(){
    cx= width/2;
    cy=height/2;
@@ -26,15 +19,11 @@ public class Clock {
   
   alarm = new ArrayPriorityQueue();
   addA = new Button(new int[] {780,600}, new int[] {1000, 760}, "addA", "add alarm", 0, new int[]{255, 255, 255}, new int[]{0,0,0}) ;
-  hourSwitch = new Button(new int[] {200,500}, new int[] {400, 760}, "add", "12", 1, new int[]{255, 255, 255}, new int[]{0,0,0}) ;
-  minSwitch = new Button(new int[] {580,500}, new int[] {1000, 760}, "sub", "0"), 1, new int[]{255, 255, 255}, new int[]{0,0,0}) ;
-
-  select = new Button(new int[] {780,600}, new int[] {1000, 760}, "select", "submit", 1, new int[]{255, 255, 255}, new int[]{0,0,0}) ;
  
   }
   
   void draw() {
-    if (state==0) {
+
     background(255);
     font = createFont ("Serif", 60);
     textFont (font);
@@ -76,63 +65,25 @@ public class Clock {
     image(hImg, 920, 370, 110, 110);
     // endShape();
     addA.draw();
-
-  }
+      String time =  JOptionPane.showInputDialog("hour: ");
   
-   if (state == 1) {
-      background(0);
-     hourSwitch.draw();
-     minSwitch.draw();
-     
-     
-    }
   }
  
 
  void keyPressed(){
-   if (key == "a") {
-    (if !currH){
-    currH = true;
-    }
-   }
-   
-   if (key == "w") {
-     if (currH) {
-       hourSwitch.displayText = "" + ((Integer.parseInt(hourSwitch.displayText) + 1 ) % 12);
-     }
-     else {
-       minSwitch.displayText = "" + ((Integer.parseInt(minSwitch.displayText) + 1 ) % 60);
-     
-     }
-     
-   }
-   
-   if (key == "s") {
-     if (currH) {
-       hourSwitch.displayText = "" + ((Integer.parseInt(hourSwitch.displayText) - 1 ) % 12);
-     }
-     else {
-       minSwitch.displayText = "" + ((Integer.parseInt(minSwitch.displayText) - 1 ) % 60);
-     
-     }
-   }
-   
-   if (key == "d") {
-     if (currH) {
-       currH = false;
-     }
-   }
+  
  }
   
   void mousePressed() {
   
       if (addA.buttonPressed(0)){
-      state = 1;
+        
+      String time =  JOptionPane.showInputDialog("hour: ");
+      
+      String time2 =  JOptionPane.showInputDialog("min: ");
+      
+     // alarm.add (); //implementation to add to queue
+
     }
-    if (select.buttonPressed(1)) {
-    `  alarm.add(Integer.parseInt(hourSwitch.displayText) * 60 + Integer.parseInt(minSwitch.displayText) - //current Time);
-    }
-//     println(mouseX mouseY);
     }
   }
-}
