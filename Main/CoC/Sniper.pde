@@ -16,6 +16,7 @@ public class Sniper extends Defense {
     public Sniper(int x, int y) {
 	super(x, y); 
 	_hp = 250;
+  _maxHP = 250;
 	_attackPower = 50;
 	_critChance = .1;
 	_range = 200;

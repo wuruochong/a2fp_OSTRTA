@@ -17,6 +17,7 @@ public class Tesla extends Defense {
     public Tesla(int x, int y) {
 	super(x, y); 
 	_hp = 350;
+  _maxHP = 350;
   _mp = 300;
 	_attackPower = 100;
 	_critChance = .1;

@@ -17,6 +17,7 @@ public class Defense extends Tower implements Comparable{
     // constructor
     public Defense(int x, int y) {
 	_hp = 100;
+  _maxHP = 100;
 	_xcor = x;
 	_ycor = y;
 	_upgradeState = 0;

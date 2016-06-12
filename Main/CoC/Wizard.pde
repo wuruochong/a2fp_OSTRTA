@@ -3,7 +3,8 @@ public class Wizard extends Monster{
 
    public Wizard(){
      super();
-     _hp = 999;
+     _hp = 200;
+     _maxHP = 200;
      _mp = 1500;
      _trainingTime = 300;
      _basicSpeed = 5;

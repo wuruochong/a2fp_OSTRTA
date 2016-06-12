@@ -1,5 +1,6 @@
 public abstract class Unit{
   int _hp;
+  int _maxHP;
   int _xcor;
   int _ycor;
   int _mp;

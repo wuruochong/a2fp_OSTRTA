@@ -4,6 +4,7 @@ public class Barbarian extends Monster{
    public Barbarian(){
      super();
      _hp = 100;
+     _maxHP = 100;
      _mp = 25;
      _trainingTime = 30;
       _basicSpeed = 5;

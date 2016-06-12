@@ -3,6 +3,7 @@ public class WallBreaker extends Monster{
    public WallBreaker (){
      super();
      _hp = 20;
+     _maxHP = 20;
      _mp = 1000;
      _trainingTime = 60;
      _basicSpeed = 25;

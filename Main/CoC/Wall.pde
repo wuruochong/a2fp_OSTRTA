@@ -17,6 +17,7 @@ public class Wall extends Tower {
 _xcor = x;
 _ycor = y;
   _hp = 150;
+  _maxHP = 150;
   _mp = 100;
    icon = loadImage("walls.png");
    

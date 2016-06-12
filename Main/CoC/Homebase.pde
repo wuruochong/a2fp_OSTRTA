@@ -8,8 +8,14 @@ public class Homebase{
   int _gold;
   int _elixir;
   
-  LList<Tower> _towersOwned;
-  LList<Monster> _attackMonsters;
+  // normal state home base
+  ArrayList<Tower> _towersOwned;
+  LList<Monster> _attackMonsters; // monsters to attack WITH
+  
+  // attacked by ai
+  LList<Monster> attackingMonsters; // AI monsters attacking YOU
+  LList<Tower> defendingTowers; // towers whend defending against AI attack
+  
   MonsterHouse _house;
   Deque<Monster> _makeMonsterQueue;
   //LList<Monster> _monstersOwned;
@@ -53,7 +59,7 @@ public class Homebase{
   _elixir = 9999;
   exp = 0;
   
-  _towersOwned = new LList<Tower>();
+  _towersOwned = new ArrayList<Tower>();
   _house = new MonsterHouse(250, 350);
   _makeMonsterQueue = new Deque<Monster>();
   _attackMonsters = new LList<Monster>();
@@ -82,6 +88,8 @@ public class Homebase{
   // load ALL buttonswadse
   _buttons = new ArrayList<Button>();
   _buttons.add(new Button(new int[] {1100, 600}, "shop", 0, "shop.jpg"));
+  _buttons.add(new Button(new int[] {900, 600}, new int[] {1099, 720}, "startAIAttack", "Invoke AI attack", 0, new int[] {0,0,0}, new int[] {255,255,255}));
+  
   // transparent buttons
   _buttons.add(new Button(new int[] {110, 145}, "resourceShop", 1, "resources.png") );
   _buttons.add(new Button(new int[] {510, 145}, "armyShop", 1, "army.png" ) );
@@ -123,13 +131,13 @@ public class Homebase{
     bShopImg = loadImage("bgd.jpg");
     image(bShopImg, 0, 0, 1280, 720);
     
+    /* SHOPING STATES */
     if (state == 1) { 
       fill(0);
       text("SHOP", 600, 50);
       text("Gold: " + _gold, 98, 120);
       text("Elixers: " + _elixir, 520, 120);
     }
-     
      
     else if ( state == 2 ) {
       fill(0);
@@ -152,6 +160,96 @@ public class Homebase{
      text("SNIPER", 550,400);
    }
     
+    // AI ATTACKING USER STATE
+    else if ( state == 6 ) {
+      bImg = loadImage("grass.jpg");
+       //bImg = loadImage("maze3.jpg");
+      image(bImg,0,0, 1280, 720);
+      /*
+      // generate random x and y coordinates for launch location
+      int randX = (int) (Math.random() * 1280);
+      int randY = (int) (Math.random() * 720);
+      int counter = 0;
+      
+      while ( inRadius(randX, randY, 5) ) { // while launch location to close to towers
+        println("hi");
+        randX = (int) (Math.random() * 1280);
+        randY = (int) (Math.random() * 720);
+        if ( counter >= 10000 ) // if there is likely no space to launch meeting criteria...
+          break;
+        counter += 1;
+      } 
+      
+      // scatter monsters within radius of launch location
+      for ( Monster monster : attackingMonsters ) {
+        int[] coor = genRandomPointWithinPointRadius(randX, randY, 100);
+        monster._xcor = coor[0];
+        monster._ycor = coor[1];
+      }
+        
+      // store current HPs of towers so that they can be respawned after attack
+      int[] currentHPs = new int[_towersOwned.size()];
+      for ( int i = 0; i < _towersOwned.size(); i++ )
+        currentHPs[i] = _towersOwned.get(i)._hp;
+      
+      // holds the towers that the AI is attacking
+      LList<Tower> defendingTowers = new LList<Tower>();
+      for ( Tower t : _towersOwned ) // make shallow copy
+        defendingTowers.add(t);
+      */
+      if (defendingTowers.size()==0){ 
+        text("You failed to defend your base! You lose half of your resources!", 500, 500);
+        exp += 50;
+        _gold /= 2;
+        _elixir /= 2;
+         delay(10000);
+        // regenerate towers
+        for ( int i = 0; i < _towersOwned.size(); i++ )
+          _towersOwned.get(i)._hp = _towersOwned.get(i)._maxHP;
+        
+        state = 0;
+      }
+      
+      else if (attackingMonsters.size() == 0){
+        text("Yay! You successfully defended your home base! You did take some damage though, so you'll lose some resoures.", 500, 500);
+        double percentAlive = defendingTowers.size() / ( _towersOwned.size() + 0.0 );
+        _gold = (_gold / 2) + (int) ( (_gold / 2) * percentAlive );
+        _elixir = (_elixir / 2) + (int) ( (_elixir / 2) * percentAlive );
+        exp += 150;
+        delay(10000);
+        // regenerate towers
+        for ( int i = 0; i < _towersOwned.size(); i++ )
+          _towersOwned.get(i)._hp = _towersOwned.get(i)._maxHP;
+        
+        state = 0;
+      }
+        
+      else { // being attacked
+        // draw defending towers, if alive
+        Iterator<Tower> iter = defendingTowers.iterator();
+        while ( iter.hasNext() ) {
+          Tower myT = (Tower)(iter.next());
+          if ( myT.isAlive() ) {
+            if ( myT instanceof Defense )
+              ((Defense) myT).draw(attackingMonsters);
+            else
+              myT.draw();
+          }
+          else // if enemyT is dead, just remove it from list
+            iter.remove();
+        }
+        // draw monsters, delete if dead
+        Iterator<Monster> it = attackingMonsters.iterator();
+        while ( it.hasNext() ) {
+          Monster mon = (Monster) (it.next());
+          if ( mon.isAlive() )
+            mon.drawAttack(true, defendingTowers);
+          else
+            it.remove();
+        }
+      } 
+    }
+    
     //VIEW MODE
     else if (state == 0) {
       
@@ -160,6 +258,12 @@ public class Homebase{
        //bImg = loadImage("maze3.jpg");
       image(bImg,0,0, 1280, 720);
     
+      double rand = Math.random();
+      if ( rand < .00001 ){ // 1 in 1,666 seconds
+        setupAIAttack();
+        return;
+      }
+      
       // make monsters in queue
       if ( ! _makeMonsterQueue.isEmpty() ){
         Monster monster = _makeMonsterQueue.peekFront();
@@ -171,6 +275,7 @@ public class Homebase{
         }
       }
   
+      // draw towers
       for ( Tower building : _towersOwned ) {
           //to show range of tower, paint green box under tower
           if (building._show){
@@ -181,16 +286,16 @@ public class Homebase{
           building.draw();
       }
        
-      // draw monsters
+      /* // draw monsters
       Iterator<Monster> iter = getMonsters().iterator();
       while ( iter.hasNext() ) {
         Monster m = (Monster)(iter.next());
         if ( m.isAlive() )
-          m.drawAttack(false, _towersOwned);
+          m.drawAttack(false, defendingTowers);
         else
           iter.remove();
-      }
-    }
+      } */
+    } // close state == 0
     
     for ( Button button : _buttons ) {
         if ( state == button.displayScreen ) // only draw appropriate buttons
@@ -205,11 +310,14 @@ public class Homebase{
     for ( Button button : _buttons ) {
       if ( button.buttonPressed(state) ) {
         String tag = button.getID();
-        
-        if ( tag.equals("genText") )
-          text("hello, it's me", 500, 500);
-        //clicked on shop icon
-        
+      
+        // clicked on invoke ai attack icoin
+        if ( tag.equals("startAIAttack") ) {
+          setupAIAttack();
+          //attackingMonsters = genRandomMonsters();
+          //state = 6;
+        }
+        //clicked on shop icon    
         else if (tag.equals("shop") )
             state = 1; //set mode to shop mode
         else if (tag.equals("resourceShop") )
@@ -225,10 +333,9 @@ public class Homebase{
          else if (tag.equals("armyShop") ) {
            state = 3;
          }
-            else if (tag.equals("defenseShop") ) {
+         else if (tag.equals("defenseShop") ) {
            state = 4;
          }
-         
         else if (tag.equals("buyElixircollector") ) {
             state = 0;
             buyTower(new ElixirCollector(mouseX, mouseY) );
@@ -361,6 +468,79 @@ public class Homebase{
    return true;
  }
  
+   // runs only once
+   public void setupAIAttack() {
+     attackingMonsters = genRandomMonsters();
+     
+     // generate random x and y coordinates for launch location
+      int randX = (int) (Math.random() * 1280);
+      int randY = (int) (Math.random() * 720);
+      int counter = 0;
+      
+      while ( inRadius(randX, randY, 5) ) { // while launch location to close to towers
+        println("hi");
+        randX = (int) (Math.random() * 1280);
+        randY = (int) (Math.random() * 720);
+        if ( counter >= 10000 ) // if there is likely no space to launch meeting criteria...
+          break;
+        counter += 1;
+      }
+      // scatter monsters within radius of launch location
+      for ( Monster monster : attackingMonsters ) {
+        int[] coor = genRandomPointWithinPointRadius(randX, randY, 100);
+        monster._xcor = coor[0];
+        monster._ycor = coor[1];
+      }
+        
+      // holds the towers that the AI is attacking
+      defendingTowers = new LList<Tower>();
+      for ( Tower t : _towersOwned ) // make shallow copy
+        defendingTowers.add(t);
+     
+     state = 6;
+   }
+   public LList<Monster> genRandomMonsters() {
+     LList<Monster> retList = new LList<Monster>();
+     // generate between 3 and 10 monsters
+     int numMonsters = (int) (Math.random() * 7) + 4;
+     for ( int i = 0; i < numMonsters; i++ ) {
+       // generate random num between 0 and 5
+       int monsterChoice = (int) (Math.random() * 6);
+       if ( monsterChoice == 0 )
+         retList.add(new Archer(0,0));
+       else if ( monsterChoice == 1 )
+         retList.add(new Barbarian(0,0));
+       else if ( monsterChoice == 2 )
+         retList.add(new Giant(0,0));
+       else if ( monsterChoice == 3 )
+         retList.add(new Goblin(0,0));
+       else if ( monsterChoice == 4 )
+         retList.add(new WallBreaker(0,0));
+       else if ( monsterChoice == 5 )
+         retList.add(new Wizard(0,0));
+     }
+     return retList;
+   }
+   
+   // returns true if there is a tower in radius of given x y coor
+   public boolean inRadius(int x, int y, int radius) {
+     for ( Tower t : _towersOwned ) {
+       if ( radius >= Math.hypot( t._xcor - x, t._ycor - y ) )
+         return true;
+     }
+     return false;
+   }
+   
+   public int[] genRandomPointWithinPointRadius(int x, int y, int radius) {
+    double randDist = Math.random() * radius;
+    double randAngle = Math.random() * 2 * Math.PI; // measured in radians
+    
+    int[] retCoor = new int[2];
+    retCoor[0] = (int) (randDist * Math.cos(randAngle)) + x;
+    retCoor[1] = (int) (randDist * Math.sin(randAngle)) + y;
+    return retCoor;
+  }
+   
    public void placeItem(Tower t) {
      t.setCoor(mouseX, mouseY);
    }

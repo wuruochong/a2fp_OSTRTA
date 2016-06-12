@@ -13,6 +13,7 @@ public class Resource extends Tower{
     // constructor
     public Resource(int x, int y) {
       _hp = 200;
+      _maxHP = 200;
       _xcor = x;
       _ycor = y;
       _rate = .5;

@@ -8,6 +8,7 @@ public class MonsterHouse extends Tower{
   
   public MonsterHouse(int x, int y) {
     _hp = 500;
+    _maxHP = 500;
     _xcor = x;
     _ycor = y;
     _residents = 0;

@@ -3,7 +3,8 @@ public class Goblin extends Monster{
 
    public Goblin(){
      super();
-     _hp = 999;
+     _hp = 100;
+     _maxHP = 100;
      _mp = 25;
      _trainingTime = 30;
      _basicSpeed = 15;

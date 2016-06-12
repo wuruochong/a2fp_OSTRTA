@@ -6,6 +6,7 @@ PImage icon;
     // constructor
     public TownHall(int x, int y) {
   _hp = 450;
+  _maxHP = 450;
   _xcor = x;
   _ycor = y;
   _upgradeState = 0;

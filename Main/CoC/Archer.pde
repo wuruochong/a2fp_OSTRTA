@@ -3,6 +3,7 @@ public class Archer extends Monster{
    public Archer(){
      super();
      _hp = 100;
+     _maxHP = 100;
      _mp = 50;
      _trainingTime = 25;
      _basicSpeed = 5;
