@@ -40,7 +40,7 @@ public class Resource extends Tower{
   //restart the time
   //return gold
   
-  int collectGold(Homebase base){
+  int collectResource(Homebase base){
       long endTime = System.nanoTime() - startTime;
       int amountCollected = (int) (endTime / 1000000000.0 * _rate);
       if ( _isGold )
