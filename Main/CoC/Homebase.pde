@@ -310,8 +310,8 @@ public class Homebase{
     }
    
     for (Tower t: _towersOwned) {
-      if (mouseBUtton == RIGHT) {
-        t.click = false;
+      if (mouseButton == RIGHT) {
+        t.clicked = false;
         locked = false;
       }
       
