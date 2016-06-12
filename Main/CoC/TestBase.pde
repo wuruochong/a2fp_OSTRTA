@@ -235,25 +235,7 @@ public class TestBase{
   if (tier == 5) {
   
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  }
+   }
   
   
   
@@ -311,7 +293,9 @@ public class TestBase{
         image(bImg,0,0, 1280, 720);
 
         for (Button b: _buttons)
-          {b.draw();}
+          {
+          b.draw();
+        }
           
         // draw enemy towers, delete if dead
         Iterator<Tower> iter = _enemyTowers.iterator();
