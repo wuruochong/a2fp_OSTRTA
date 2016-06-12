@@ -159,7 +159,7 @@ public class Selecter{
       for (Monster m : HBMonsters){
         if (m instanceof Goblin){
           HBMonsters.remove(m);
-          SMonsters.add(new Barbarian(100,100));
+          SMonsters.add(new Goblin(100,100));
           buttonUpdater();
           break;
         }
@@ -186,7 +186,7 @@ public class Selecter{
       }
     }
     if (ArcherButtonS.buttonPressed(0)){
-      for (Monster m : HBMonsters){
+      for (Monster m : SMonsters){
         if (m instanceof Archer){
           SMonsters.remove(m);
           HBMonsters.add(new Archer(100,100));
@@ -206,7 +206,7 @@ public class Selecter{
       }
     }
     if (WizardButtonS.buttonPressed(0)){
-      for (Monster m : HBMonsters){
+      for (Monster m : SMonsters){
         if (m instanceof Wizard){
           SMonsters.remove(m);
           HBMonsters.add(new Wizard(100,100));
