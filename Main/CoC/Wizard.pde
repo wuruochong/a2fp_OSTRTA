@@ -13,7 +13,7 @@ public class Wizard extends Monster{
      _level = 1;
      _houseSpace = 4;
      _name = "Wizard";
-    icon = loadImage("archer.png");
+    icon = loadImage("wizard.png");
 }
    
    public Wizard(int x, int y){

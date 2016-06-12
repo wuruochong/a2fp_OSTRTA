@@ -35,7 +35,7 @@ public class Homebase{
   //ArrayList<Tower> _towerChoices;
   //ArrayList<Monster> _monsterChoices;
   
-  String[] _monsterNames = { "Barbarian", "Archer", "Goblin", "Giant", "WallBreaker", "Wizard"}; //for generating buttons
+  String[] _monsterNames = { "Barbarian", "Archer", "Goblin", "Giant", "Wizard"}; //for generating buttons
   String[] _towerNames = { "Tesla", "Canon", "Sniper"};// "idk", "idk2"};//for generating buttons
   String[] _towerPics = {"tesla.gif", "canon.png", "sniper.gif"};//, null, null};
   
@@ -59,9 +59,11 @@ public class Homebase{
    //image loading
    bShopImg = loadImage("bgd.jpg");
    bImg = loadImage("grass.jpg");
+
    troopPanel= loadImage("troops.jpg");
    back = new Button(new int[] {300, 200}, new int[] {400,250}, "back", "confirm", 0);    
     
+
 
    //attributes 
    _drawTicks = 0;
@@ -104,9 +106,6 @@ public class Homebase{
   _buttons.add(new Button(new int[] {1000, 600}, new int[] {1099, 720}, "startAIAttack", "Invoke AI attack", 0, new int[] {0,0,0}, new int[] {255,255,255}));
   _buttons.add(new Button(new int[] {850, 600}, new int[] {999, 720}, "viewMonsterQueue", "View Monster Queue", 0, new int[] {0,0,0}, new int[] {255,255,255}));
   
-  // load resource buttons
-  _buttons.add(new Button(new int[] {50, 85}, new int[] {175, 115}, "collectResource", "Collect Resources", 0, new int[] {0,0,0}, new int[] {223,198,31}));
-  
   // transparent buttons
   _buttons.add(new Button(new int[] {110, 145}, "resourceShop", 1, "resources.png") );
   _buttons.add(new Button(new int[] {510, 145}, "armyShop", 1, "army.png" ) );
@@ -119,7 +118,7 @@ public class Homebase{
   int tmpX = 225;
   for (int i = 0; i < _monsterNames.length; i ++ ){
   _buttons.add (new Button (new int[] {tmpX, 225}, new int[] {tmpX+93, 340}, _monsterNames[i], null, 3, new int[] {0,0,0}, new int[] {0,0,0,0} ));
-  tmpX +=  112;
+  tmpX +=  145;
   } 
   
   tmpX=225;
@@ -142,7 +141,7 @@ public class Homebase{
   }
   
   void draw() {
-    println(frameRate);
+    //println(frameRate);
     _drawTicks += 1;
     //SHOP MODE
     
@@ -246,34 +245,26 @@ public class Homebase{
      else if (state == 0) {
       //to reset
       image(bImg,0,0, 1280, 720);
-      
-      // draw resource info in upper left
-      fill(255);
-      textSize(24);
-      textAlign(LEFT);
-      text("Gold: " + _gold, 50, 50);
-      text("Elixir: " + _elixir, 50, 75);
-      textSize(12);
-      fill(0);
-      
+
       if (locked){
-        for (Tower t: _towersOwned){
-          if (t.clicked) {
-             t._xcor = mouseX;
-             t._ycor = mouseY;
-             break;
-          }
-        }
+      for (Tower t: _towersOwned){
+      if (t.clicked) {
+         t._xcor = mouseX;
+         t._ycor = mouseY;
+         break;
+      }
+      }
       }
 
       double rand = Math.random();
-      if ( rand < .00005 ){ // approx. once every 30 minutes
+      if ( rand < .00001 ){ // 1 in 1,666 seconds
         setupAIAttack();
         return;
       }
       
       // make monsters in queue
       makeQueueMonsters();
+  
       
       // draw towers
       for ( Tower building : _towersOwned ) {
@@ -333,10 +324,23 @@ public class Homebase{
       placeTower = null;
     }
    
+   if (state == 0) {
     for (Tower t: _towersOwned) {
       if (mouseButton == RIGHT) {
         t.clicked = false;
         locked = false;
+        if ( t instanceof MonsterHouse ) {
+          // remove monsters from monster house and then re-add to place them correctly
+          MonsterHouse h = (MonsterHouse) t;
+          LList<Monster> tmp = new LList();
+          Iterator iter = h._monstersOwned.iterator();
+          while ( iter.hasNext() ) {
+            tmp.add( (Monster) (iter.next()) );
+            iter.remove();
+          }
+          for ( Monster m : tmp )
+            h.addMonster(m);
+        }
       }
       
       else  if (mouseX >= (t._xcor - 50) 
@@ -348,6 +352,7 @@ public class Homebase{
           break;
         }
     }
+   }
       
     for ( Button button : _buttons ) {
       if ( button.buttonPressed(state) ) {
@@ -358,12 +363,9 @@ public class Homebase{
           setupAIAttack();
         }
         // clicked on view monster queue button
-        else if ( tag.equals("viewMonsterQueue") )
+        if ( tag.equals("viewMonsterQueue") )
           state = 7; 
-        // clicked on collect resources
-        else if ( tag.equals("collectResource") )
-          collectResource();
-
+          
         //clicked on shop icon    
         else if (tag.equals("shop") )
             state = 1; //set mode to shop mode
@@ -408,10 +410,6 @@ public class Homebase{
         else if (tag.equals("Goblin") ) {
             state = 0;
             buyMonster(new Goblin(mouseX, mouseY) );
-        }
-        else if (tag.equals("WallBreaker") ) {
-            state = 0;
-            buyMonster(new WallBreaker(mouseX, mouseY) );
         }
         
         //BUYING DEFENSES
@@ -478,13 +476,6 @@ public class Homebase{
     _elixir -= e;
   }
   
-  public void collectResource() {
-    for ( Tower t : _towersOwned ){
-      if ( t instanceof Resource )
-        ((Resource) t).collectResource(this);
-    }
-  }
-    
   boolean hoveredOver(Tower t) {
   return (mousePressed && mouseX >= (t._xcor - 50) 
         && mouseX <= (t._xcor + 50) 
