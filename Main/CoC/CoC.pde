@@ -81,7 +81,7 @@ image(holder, x, y);
 }
 
 void draw(){
-
+  println(frameRate);
   if (state==0){
   image(bImg,0,0, 1280, 720);
     base.draw();

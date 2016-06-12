@@ -22,6 +22,7 @@ public class Sniper extends Defense {
 	_range = 300;
 	_attackAir = true;
 	_attackRate = 60; // once per 2 seconds
+  icon = loadImage("sniper.gif");
     }
 
     public void upgrade() {
@@ -33,7 +34,7 @@ public class Sniper extends Defense {
     
     
     void draw(){
-      icon = loadImage("sniper.gif");
+      
       imageMode(CENTER);
     image(icon, _xcor, _ycor, 50, 50); 
     imageMode(CORNER);

@@ -23,6 +23,7 @@ public class Tesla extends Defense {
 	_critChance = .1;
 	_range = 150;
 	_attackRate = 90; // 3 times per second
+      icon = loadImage("tesla.gif");
     }
 
     // override shoot()
@@ -33,7 +34,7 @@ public class Tesla extends Defense {
     
     
     void draw(){
-      icon = loadImage("tesla.gif");
+
       imageMode(CENTER);
       image(icon, _xcor, _ycor, 50, 50); 
       imageMode(CORNER);
