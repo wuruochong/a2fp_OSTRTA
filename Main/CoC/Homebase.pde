@@ -161,8 +161,8 @@ public class Homebase{
    }
    
    else if (state == 3) {
-     //image(bShopImg, 0, 0, 1280, 720);
-     //image(troopPanel, 200, 200, 700, 150);
+     image(bShopImg, 0, 0, 1280, 720);
+     image(troopPanel, 200, 200, 700, 150);
    
    }
   
