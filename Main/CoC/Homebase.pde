@@ -42,6 +42,7 @@ public class Homebase{
    3 - army shopping screen,
    4 - defenses shopping screen,
    5- choosing tier
+   6 - being attacked by AI monster
   
   */
  public Homebase() {
@@ -53,7 +54,7 @@ public class Homebase{
   exp = 0;
   
   _towersOwned = new LList<Tower>();
-  _house = new MonsterHouse(900, 400);
+  _house = new MonsterHouse(250, 350);
   _makeMonsterQueue = new Deque<Monster>();
   _attackMonsters = new LList<Monster>();
   
@@ -104,7 +105,7 @@ public class Homebase{
   
   // add exit button for each state
   for ( int i = 0; i <= 4; i++ )
-    _buttons.add(new Button(new int[] {1100, 20}, new int[] {1260, 80}, "exitToHome", null, i, new int[] {0,0,0}, new int[] {0,0,0,0}) );
+    _buttons.add(new Button(new int[] {1200, 20}, "exitToHome", i, "x.png") );
     
    
    Stack actions = new Stack();

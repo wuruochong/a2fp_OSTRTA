@@ -292,7 +292,7 @@ public class TestBase{
         win.draw();
         if (win.buttonPressed(0)){
           cont = false;
-          base.exp+=50;
+          base.exp += 50;
         }
       }
       else if ( _monsterList.size() == 0 ) {

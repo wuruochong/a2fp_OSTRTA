@@ -62,6 +62,7 @@ void mousePressed() {
      }
       base.mousePressed();
    }
+   
    else if (state == 4){
      sel.mousePressed();
    }

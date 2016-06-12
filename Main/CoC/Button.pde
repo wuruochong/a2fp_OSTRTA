@@ -59,7 +59,10 @@ public class Button {
     
         if ( displayText != null ) { // if there is text to display
           fill(textColor[0], textColor[1], textColor[2]);
-          text(displayText, (int ) (topLeftCorner[0] * 1.25), (int) (topLeftCorner[1] * 1.25));
+          textAlign(CENTER);
+          text(displayText, (bottomRightCorner[0] - topLeftCorner[0]) / 2 + topLeftCorner[0], (bottomRightCorner[1] - topLeftCorner[1]) / 2 + topLeftCorner[1]);
+          textAlign(RIGHT);
+          //text(displayText, (int ) (topLeftCorner[0] * 1.25), (int) (topLeftCorner[1] * 1.25));
         }
     }
   }
