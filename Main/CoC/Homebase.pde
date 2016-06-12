@@ -50,7 +50,7 @@ public class Homebase{
    4 - defenses shopping screen,
    5- choosing tier
    6 - being attacked by AI monster
-   7 - Tower placement
+
   */
  public Homebase() {
    //attributes 
