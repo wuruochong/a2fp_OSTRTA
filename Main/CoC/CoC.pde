@@ -60,8 +60,11 @@ void mousePressed() {
      test.mousePressed();
    else if ( state == 0 ){
      if (attackButton.buttonPressed(0)) {
-       state = 4;
-       sel = new Selecter(base);
+       if (base.state != 6){
+         state = 4;
+         sel = new Selecter(base);
+       }
+         
      }
       base.mousePressed();
    }
@@ -81,6 +84,12 @@ void draw(){
   if (state==0){
   image(bImg,0,0, 1280, 720);
     base.draw();
+    if (base.state!=6){
+      attackButton.img = loadImage("attack.jpg");
+    }
+    if (base.state==6){
+      attackButton.img = loadImage("attack2.png");
+    }
     attackButton.draw();
 
   }
@@ -114,6 +123,6 @@ void draw(){
       state = 3;
     }
   }
-      fill(0);
-    text( "x: " + mouseX + " y: " + mouseY, mouseX + 2, mouseY );
+    //  fill(0);
+  //  text( "x: " + mouseX + " y: " + mouseY, mouseX + 2, mouseY );
 }

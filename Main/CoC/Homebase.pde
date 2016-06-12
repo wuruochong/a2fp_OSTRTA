@@ -15,6 +15,7 @@ public class Homebase{
   // attacked by ai
   LList<Monster> attackingMonsters; // AI monsters attacking YOU
   LList<Tower> defendingTowers; // towers whend defending against AI attack
+  Tower placeTower;
   
   MonsterHouse _house;
   Deque<Monster> _makeMonsterQueue;
@@ -49,7 +50,7 @@ public class Homebase{
    4 - defenses shopping screen,
    5- choosing tier
    6 - being attacked by AI monster
-  
+
   */
  public Homebase() {
    //attributes 
@@ -58,6 +59,7 @@ public class Homebase{
   _gold = 9999;
   _elixir = 9999;
   exp = 0;
+  placeTower = null;
   
   _towersOwned = new ArrayList<Tower>();
   _house = new MonsterHouse(250, 350);
@@ -160,6 +162,8 @@ public class Homebase{
      text("CANON", 392,400);
      text("SNIPER", 550,400);
    }
+   
+
     
     // AI ATTACKING USER STATE
     else if ( state == 6 ) {
@@ -302,12 +306,26 @@ public class Homebase{
         if ( state == button.displayScreen ) // only draw appropriate buttons
           button.draw();
       } 
+      
+    if (placeTower != null){
+      placeTower.setCoor(mouseX, mouseY);
+      placeTower.draw();
+      fill(0);
+    text( "Place tower here", mouseX + 2, mouseY );
+    }
+
   }
   
   
   void mousePressed() { 
     // if clicked on a button
     println(mouseX + ":" + mouseY);
+    if (placeTower != null){
+      placeTower.setCoor(mouseX, mouseY);
+      _towersOwned.add(placeTower);
+      placeTower = null;
+    }
+      
     for ( Button button : _buttons ) {
       if ( button.buttonPressed(state) ) {
         String tag = button.getID();
@@ -447,8 +465,8 @@ public class Homebase{
     if (_gold >= property.getCost()) {
           payGold(property.getCost());
           // DO THE MOVE THING HERE; TRY NOT TO CHANGE ANYTHING ELSE
-          placeItem(property);
-          _towersOwned.add(property);
+          placeTower = property;
+          state = 0;
           return true;
       }
     return false;

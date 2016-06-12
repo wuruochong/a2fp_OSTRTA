@@ -282,7 +282,9 @@ public class LList<T> implements List<T>
 	    return _dummy.getCargo();
 	}
 
-
+  public boolean isEmpty(){
+    return _size==0;
+  }
 	//return last element returned by this iterator (from last next() call)
 	public void remove() 
 	{

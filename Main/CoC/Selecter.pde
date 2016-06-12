@@ -243,6 +243,12 @@ public class Selecter{
     WizardButtonS.draw();
     attackButton.draw();
     Back.draw();
+    if (SMonsters.size()==0){
+      attackButton.img = loadImage("attack2.png");
+    }
+    else{
+      attackButton.img = loadImage("attack.jpg");
+    }
   }
 }
   
