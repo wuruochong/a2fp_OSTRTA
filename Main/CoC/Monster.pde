@@ -40,8 +40,12 @@ public class Monster extends Unit implements Comparable{
 
   String getName() {return _name;}
   
-    // if attacking is true, the monsters are in attack mode
-    void drawAttack(boolean attacking, LList<Tower> towers){
+   void drawIcon(int x, int y) {
+     loadImage(icon, x, y, 100, 100);
+   }
+    
+  // if attacking is true, the monsters are in attack mode
+  void drawAttack(boolean attacking, LList<Tower> towers){
       //println(towers);
       fill(0);
       text(_hp + "", _xcor, _ycor , 50, 50);

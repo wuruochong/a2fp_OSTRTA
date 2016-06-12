@@ -1,5 +1,5 @@
 public class Archer extends Monster{
-
+      
    public Archer(){
      super();
      _hp = 100;
@@ -19,6 +19,5 @@ public class Archer extends Monster{
      _xcor = x;
      _ycor = y;
    }
-
-
+    
 }
