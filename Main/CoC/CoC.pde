@@ -99,6 +99,7 @@ void draw(){
     }
     if (!test.cont){
       state = 0;
+      base.state = 0;
     }
     // implement if button pushed to quit, make state == 0 
   }

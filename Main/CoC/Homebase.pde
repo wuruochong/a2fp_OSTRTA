@@ -33,7 +33,7 @@ public class Homebase{
   ArrayList<Tower> _towerChoices;
   ArrayList<Monster> _monsterChoices;
   
-  String[] _monsterNames = { "Archer", "WallBreaker", "Wizard", "Barbarian", "Giant", "Goblin"}; //for generating buttons
+  String[] _monsterNames = { "Barbarian", "Archer", "Goblin", "Giant", "WallBreaker", "Wizard"}; //for generating buttons
   String[] _towerNames = { "Tesla", "Canon", "Sniper"};// "idk", "idk2"};//for generating buttons
   String[] _towerPics = {"tesla.gif", "canon.png", "sniper.gif"};//, null, null};
   
@@ -50,8 +50,9 @@ public class Homebase{
    4 - defenses shopping screen,
    5- choosing tier
    6 - being attacked by AI monster
-
+   7 - view monster creation queue
   */
+  
  public Homebase() {
    //attributes 
    _drawTicks = 0;
@@ -88,10 +89,11 @@ public class Homebase{
   _house.addMonster(new Wizard(100,100));
 
   
-  // load ALL buttonswadse
+  // load ALL buttons
   _buttons = new ArrayList<Button>();
   _buttons.add(new Button(new int[] {1100, 600}, "shop", 0, "shop.jpg"));
-  _buttons.add(new Button(new int[] {900, 600}, new int[] {1099, 720}, "startAIAttack", "Invoke AI attack", 0, new int[] {0,0,0}, new int[] {255,255,255}));
+  _buttons.add(new Button(new int[] {1000, 600}, new int[] {1099, 720}, "startAIAttack", "Invoke AI attack", 0, new int[] {0,0,0}, new int[] {255,255,255}));
+  _buttons.add(new Button(new int[] {850, 600}, new int[] {999, 720}, "viewMonsterQueue", "View Monster Queue", 0, new int[] {0,0,0}, new int[] {255,255,255}));
   
   // transparent buttons
   _buttons.add(new Button(new int[] {110, 145}, "resourceShop", 1, "resources.png") );
@@ -106,7 +108,7 @@ public class Homebase{
   for (int i = 0; i < _monsterNames.length; i ++ ){
   _buttons.add (new Button (new int[] {tmpX, 225}, new int[] {tmpX+93, 340}, _monsterNames[i], null, 3, new int[] {0,0,0}, new int[] {0,0,0,0} ));
   tmpX +=  112;
-  }  // Archer, Wall breaker, Wizard, Barbarian, Giant, Goblin
+  } 
   
   tmpX=225;
   for (int i = 0; i < _towerNames.length; i ++ ){
@@ -117,7 +119,7 @@ public class Homebase{
   // add exit button for each state
   for ( int i = 0; i <= 4; i++ )
     _buttons.add(new Button(new int[] {1200, 20}, "exitToHome", i, "x.png") );
-    
+  _buttons.add(new Button(new int[] {1200,20}, "exitToHome", 7, "x.png") );
    
    Stack actions = new Stack();
 }
@@ -164,44 +166,12 @@ public class Homebase{
    }
    
 
-    
     // AI ATTACKING USER STATE
     else if ( state == 6 ) {
       bImg = loadImage("grass.jpg");
        //bImg = loadImage("maze3.jpg");
       image(bImg,0,0, 1280, 720);
-      /*
-      // generate random x and y coordinates for launch location
-      int randX = (int) (Math.random() * 1280);
-      int randY = (int) (Math.random() * 720);
-      int counter = 0;
-      
-      while ( inRadius(randX, randY, 5) ) { // while launch location to close to towers
-        println("hi");
-        randX = (int) (Math.random() * 1280);
-        randY = (int) (Math.random() * 720);
-        if ( counter >= 10000 ) // if there is likely no space to launch meeting criteria...
-          break;
-        counter += 1;
-      } 
-      
-      // scatter monsters within radius of launch location
-      for ( Monster monster : attackingMonsters ) {
-        int[] coor = genRandomPointWithinPointRadius(randX, randY, 100);
-        monster._xcor = coor[0];
-        monster._ycor = coor[1];
-      }
-        
-      // store current HPs of towers so that they can be respawned after attack
-      int[] currentHPs = new int[_towersOwned.size()];
-      for ( int i = 0; i < _towersOwned.size(); i++ )
-        currentHPs[i] = _towersOwned.get(i)._hp;
-      
-      // holds the towers that the AI is attacking
-      LList<Tower> defendingTowers = new LList<Tower>();
-      for ( Tower t : _towersOwned ) // make shallow copy
-        defendingTowers.add(t);
-      */
+     
       if (defendingTowers.size()==0){ 
         text("You failed to defend your base! You lose half of your resources!", 500, 500);
         exp += 50;
@@ -270,15 +240,7 @@ public class Homebase{
       }
       
       // make monsters in queue
-      if ( ! _makeMonsterQueue.isEmpty() ){
-        Monster monster = _makeMonsterQueue.peekFront();
-        if ( monster._trainingTime > 0 ) // not ready to be made yet
-          monster._trainingTime -= 1;
-        else {// ready
-          _makeMonsterQueue.dequeueFront(); // remove monster from queue  
-          _house.addMonster(monster);
-        }
-      }
+      makeQueueMonsters();
   
       // draw towers
       for ( Tower building : _towersOwned ) {
@@ -290,17 +252,14 @@ public class Homebase{
           fill(0,0,0); // reset
           building.draw();
       }
-       
-      /* // draw monsters
-      Iterator<Monster> iter = getMonsters().iterator();
-      while ( iter.hasNext() ) {
-        Monster m = (Monster)(iter.next());
-        if ( m.isAlive() )
-          m.drawAttack(false, defendingTowers);
-        else
-          iter.remove();
-      } */
     } // close state == 0
+    
+    else if ( state == 7 ) {
+      bShopImg = loadImage("bgd.jpg");
+      image(bShopImg, 0, 0, 1280, 720);
+      makeQueueMonsters();
+      visualizeQueue();  
+    }
     
     for ( Button button : _buttons ) {
         if ( state == button.displayScreen ) // only draw appropriate buttons
@@ -330,12 +289,14 @@ public class Homebase{
       if ( button.buttonPressed(state) ) {
         String tag = button.getID();
       
-        // clicked on invoke ai attack icoin
+        // clicked on invoke ai attack button
         if ( tag.equals("startAIAttack") ) {
           setupAIAttack();
-          //attackingMonsters = genRandomMonsters();
-          //state = 6;
         }
+        // clicked on view monster queue button
+        if ( tag.equals("viewMonsterQueue") )
+          state = 7; 
+          
         //clicked on shop icon    
         else if (tag.equals("shop") )
             state = 1; //set mode to shop mode
@@ -485,6 +446,27 @@ public class Homebase{
  public boolean upgradeTower(Tower t) {
    return true;
  }
+      // make monsters in queue
+   public void makeQueueMonsters() {
+      if ( ! _makeMonsterQueue.isEmpty() ){
+        Monster monster = _makeMonsterQueue.peekFront();
+        if ( monster._trainingTime > 0 ) // not ready to be made yet
+          monster._trainingTime -= 1;
+        else {// ready
+          _makeMonsterQueue.dequeueFront(); // remove monster from queue  
+          _house.addMonster(monster);
+        }
+      }
+   }
+  
+  public void visualizeQueue() {
+    int tmpX = 50;
+    for ( Monster m : _makeMonsterQueue ) {
+      text(m._name, tmpX, 100);
+      text(m._trainingTime, tmpX, 150);
+      tmpX += 75;
+    }
+  }
  
    // runs only once
    public void setupAIAttack() {
