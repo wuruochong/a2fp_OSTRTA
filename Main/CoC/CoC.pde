@@ -7,6 +7,7 @@ Button attackButton;
 PImage tmp;
 PImage tierChoice;
 //int tier;
+Selecter sel;
 
 void setup(){
   size(1280,720);
@@ -23,9 +24,7 @@ void setup(){
 void mousePressed() {
   
 //println(mouseX + " " + mouseY);
-   if (attackButton.buttonPressed(0)) {
-     state = 3;
-   }
+   
     if (state == 3)
      {
        image(tierChoice, 0, 0, 1280, 760);
@@ -50,10 +49,18 @@ void mousePressed() {
    
      }
   
-   if ( state == 1 )
+   else if ( state == 1 )
      test.mousePressed();
-   if ( state == 0 )
-    base.mousePressed();
+   else if ( state == 0 ){
+     if (attackButton.buttonPressed(0)) {
+       state = 4;
+       sel = new Selecter(base);
+     }
+      base.mousePressed();
+   }
+   else if (state == 4){
+     sel.mousePressed();
+   }
 }
 
 void loadImg(PImage holder, String s, int x, int y) {
@@ -80,6 +87,15 @@ void draw(){
   }
   else if (state == 3) {
          image(tierChoice, 0, 0, 1280, 760);
+  }
+  else if (state == 4){
+    if (sel.cont){
+      sel.draw();
+    }
+    if (!sel.cont){
+      sel.baseUpdater(base);
+      state = 3;
+    }
   }
      //   fill(0);
     //text( "x: " + mouseX + " y: " + mouseY, mouseX + 2, mouseY );

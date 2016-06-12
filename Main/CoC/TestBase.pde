@@ -22,7 +22,7 @@ public class TestBase{
   PImage maze;
   
   public TestBase(Homebase player, int t) {
-    _monsterList = player.getMonsters();
+    _monsterList = player._attackMonsters;
     maxGold = (int) (Math.random() * 1000);
     
   //  _enemyTowers_monsterList.add(new Canon(3,3));

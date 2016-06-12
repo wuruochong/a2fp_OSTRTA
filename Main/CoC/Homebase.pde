@@ -9,6 +9,7 @@ public class Homebase{
   int _elixir;
   
   LList<Tower> _towersOwned;
+  LList<Monster> _attackMonsters;
   MonsterHouse _house;
   Deque<Monster> _makeMonsterQueue;
   //LList<Monster> _monstersOwned;
@@ -54,6 +55,7 @@ public class Homebase{
   _towersOwned = new LList<Tower>();
   _house = new MonsterHouse(900, 400);
   _makeMonsterQueue = new Deque<Monster>();
+  _attackMonsters = new LList<Monster>();
   
   //_monstersOwned = new LList<Monster>();
   
@@ -70,10 +72,10 @@ public class Homebase{
   _monsterChoices.add(new Barbarian());
  
   _house.addMonster(new Archer(100,100));
-  //_house.addMonster(new Barbarian(100,100));
+  _house.addMonster(new Barbarian(100,100));
   //_house.addMonster(new Wizard(100,100));
-  //_house.addMonster(new Goblin(100,100));
-  //_house.addMonster(new Giant(100,100));
+  _house.addMonster(new Goblin(100,100));
+  _house.addMonster(new Giant(100,100));
 
   
   // load ALL buttonswadse
