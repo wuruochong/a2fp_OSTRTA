@@ -1,5 +1,5 @@
 public class Archer extends Monster{
-      
+
    public Archer(){
      super();
      _hp = 100;
@@ -11,13 +11,30 @@ public class Archer extends Monster{
      _dmgPerAttack=7;
      _level = 1;
      _houseSpace = 1;
-  _name = "Archer";
-   }
+      _name = "Archer";
+      icon = loadImage("archer.png");
+       }
    
    public Archer(int x, int y){
      this();
      _xcor = x;
      _ycor = y;
    }
-    
+   
+    void drawAttack(boolean attacking, LList<Tower> towers){
+      super.drawAttack(attacking, towers);
+      imageMode(CENTER);
+      image(icon, _xcor, _ycor, 25, 25);
+      imageMode(CORNER);  
+    }
+
+    void drawRoaming(MonsterHouse house){
+      super.drawRoaming(house);
+      imageMode(CENTER);
+      image(icon, _xcor, _ycor, 25, 25);
+      imageMode(CORNER);
+    }
+
+
+
 }
