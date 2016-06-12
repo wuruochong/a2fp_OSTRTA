@@ -46,6 +46,10 @@ void mousePressed() {
     state = 1;
     test = new TestBase(base, 3);
       }
+      else if (mouseX <= 420 && mouseY> 380){
+      state = 1;
+      test = new TestBase(base, 4);
+      }
    
      }
   

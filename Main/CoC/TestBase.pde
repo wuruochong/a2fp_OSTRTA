@@ -87,6 +87,7 @@ public class TestBase{
     else{
     numTowers = 3 + (int) (Math.random() * 12);
     }
+    println(numTowers);
     
     if (tier == 1) {
       for (int i = 0; i < numTowers; i ++){
@@ -189,10 +190,37 @@ public class TestBase{
    implements DOUBLE wall usage to secure resources
    */
   if (tier == 4) {
+    QueensTour qBoard = new QueensTour(8);
+    qBoard.solve();
+    int tmpX = 300;
+    int tmpY = 200;
+    for (int r = 0; i < 8; i +_) {
+      for (int c = 0; c < 8; c ++) {
+        if (qBoard._board[r][c].equals("Q")) {
+          
+        int rand = (int) (Math.random() * 6);
+        if (_towerChoices[rand].equals("Canon"))
+          _enemyTowers.add(new Canon( tmpX, tmpY)) ;
+          
+        if (_towerChoices[rand].equals("Tesla"))
+          _enemyTowers.add(new Tesla( tmpX, tmpY));
+        
+        if (_towerChoices[rand].equals("Sniper"))
+          _enemyTowers.add(new Sniper( tmpX, tmpY));
+        if (_towerChoices[rand].equals("Gold"))
+          _enemyTowers.add(new GoldMine( tmpX, tmpY));
+        if (_towerChoices[rand].equals("Elixir"))
+          _enemyTowers.add(new ElixirCollector( tmpX, tmpY));
+          
+        }
+      
+      }
+    }
   
   
+  }
+
   
-  }  
   
   
      /*
@@ -203,6 +231,22 @@ public class TestBase{
   if (tier == 5) {
   
   }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   }
