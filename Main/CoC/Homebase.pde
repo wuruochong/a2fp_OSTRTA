@@ -60,7 +60,7 @@ public class Homebase{
    bShopImg = loadImage("bgd.jpg");
    bImg = loadImage("grass.jpg");
 
-   troopPanel= loadImage("troops.jpg");
+   troopPanel= loadImage("troops2.jpg");
    back = new Button(new int[] {300, 200}, new int[] {400,250}, "back", "confirm", 0);    
     
 
@@ -640,14 +640,6 @@ public class Homebase{
    }
 
    
- //to place tower after its bought at mouse position 
- // IS THIS DRAGGING?
-  void moveItem(Tower t) {
-    if (hoveredOver(t)) {
-      if (!mousePressed) 
-        t.setCoor(mouseX, mouseY);
-  }
- }
  
  void mouseReleased(){
    for (Tower t: _towersOwned) {
