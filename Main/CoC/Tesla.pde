@@ -37,9 +37,7 @@ public class Tesla extends Defense {
       imageMode(CENTER);
       image(icon, _xcor, _ycor, 50, 50); 
       imageMode(CORNER);
-      fill(0); 
-   text(_hp + " ", _xcor+70,  _ycor+40 ); 
-    
+      fill(0);     
     }
     
     public void upgrade() {

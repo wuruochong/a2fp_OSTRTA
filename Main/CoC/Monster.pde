@@ -42,7 +42,7 @@ public class Monster extends Unit implements Comparable{
   String getName() {return _name;}
   
    void drawIcon(int x, int y) {
-     loadImage(icon, x, y, 100, 100);
+     image(icon, x, y, 100, 100);
    }
     
   // if attacking is true, the monsters are in attack mode

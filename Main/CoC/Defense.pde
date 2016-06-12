@@ -40,13 +40,8 @@ public class Defense extends Tower implements Comparable{
 
 	        if ( (! _monstersToShoot.isEmpty() ) && _drawTicks % _attackRate == 0 ){
   
-  //shooting stuff :(
 	          shoot();
   
- 
-        
- //Bullet b = new Bullet(_xcor, _ycor, dir);
-    //    b.draw();
           }
 	      _drawTicks += 1;
     }
@@ -62,22 +57,16 @@ public class Defense extends Tower implements Comparable{
          Monster target = (Monster)_monstersToShoot.peekTop();
       Bullet b = new Bullet(_xcor, _ycor, target);
         b.display();         
-         /*
-         face monster         
-         */
-
-         
-          
          
 	      attack(target, false);
-        /*
+        
 	      if ( _splashRadius != 0 ) { // if there is splash damage
 	        // find all monsters in splash radius
 	        for ( Object monster : _monstersToShoot) {
 		        if ( ((Monster)monster).isAlive() && inRadius((((Unit)target)),(Unit) monster, _splashRadius) )
 		          attack((Monster)monster, true); // attack them w/ splash damage
 	        }
-	      } */
+	      } 
        }
     }
     

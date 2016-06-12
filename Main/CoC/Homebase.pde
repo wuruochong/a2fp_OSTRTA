@@ -508,7 +508,7 @@ public class Homebase{
   public void visualizeQueue() {
     int tmpX = 50;
     for ( Monster m : _makeMonsterQueue ) {
-      m.drawIcon(tmpX, 100, 100, 100);
+      m.drawIcon(tmpX, 100);
       //text(m._name, tmpX, 100);
       text(m._trainingTime, tmpX, 150);
       tmpX += 75;
