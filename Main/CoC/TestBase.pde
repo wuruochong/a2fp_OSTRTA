@@ -20,6 +20,7 @@ public class TestBase{
   int state;  // 0 = placing, 1 = attacking
   
   PImage maze;
+
   
   public TestBase(Homebase player, int t) {
     _monsterList = player._attackMonsters;
@@ -45,12 +46,9 @@ public class TestBase{
     state = 0;
     cont = true;
     
-     int tmpX = 200;
-    for (Monster m: _monsterList) {
-    _buttons.add(new Button(new int[] {tmpX, 600}, new int[] {tmpX + 100, 700}, m._name, m.getName() + "", 0));
-    tmpX+=150;
-    }
+
   }
+  
   
   void mousePressed() {
     if ( state == 0 ) { // only place monsters in state 0
@@ -296,6 +294,32 @@ public class TestBase{
           {
           b.draw();
         }
+        
+     int[] monRects = new int[5];
+      String[] monChoices = {"Barbarian", "Archer", "Giant", "Goblin", "Wizard"};
+     int tmpX = 200;
+    for (Monster m: _monsterList) {
+      if (m._name.equals("Barbarian")) 
+        monRects[0]+=1;
+      if (m._name.equals("Archer") )
+        monRects[1]+=1;
+      if (m._name.equals("Giant") )
+        monRects[2]+=1;
+      if (m._name.equals("Goblin") )
+        monRects[3]+=1;
+      if (m._name.equals("Wizard") )
+        monRects[4]+=1;    
+    }
+    for (int i = 0; i < monRects.length; i ++ ){
+      //int numMon = ;
+      if (monRects[i] > 0){
+    _buttons.add(new Button(new int[] {tmpX, 600}, new int[] {tmpX + 100, 700}, monChoices[i] , monChoices[i] +  " : " + monRects[i], 0));
+    //tmpX+=150;
+    }
+    else
+       _buttons.add(new Button(new int[] {tmpX, 600}, new int[] {tmpX + 100, 700}, monChoices[i] , monChoices[i] +  " : " + 0, 0));
+    tmpX+=150;
+    }
           
         // draw enemy towers, delete if dead
         Iterator<Tower> iter = _enemyTowers.iterator();
@@ -318,8 +342,10 @@ public class TestBase{
           Monster mon = (Monster) (it.next());
           if ( mon.isAlive() )
             mon.drawAttack(true, _enemyTowers);
-          else
+          else {
             it.remove();
+          //  _monsterList.remove(mon);
+        }
         }
       }
        /* 

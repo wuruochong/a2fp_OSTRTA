@@ -120,8 +120,8 @@ public class Homebase{
   //TROOP SELECTION
   int tmpX = 225;
   for (int i = 0; i < _monsterNames.length; i ++ ){
-  _buttons.add (new Button (new int[] {tmpX, 225}, new int[] {tmpX+93, 340}, _monsterNames[i], null, 3, new int[] {0,0,0}, new int[] {0,0,0,0} ));
-  tmpX +=  145;
+  _buttons.add (new Button (new int[] {tmpX, 220}, new int[] {tmpX+115, 340}, _monsterNames[i], null, 3, new int[] {0,0,0}, new int[] {0,0,0,0} ));
+  tmpX +=  137;
   } 
   
   tmpX=225;
