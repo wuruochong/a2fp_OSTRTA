@@ -35,7 +35,7 @@ public class Defense extends Tower implements Comparable{
 
     void draw(LList<Monster> monsterList) {
           fill(0); 
-          text(_hp + " ", _xcor+70,  _ycor+40 );
+          text(_hp + " ", _xcor+50,  _ycor+20 );
 	        queueMonsters(monsterList);
 
 	        if ( (! _monstersToShoot.isEmpty() ) && _drawTicks % _attackRate == 0 ){

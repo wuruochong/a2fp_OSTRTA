@@ -22,6 +22,7 @@ public class GoldMine extends Resource{
     imageMode(CENTER);
     image(icon, _xcor, _ycor, 60, 60);
     imageMode(CORNER);
+    text(_hp + " ", _xcor+50,  _ycor+20 );
      // image(icon, _xcor + icon.width/2, _ycor + icon.height/2, 60, 60); 
     }
     
