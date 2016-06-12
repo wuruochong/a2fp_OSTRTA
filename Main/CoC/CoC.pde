@@ -9,6 +9,8 @@ PImage tierChoice;
 //int tier;
 Selecter sel;
 
+ArrayList<Button> _buttons;
+
 void setup(){
   size(1280,720);
   bImg = loadImage("grass.jpg");
@@ -19,6 +21,15 @@ void setup(){
   attackButton =new Button(new int[] {0, 600}, "attack", 0, "attack.jpg");
   //test = new TestBase(base._monstersOwned, base._gold);
   tierChoice = loadImage("tier.png");
+    _buttons = new ArrayList<Button>();
+  //  public Button (int[] coor1, int[] coor2, String tag, String text, int screen, int[] rgbText, int[] rgbButton){
+    //    _buttons.add(new Button(new int[] {tmpX, 600}, new int[] {tmpX + 100, 700}, m._name, m.getName() + "", 0));
+  _buttons.add(new Button(new int[] {0, 100}, new int[]{425, 428}, "1", "", 3, new int[] {0,0,0}, new int[]{0,0,0}));
+  _buttons.add(new Button(new int[] {426, 100}, new int[] {850, 428}, "2","", 3,new  int[] {0,0,0}, new int[]{0,0,0}));
+  _buttons.add(new Button(new int[] {851, 100}, new int[] {1279,428}, "3", "", 3,new  int[] {0,0,0},new  int[]{0,0,0}));
+  _buttons.add(new Button(new int[] {0, 431}, new int[] {425, 719}, "4", "", 3, new int[] {0,0,0}, new int[]{0,0,0}));
+  _buttons.add(new Button(new int[] {426, 431}, new int[] {850, 719}, "5", "", 3, new int[] {0,0,0}, new int[]{0,0,0}));
+  _buttons.add(new Button(new int[] {851, 431}, new int[] {1279, 719}, "6", "", 3,new int[] {0,0,0}, new int[]{0,0,0}));
 }
 
 void mousePressed() {
@@ -27,26 +38,22 @@ void mousePressed() {
    
     if (state == 3)
      {
-       image(tierChoice, 0, 0, 1280, 760);
+       fill(255);
+       rect(0,0, 1280, 100);
+       fill(0);
+       text("CHOOSE LEVEL OF DIFFICULTY", 550, 50);
+       textSize(20);
+       image(tierChoice, 100, 100, 1280, 660);
        
-    if ( mouseX <= 420 && mouseY <= 380)
-     {
-       state = 1;
-    test = new TestBase(base, 1);
-   }
-    else if ( mouseX> 420 && mouseX <= 850 && mouseY <= 380)
-     {
-       state = 1;
-    test = new TestBase(base, 2);
-   
-   }
-   
-    else if ( mouseX >850 && mouseY <= 380)
-     {  
-    state = 1;
-    test = new TestBase(base, 3);
-      }
-   
+       for (Button b: _buttons) {
+          if (b.buttonPressed(3)){
+            int i = Integer.parseInt(b.identifier);
+            state = 1;
+            test = new TestBase(base, i);
+          } 
+       }
+       
+    
      }
   
    else if ( state == 1 )
@@ -87,17 +94,26 @@ void draw(){
     // implement if button pushed to quit, make state == 0 
   }
   else if (state == 3) {
-         image(tierChoice, 0, 0, 1280, 760);
+    
+       fill(255);
+       rect(0,0, 1280, 100);
+              fill(0);
+       text("CHOOSE LEVEL OF DIFFICULTY", 550, 50);
+       textSize(20);
+         image(tierChoice, 0, 100, 1280, 660);
   }
   else if (state == 4){
     if (sel.cont){
       sel.draw();
+    }
+    if (sel.back){
+      state = 0;
     }
     if (!sel.cont){
       sel.baseUpdater(base);
       state = 3;
     }
   }
-     //   fill(0);
-    //text( "x: " + mouseX + " y: " + mouseY, mouseX + 2, mouseY );
+      fill(0);
+    text( "x: " + mouseX + " y: " + mouseY, mouseX + 2, mouseY );
 }

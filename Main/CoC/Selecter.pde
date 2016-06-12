@@ -8,12 +8,22 @@ public class Selecter{
   Button GiantButtonS;
   Button GoblinButton;
   Button GoblinButtonS;
+  Button ArcherButton;
+  Button ArcherButtonS;
+  Button WizardButton;
+  Button WizardButtonS;
+  Button Back;
+  boolean back;
   int BarbarianA = 0;
   int BarbarianS = 0;
   int GiantA = 0;
   int GiantS = 0;
   int GoblinA = 0;
   int GoblinS = 0;
+  int ArcherA = 0;
+  int ArcherS = 0;
+  int WizardA = 0;
+  int WizardS = 0;
   Button attackButtonS;
   boolean cont;
   PImage bImg;
@@ -30,10 +40,16 @@ public class Selecter{
     GiantButtonS = new Button(new int[] {200, 200},new int[] {300, 300}, "GiantS", "Selected Giants: " + GiantS, 0);
     GoblinButton = new Button(new int[] {50, 350 }, new int[] {150, 450}, "Goblin", "Avalible Goblins: " + GoblinA, 0);
     GoblinButtonS = new Button(new int[] {200, 350},new int[] {300, 450}, "GoblinS", "Selected Goblins: " + GoblinS, 0);
+    ArcherButton = new Button(new int[] {400, 50 }, new int[] {500, 150}, "Archer", "Avalible Archers: " + ArcherA, 0);
+    ArcherButtonS = new Button(new int[] {550, 50},new int[] {650, 150}, "ArcherS", "Selected Archers: " + ArcherS, 0);
+    WizardButton = new Button(new int[] {400, 200 }, new int[] {500, 300}, "Wizard", "Avalible Wizards: " + WizardA, 0);
+    WizardButtonS = new Button(new int[] {550, 200},new int[] {650, 300}, "WizardS", "Selected Wizards: " + WizardS, 0);
     bImg = loadImage("grass.jpg");
     image(bImg,0,0, 1280, 720);
     attackButtonS =new Button(new int[] {0, 600}, "attack", 0, "attack.jpg");
     cont = true;
+    back = false;
+    Back = new Button(new int[] {1100,0}, new int[] {1200,100}, "Back", "Cancel attack", 0);
   }
   
   void buttonUpdater(){
@@ -44,6 +60,10 @@ public class Selecter{
     GiantButtonS = new Button(new int[] {200, 200},new int[] {300, 300}, "GiantS", "Selected Giants: " + GiantS, 0);
     GoblinButton = new Button(new int[] {50, 350 }, new int[] {150, 450}, "Goblin", "Avalible Goblins: " + GoblinA, 0);
     GoblinButtonS = new Button(new int[] {200, 350},new int[] {300, 450}, "GoblinS", "Selected Goblins: " + GoblinS, 0);
+    ArcherButton = new Button(new int[] {400, 50 }, new int[] {500, 150}, "Archer", "Avalible Archers: " + ArcherA, 0);
+    ArcherButtonS = new Button(new int[] {550, 50},new int[] {650, 150}, "ArcherS", "Selected Archers: " + ArcherS, 0);
+    WizardButton = new Button(new int[] {400, 200 }, new int[] {500, 300}, "Wizard", "Avalible Wizards: " + WizardA, 0);
+    WizardButtonS = new Button(new int[] {550, 200},new int[] {650, 300}, "WizardS", "Selected Wizards: " + WizardS, 0);
   }
   
   
@@ -54,6 +74,10 @@ public class Selecter{
     GiantS = 0;
     GoblinA = 0;
     GoblinS = 0;
+    ArcherA = 0;
+    ArcherS = 0;
+    WizardA = 0;
+    WizardS = 0;
     for (Monster m : HBMonsters){
       if (m instanceof Barbarian){
         BarbarianA ++;
@@ -63,6 +87,12 @@ public class Selecter{
       }
       else if (m instanceof Goblin){
         GoblinA ++;
+      }
+      else if (m instanceof Archer){
+        ArcherA ++;
+      }
+      else if (m instanceof Wizard){
+        WizardA ++;
       }
     }
     for (Monster m : SMonsters){
@@ -75,6 +105,12 @@ public class Selecter{
       else if (m instanceof Goblin){
         GoblinS ++;
       }
+      else if (m instanceof Archer){
+        ArcherS ++;
+      }
+      else if (m instanceof Wizard){
+        WizardS ++;
+      }
     }
   }
   
@@ -83,7 +119,7 @@ public class Selecter{
       for (Monster m : HBMonsters){
         if (m instanceof Barbarian){
           HBMonsters.remove(m);
-          SMonsters.add(new Barbarian());
+          SMonsters.add(new Barbarian(100,100));
           buttonUpdater();
           break;
         }
@@ -93,7 +129,7 @@ public class Selecter{
       for (Monster m : SMonsters){
         if (m instanceof Barbarian){
           SMonsters.remove(m);
-          HBMonsters.add(new Barbarian());
+          HBMonsters.add(new Barbarian(100,100));
           buttonUpdater();
           break;
         }
@@ -103,7 +139,7 @@ public class Selecter{
       for (Monster m : HBMonsters){
         if (m instanceof Giant){
           HBMonsters.remove(m);
-          SMonsters.add(new Giant());
+          SMonsters.add(new Giant(100,100));
           buttonUpdater();
           break;
         }
@@ -113,7 +149,7 @@ public class Selecter{
       for (Monster m : SMonsters){
         if (m instanceof Giant){
           SMonsters.remove(m);
-          HBMonsters.add(new Giant());
+          HBMonsters.add(new Giant(100,100));
           buttonUpdater();
           break;
         }
@@ -123,7 +159,7 @@ public class Selecter{
       for (Monster m : HBMonsters){
         if (m instanceof Goblin){
           HBMonsters.remove(m);
-          SMonsters.add(new Barbarian());
+          SMonsters.add(new Barbarian(100,100));
           buttonUpdater();
           break;
         }
@@ -133,14 +169,59 @@ public class Selecter{
       for (Monster m : SMonsters){
         if (m instanceof Goblin){
           SMonsters.remove(m);
-          HBMonsters.add(new Goblin());
+          HBMonsters.add(new Goblin(100,100));
+          buttonUpdater();
+          break;
+        }
+      }
+    }
+    if (ArcherButton.buttonPressed(0)){
+      for (Monster m : HBMonsters){
+        if (m instanceof Archer){
+          HBMonsters.remove(m);
+          SMonsters.add(new Archer(100,100));
+          buttonUpdater();
+          break;
+        }
+      }
+    }
+    if (ArcherButtonS.buttonPressed(0)){
+      for (Monster m : HBMonsters){
+        if (m instanceof Archer){
+          SMonsters.remove(m);
+          HBMonsters.add(new Archer(100,100));
+          buttonUpdater();
+          break;
+        }
+      }
+    }
+    if (WizardButton.buttonPressed(0)){
+      for (Monster m : HBMonsters){
+        if (m instanceof Wizard){
+          HBMonsters.remove(m);
+          SMonsters.add(new Wizard(100,100));
+          buttonUpdater();
+          break;
+        }
+      }
+    }
+    if (WizardButtonS.buttonPressed(0)){
+      for (Monster m : HBMonsters){
+        if (m instanceof Wizard){
+          SMonsters.remove(m);
+          HBMonsters.add(new Wizard(100,100));
           buttonUpdater();
           break;
         }
       }
     }
     if (attackButtonS.buttonPressed(0)){
-      cont = false;
+      if (!(SMonsters.size()==0)){
+        cont = false;
+      }
+    }
+    if (Back.buttonPressed(0)){
+      back = true;
     }
   }
   
@@ -156,7 +237,12 @@ public class Selecter{
     GiantButtonS.draw();
     GoblinButton.draw();
     GoblinButtonS.draw();
+    ArcherButton.draw();
+    ArcherButtonS.draw();
+    WizardButton.draw();
+    WizardButtonS.draw();
     attackButton.draw();
+    Back.draw();
   }
 }
   
