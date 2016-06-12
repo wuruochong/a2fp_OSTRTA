@@ -3,7 +3,7 @@ public class MonsterHouse extends Tower{
   LList<Monster> _monstersOwned;
   int _capacity;
   int _residents;
-  int size = 100;
+  int size = 150;
   PImage icon;
   
   public MonsterHouse(int x, int y) {
