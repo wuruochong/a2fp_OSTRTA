@@ -115,5 +115,5 @@ void draw(){
     }
   }
       fill(0);
-    text( "x: " + mouseX + " y: " + mouseY, mouseX + 2, mouseY );
+  //  text( "x: " + mouseX + " y: " + mouseY, mouseX + 2, mouseY );
 }
