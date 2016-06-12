@@ -57,6 +57,8 @@ void draw() {
   if (home) {
     background(255);
     reset();
+     fill(0);
+  text(mouseX + " : " + mouseY, mouseX + 2, mouseY+2);
   }
 }
 
@@ -84,4 +86,5 @@ void mousePressed() {
     showClock=false;
     coc = false;
   }
+ 
 }
