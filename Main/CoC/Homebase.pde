@@ -106,6 +106,9 @@ public class Homebase{
   _buttons.add(new Button(new int[] {1000, 600}, new int[] {1099, 720}, "startAIAttack", "Invoke AI attack", 0, new int[] {0,0,0}, new int[] {255,255,255}));
   _buttons.add(new Button(new int[] {850, 600}, new int[] {999, 720}, "viewMonsterQueue", "View Monster Queue", 0, new int[] {0,0,0}, new int[] {255,255,255}));
   
+  // load resource buttons
+  _buttons.add(new Button(new int[] {50, 85}, new int[] {175, 115}, "collectResource", "Collect Resources", 0, new int[] {0,0,0}, new int[] {223,198,31}));
+  
   // transparent buttons
   _buttons.add(new Button(new int[] {110, 145}, "resourceShop", 1, "resources.png") );
   _buttons.add(new Button(new int[] {510, 145}, "armyShop", 1, "army.png" ) );
@@ -141,7 +144,7 @@ public class Homebase{
   }
   
   void draw() {
-    //println(frameRate);
+    println(frameRate);
     _drawTicks += 1;
     //SHOP MODE
     
@@ -245,27 +248,33 @@ public class Homebase{
      else if (state == 0) {
       //to reset
       image(bImg,0,0, 1280, 720);
-
+      
+      // draw resource info in upper left
+       fill(255);
+       textSize(24);
+       textAlign(LEFT);
+       text("Gold: " + _gold, 50, 50);
+       text("Elixir: " + _elixir, 50, 75);
+       textSize(12);
+       fill(0);
+       
       if (locked){
-      for (Tower t: _towersOwned){
-      if (t.clicked) {
-         t._xcor = mouseX;
-         t._ycor = mouseY;
-         break;
-      }
-      }
+        for (Tower t: _towersOwned){
+          if (t.clicked) {
+             t._xcor = mouseX;
+             t._ycor = mouseY;
+             break;
+          }
+        }
       }
 
       double rand = Math.random();
-      if ( rand < .00001 ){ // 1 in 1,666 seconds
+      if ( rand < .00005 ){ // 1 in 1,666 seconds
         setupAIAttack();
         return;
       }
-      
       // make monsters in queue
       makeQueueMonsters();
-  
-      
       // draw towers
       for ( Tower building : _towersOwned ) {
           //to show range of tower, paint green box under tower
@@ -363,8 +372,12 @@ public class Homebase{
           setupAIAttack();
         }
         // clicked on view monster queue button
-        if ( tag.equals("viewMonsterQueue") )
+        else if ( tag.equals("viewMonsterQueue") )
           state = 7; 
+        
+        // clicked on collect resources
+        else if ( tag.equals("collectResource") )
+          collectResource();        
           
         //clicked on shop icon    
         else if (tag.equals("shop") )
@@ -476,6 +489,12 @@ public class Homebase{
     _elixir -= e;
   }
   
+  public void collectResource() {
+     for ( Tower t : _towersOwned ){
+       if ( t instanceof Resource )
+         ((Resource) t).collectResource(this);
+     }
+   }
   boolean hoveredOver(Tower t) {
   return (mousePressed && mouseX >= (t._xcor - 50) 
         && mouseX <= (t._xcor + 50) 
