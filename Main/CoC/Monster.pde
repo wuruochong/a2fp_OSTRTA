@@ -62,7 +62,7 @@ public class Monster extends Unit implements Comparable{
     // draw monsters walking around in their homes
     void drawRoaming(MonsterHouse house) {
       fill(0);
-      text(_hp + "", _xcor, _ycor);
+      //text(_hp + "", _xcor, _ycor);
       int upperWall = house._ycor;
       int lowerWall = house._ycor + house.size;
       int leftWall = house._xcor;

@@ -87,6 +87,7 @@ public class TestBase{
     else{
     numTowers = 3 + (int) (Math.random() * 12);
     }
+    //println(numTowers);
     
     if (tier == 1) {
       for (int i = 0; i < numTowers; i ++){
@@ -176,8 +177,7 @@ public class TestBase{
       }
     }
   }
-  
-  
+    
   }
 
 
@@ -189,10 +189,42 @@ public class TestBase{
    implements DOUBLE wall usage to secure resources
    */
   if (tier == 4) {
+    QueensTour qBoard = new QueensTour(8);
+    qBoard.solve();
+    int tmpX = 213;
+    int tmpY = 200;
+    for (int r = 0; r < 8; r ++) {
+      tmpX = 213;
+      
+      for (int c = 0; c < 8; c ++) {
+        if (qBoard.board[r][c]==1) {
+          
+        int rand = (int) (Math.random() * 6);
+        if (_towerChoices[rand].equals("Canon"))
+          _enemyTowers.add(new Canon( tmpX, tmpY)) ;
+          
+        if (_towerChoices[rand].equals("Tesla"))
+          _enemyTowers.add(new Tesla( tmpX, tmpY));
+        
+        if (_towerChoices[rand].equals("Sniper"))
+          _enemyTowers.add(new Sniper( tmpX, tmpY));
+        if (_towerChoices[rand].equals("Gold"))
+          _enemyTowers.add(new GoldMine( tmpX, tmpY));
+        if (_towerChoices[rand].equals("Elixir"))
+          _enemyTowers.add(new ElixirCollector( tmpX, tmpY));
+          
+        }
+      tmpX+=87;
+      println(tmpX + " " + tmpY);
+      println(qBoard.board[r][c] + " BOARD");
+      }
+      tmpY+=43;
+    }
+  qBoard.printSolution();
   
+  }
+
   
-  
-  }  
   
   
      /*
@@ -203,6 +235,22 @@ public class TestBase{
   if (tier == 5) {
   
   }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   }
@@ -248,7 +296,7 @@ public class TestBase{
         win.draw();
         if (win.buttonPressed(0)){
           cont = false;
-          base.exp+=50;
+          base.exp += 50;
         }
       }
       else if ( _monsterList.size() == 0 ) {

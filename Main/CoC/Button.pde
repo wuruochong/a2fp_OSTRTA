@@ -23,6 +23,7 @@ public class Button {
   
   public Button (int[] coor1, int[] coor2, String tag, String text, int screen, int[] rgbText, int[] rgbButton){
     this(coor1, coor2, tag, text, screen);
+    stroke(0,0, 0, 0);
     textColor = rgbText;
     buttonColor = rgbButton;
   }
@@ -59,7 +60,10 @@ public class Button {
     
         if ( displayText != null ) { // if there is text to display
           fill(textColor[0], textColor[1], textColor[2]);
-          text(displayText, (int ) (topLeftCorner[0] * 1.25), (int) (topLeftCorner[1] * 1.25));
+          textAlign(CENTER);
+          text(displayText, (bottomRightCorner[0] - topLeftCorner[0]) / 2 + topLeftCorner[0], (bottomRightCorner[1] - topLeftCorner[1]) / 2 + topLeftCorner[1]);
+          textAlign(RIGHT);
+          //text(displayText, (int ) (topLeftCorner[0] * 1.25), (int) (topLeftCorner[1] * 1.25));
         }
     }
   }
