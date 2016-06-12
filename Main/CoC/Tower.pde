@@ -5,6 +5,7 @@ public abstract class Tower extends Unit {
     boolean _show; //show range
     Monster _tmpMonster;
     int _id;
+    boolean clicked;
     
    /*
     // decreases tower hp by n

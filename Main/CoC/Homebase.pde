@@ -28,6 +28,8 @@ public class Homebase{
   PImage bShopImg;
   PImage resources;
   PImage troopPanel;
+  
+  boolean locked;
     
   //choices of towers and monsters that can be beought from the shop at level
   ArrayList<Tower> _towerChoices;
@@ -232,7 +234,12 @@ public class Homebase{
       bImg = loadImage("grass.jpg");
        //bImg = loadImage("maze3.jpg");
       image(bImg,0,0, 1280, 720);
-    
+      for (Tower t: _towersOwned){
+      if (t.clicked) {
+         t._xcor = mouseX;
+         t._ycor = mouseY;
+      }
+      }
       double rand = Math.random();
       if ( rand < .00001 ){ // 1 in 1,666 seconds
         setupAIAttack();
@@ -283,6 +290,17 @@ public class Homebase{
       placeTower.setCoor(mouseX, mouseY);
       _towersOwned.add(placeTower);
       placeTower = null;
+    }
+    
+    for (Tower t: _towersOwned) {
+        if (mouseX >= (t._xcor - 50) 
+        && mouseX <= (t._xcor + 50) 
+        && mouseY >= (t._ycor - 50) 
+        && mouseY <= (t._ycor + 50)) {
+          locked = true;
+          t.clicked = true;
+          break;
+        }
     }
       
     for ( Button button : _buttons ) {
@@ -553,6 +571,10 @@ public class Homebase{
       if (!mousePressed) 
         t.setCoor(mouseX, mouseY);
   }
+ }
+ 
+ void mouseReleased(){
+   locked = false;
  }
   
 }
