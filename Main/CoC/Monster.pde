@@ -1,5 +1,6 @@
 public class Monster extends Unit implements Comparable{
-
+    
+  PImage icon;
     boolean isFlying = false;
     int _trainingTime;
     double _xvelocity;

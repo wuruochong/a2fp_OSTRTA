@@ -1,4 +1,6 @@
 public class Archer extends Monster{
+    
+  PImage icon;
   
   
    public Archer(){
@@ -13,7 +15,7 @@ public class Archer extends Monster{
      _level = 1;
      _houseSpace = 1;
       _name = "Archer";
-      icon = loadImage("archer.png");
+      icon = loadImage("barb.png");
        }
    
    public Archer(int x, int y){
@@ -22,18 +24,15 @@ public class Archer extends Monster{
      _ycor = y;
    }
    
-   
-    void drawAttack(boolean attacking, LList<Tower> towers){
-      super.drawAttack(attacking, towers);
+   void draw(){
+      super.draw();
+    //image(icon, _xcor + icon.width/2, _ycor + icon.height/2, 50, 50);
     imageMode(CENTER);
-    image(icon, _xcor, _ycor, 25, 25);
-    imageMode(CORNER);  
-    }
-     void drawRoaming(MonsterHouse house){
-      super.drawRoaming(house);
-    imageMode(CENTER);
-    image(icon, _xcor, _ycor, 25, 25);
+    image(icon, _xcor, _ycor, 50, 50);
     imageMode(CORNER);
+    fill(0); 
+   text(_hp + " ", _xcor+70,  _ycor+40 ); 
+    
     }
 
 
