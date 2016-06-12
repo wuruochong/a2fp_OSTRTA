@@ -34,16 +34,16 @@ public class Selecter{
     println(HBMonsters);
     SMonsters = new LList<Monster>();
     Counter();
-    BarbarianButton = new Button(new int[] {50,50}, new int[] {150, 150}, "Barbarian", "Avalible Barbarians: " + BarbarianA, 0);
-    BarbarianButtonS = new Button(new int[] {200,50}, new int[] {300, 150}, "BarbarianS", "Selected Barbairans" + BarbarianS, 0);
-    GiantButton = new Button(new int[] {50, 200}, new int[] {150,300}, "Giant", "Avalible Giants: " + GiantA, 0);
-    GiantButtonS = new Button(new int[] {200, 200},new int[] {300, 300}, "GiantS", "Selected Giants: " + GiantS, 0);
-    GoblinButton = new Button(new int[] {50, 350 }, new int[] {150, 450}, "Goblin", "Avalible Goblins: " + GoblinA, 0);
-    GoblinButtonS = new Button(new int[] {200, 350},new int[] {300, 450}, "GoblinS", "Selected Goblins: " + GoblinS, 0);
-    ArcherButton = new Button(new int[] {400, 50 }, new int[] {500, 150}, "Archer", "Avalible Archers: " + ArcherA, 0);
-    ArcherButtonS = new Button(new int[] {550, 50},new int[] {650, 150}, "ArcherS", "Selected Archers: " + ArcherS, 0);
-    WizardButton = new Button(new int[] {400, 200 }, new int[] {500, 300}, "Wizard", "Avalible Wizards: " + WizardA, 0);
-    WizardButtonS = new Button(new int[] {550, 200},new int[] {650, 300}, "WizardS", "Selected Wizards: " + WizardS, 0);
+    BarbarianButton = new Button(new int[] {50,50}, new int[] {200, 150}, "Barbarian", "Avalible Barbarians: " + BarbarianA, 0);
+    BarbarianButtonS = new Button(new int[] {200,50}, new int[] {350, 150}, "BarbarianS", "Selected Barbairans" + BarbarianS, 0);
+    GiantButton = new Button(new int[] {50, 200}, new int[] {200,300}, "Giant", "Avalible Giants: " + GiantA, 0);
+    GiantButtonS = new Button(new int[] {200, 200},new int[] {350, 300}, "GiantS", "Selected Giants: " + GiantS, 0);
+    GoblinButton = new Button(new int[] {50, 350 }, new int[] {200, 450}, "Goblin", "Avalible Goblins: " + GoblinA, 0);
+    GoblinButtonS = new Button(new int[] {200, 350},new int[] {350, 450}, "GoblinS", "Selected Goblins: " + GoblinS, 0);
+    ArcherButton = new Button(new int[] {400, 50 }, new int[] {550, 150}, "Archer", "Avalible Archers: " + ArcherA, 0);
+    ArcherButtonS = new Button(new int[] {550, 50},new int[] {700, 150}, "ArcherS", "Selected Archers: " + ArcherS, 0);
+    WizardButton = new Button(new int[] {400, 200 }, new int[] {550, 300}, "Wizard", "Avalible Wizards: " + WizardA, 0);
+    WizardButtonS = new Button(new int[] {550, 200},new int[] {700, 300}, "WizardS", "Selected Wizards: " + WizardS, 0);
     bImg = loadImage("grass.jpg");
     image(bImg,0,0, 1280, 720);
     attackButtonS =new Button(new int[] {0, 600}, "attack", 0, "attack.jpg");
@@ -54,16 +54,16 @@ public class Selecter{
   
   void buttonUpdater(){
     Counter();
-    BarbarianButton = new Button(new int[] {50,50}, new int[] {150, 150}, "Barbarian", "Avalible Barbarians: " + BarbarianA, 0);
-    BarbarianButtonS = new Button(new int[] {200,50}, new int[] {300, 150}, "BarbarianS", "Selected Barbairans" + BarbarianS, 0);
-    GiantButton = new Button(new int[] {50, 200}, new int[] {150,300}, "Giant", "Avalible Giants: " + GiantA, 0);
-    GiantButtonS = new Button(new int[] {200, 200},new int[] {300, 300}, "GiantS", "Selected Giants: " + GiantS, 0);
-    GoblinButton = new Button(new int[] {50, 350 }, new int[] {150, 450}, "Goblin", "Avalible Goblins: " + GoblinA, 0);
-    GoblinButtonS = new Button(new int[] {200, 350},new int[] {300, 450}, "GoblinS", "Selected Goblins: " + GoblinS, 0);
-    ArcherButton = new Button(new int[] {400, 50 }, new int[] {500, 150}, "Archer", "Avalible Archers: " + ArcherA, 0);
-    ArcherButtonS = new Button(new int[] {550, 50},new int[] {650, 150}, "ArcherS", "Selected Archers: " + ArcherS, 0);
-    WizardButton = new Button(new int[] {400, 200 }, new int[] {500, 300}, "Wizard", "Avalible Wizards: " + WizardA, 0);
-    WizardButtonS = new Button(new int[] {550, 200},new int[] {650, 300}, "WizardS", "Selected Wizards: " + WizardS, 0);
+    BarbarianButton = new Button(new int[] {50,50}, new int[] {200, 150}, "Barbarian", "Avalible Barbarians: " + BarbarianA, 0);
+    BarbarianButtonS = new Button(new int[] {200,50}, new int[] {350, 150}, "BarbarianS", "Selected Barbairans" + BarbarianS, 0);
+    GiantButton = new Button(new int[] {50, 200}, new int[] {200,300}, "Giant", "Avalible Giants: " + GiantA, 0);
+    GiantButtonS = new Button(new int[] {200, 200},new int[] {350, 300}, "GiantS", "Selected Giants: " + GiantS, 0);
+    GoblinButton = new Button(new int[] {50, 350 }, new int[] {200, 450}, "Goblin", "Avalible Goblins: " + GoblinA, 0);
+    GoblinButtonS = new Button(new int[] {200, 350},new int[] {350, 450}, "GoblinS", "Selected Goblins: " + GoblinS, 0);
+    ArcherButton = new Button(new int[] {400, 50 }, new int[] {550, 150}, "Archer", "Avalible Archers: " + ArcherA, 0);
+    ArcherButtonS = new Button(new int[] {550, 50},new int[] {700, 150}, "ArcherS", "Selected Archers: " + ArcherS, 0);
+    WizardButton = new Button(new int[] {400, 200 }, new int[] {550, 300}, "Wizard", "Avalible Wizards: " + WizardA, 0);
+    WizardButtonS = new Button(new int[] {550, 200},new int[] {700, 300}, "WizardS", "Selected Wizards: " + WizardS, 0);
   }
   
   

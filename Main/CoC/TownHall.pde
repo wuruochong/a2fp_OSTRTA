@@ -18,6 +18,7 @@ PImage icon;
     void draw() {
     icon = loadImage("townhall.png");
     image(icon, _xcor, _ycor, 70, 70); 
+    text(_hp + " ", _xcor+50,  _ycor+20 );
     }
 
 

@@ -17,12 +17,20 @@ public class MonsterHouse extends Tower{
   }
   
   void draw() {
+      println(_monstersOwned.size());
       stroke(0);
       fill(255,255,255,0); 
       rect(_xcor, _ycor, size, size);
       // draw monsters
-      for ( Monster m : _monstersOwned ) {
-        m.drawRoaming(this);
+      if ( _monstersOwned.size() == 0 ) {
+        fill(0);
+        text("No monsters.", _xcor + 50, _ycor + 50);
+        fill(255,255,255,0);
+      }
+      else {
+        for ( Monster m : _monstersOwned ) {
+          m.drawRoaming(this);
+        }
       }
       
       //fill(0); 
