@@ -1,0 +1,18 @@
+CoC
+- fix AI attack delay bug
+- fix defense towers draw 2 HPs
+- resource collection:
+  - display # gold, # elixir on upper left
+  - below that, have collect gold and collect elixir button
+- fix random AI attack probability
+- fix defense message missing image during attacks
+- make white squares in attack mode show the # of monsters left of each type on battle field (also make them smaller)
+- move monsters with monster house when moving monster house
+
+Clock
+- make main clock smaller
+- draw alarm queue on bottom
+- in main driver, if current time == alarmqueue.peekFront(), draw an alarm message to the screen for a few seconds
+
+Weekly Planner
+- no dates
