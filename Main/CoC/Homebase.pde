@@ -236,14 +236,17 @@ public class Homebase{
      else if (state == 0) {
       //to reset
       image(bImg,0,0, 1280, 720);
-      
+
+      if (locked){
       for (Tower t: _towersOwned){
-        if (t.clicked) {
-           t._xcor = mouseX;
-           t._ycor = mouseY;
-        }
-      } 
-      
+      if (t.clicked) {
+         t._xcor = mouseX;
+         t._ycor = mouseY;
+         break;
+      }
+      }
+      }
+
       double rand = Math.random();
       if ( rand < .00001 ){ // 1 in 1,666 seconds
         setupAIAttack();
@@ -289,6 +292,19 @@ public class Homebase{
 
   }
   
+  void mouseDragged() {
+  
+      for (Tower t: _towersOwned) {
+        if (mouseX >= (t._xcor - 50) 
+        && mouseX <= (t._xcor + 50) 
+        && mouseY >= (t._ycor - 50) 
+        && mouseY <= (t._ycor + 50)) {
+          locked = true;
+          t.clicked = true;
+          break;
+        }
+    }
+  }
   
   void mousePressed() { 
     // if clicked on a button
@@ -298,9 +314,14 @@ public class Homebase{
       _towersOwned.add(placeTower);
       placeTower = null;
     }
-    
+   
     for (Tower t: _towersOwned) {
-        if (mouseX >= (t._xcor - 50) 
+      if (mouseBUtton == RIGHT) {
+        t.click = false;
+        locked = false;
+      }
+      
+      else  if (mouseX >= (t._xcor - 50) 
         && mouseX <= (t._xcor + 50) 
         && mouseY >= (t._ycor - 50) 
         && mouseY <= (t._ycor + 50)) {
@@ -524,6 +545,7 @@ public class Homebase{
      
      state = 6;
    }
+
    public LList<Monster> genRandomMonsters() {
      LList<Monster> retList = new LList<Monster>();
      // generate between 3 and 10 monsters
@@ -581,6 +603,9 @@ public class Homebase{
  }
  
  void mouseReleased(){
+   for (Tower t: _towersOwned) {
+       t.clicked = false;
+   }
    locked = false;
  }
   
