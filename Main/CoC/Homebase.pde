@@ -554,12 +554,18 @@ public class Homebase{
    }
   
   public void visualizeQueue() {
+    textAlign(CENTER);
+    textSize(30);
+    text("Monster Queue", 640, 50);
+    textAlign(LEFT);
+    textSize(12);
+    
     int tmpX = 50;
     for ( Monster m : _makeMonsterQueue ) {
       m.drawIcon(tmpX, 100);
       //text(m._name, tmpX, 100);
-      text(m._trainingTime, tmpX, 150);
-      tmpX += 75;
+      text(m._trainingTime, tmpX, 250);
+      tmpX += 125;
     }
   }
  
