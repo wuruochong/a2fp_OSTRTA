@@ -14,7 +14,7 @@ public class Time implements Comparable{
       int tNow = hour() * 60 + minute();
       int oTime = (( ((Time)e).hour)*60+((Time)e).min);
       int myTime = ((this.hour)*60+this.min);
-      
+
       if ( tNow > myTime && tNow > oTime ) {
         return (tNow - oTime) - (tNow - myTime);
       }

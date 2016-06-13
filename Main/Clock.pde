@@ -66,10 +66,10 @@ public class Clock {
       float y = cy + sin(angle) * secondsRadius;
       vertex(x, y);
     }
-    String m;
-    if (minute()< 10) m = "0" + min;
-    else m = minute() + m
-    text(str(hour()) + ':' + m), 100, 100); 
+    String mi = "";
+    if (minute()< 10) mi = "0" + minute();
+    else mi = minute() + mi;
+    text(str(hour()) + ':' + mi, 100, 100); 
    textSize(20);
   
     // endShape();
