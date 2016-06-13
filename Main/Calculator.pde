@@ -54,4 +54,10 @@ public class Calculator {
     image(hImg, 920, 370, 110, 110);
     
   }
+  
+  void mousePressed(){
+  if (mouseX >= 950 && mouseX <=1000 && mouseY >= 400 && mouseY <= 440 ) {
+    state = 0;
+  }
+  }
 }

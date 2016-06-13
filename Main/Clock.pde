@@ -102,5 +102,11 @@ public class Clock {
       tmpX+= 160;
       //(int[] coor1, int[] coor2, String tag, String text, int screen)
     }
+    
+      if (mouseX >= 950 && mouseX <=1000 && mouseY >= 400 && mouseY <= 440 ) {
+    state = 0;
+  }
+    
+    
     }
   }

@@ -5,27 +5,16 @@ PImage cImg, hImg, wImg, caImg, camImg, CoCImg; //clock, home, wallpaper, calcul
 Clock clock;
 Calendar calen;
 Calculator calc;
-CoC CoC;
-boolean showClock;
-boolean home;
-boolean coc;
-boolean cal;
+CoC coc;
 
-int state = 0; // 0 - VIEW, 1- CLOCK, 
+int state = 0; // 0 - VIEW, 1- CLOCK, 2- DAILY PLANNER, 3- CALCULATOR, 4 - COC
 
 void setup() {
-  //size(560, 720);
-  size(1024, 760);
-  //size(1000,1000);
+  size( 1280, 720);
   background(255);
   clock = new Clock();
-  calen = new Calendar();
   calc = new Calculator();
-  CoC = new CoC();
-  showClock = false;
-  home = false;
-  coc = false;
-  cal = false;
+  coc = new CoC();
   
   //icon images
   wImg = loadImage("wall.jpg");
@@ -35,7 +24,6 @@ void setup() {
   camImg = loadImage("cam.jpg");
   CoCImg = loadImage("CoC.jpg");
   reset();
-  //file = new SoundFile(this, "adele.mp3");
 }
 
 void reset() {
@@ -51,48 +39,59 @@ void draw() {
   if (state == 1)
     {clock.draw();
    }
-  else if (coc){
-    CoC.setup();
-    CoC.draw();
+  else if (state == 4){
+
+    coc.draw();
+
+
   }
-  else if (cal) {
-    calc.draw();}
-  if (home) {
+  else if (state == 3) {
+    calc.draw();
+  }
+    
+  else if (state == 0) {
     background(255);
     reset();
-     fill(0);
+      }
+      fill(0);
   text(mouseX + " : " + mouseY, mouseX + 2, mouseY+2);
-  }
+ 
 }
 
-void keyPressed() {
-  showClock = true;
-  //file.loop();
+void mouseReleased()
+{
+ if (state == 4) {
+     coc.base.mouseReleased();
+ } 
 }
+
+
 
 void mousePressed() {
   if (state == 1){
   
      clock.mousePressed();
   }
+  if (state == 4) {
+      coc.mousePressed();
+  }
+  if (state == 3) {
+    calc.mousePressed();
+  }
+  if (state == 0) {
   if (mouseX >= 440 && mouseX <= 500 && mouseY >= 540 && mouseY <=600) {
-    showClock =true;
-    home=false;
     state = 1;
     //file.stop();
   }
   if (mouseX >= 660 && mouseX <= 720 && mouseY >= 540 && mouseY <=600) {
-    coc = true;
-    home=false;
+    state = 4;
   }
   if (mouseX >= 550 && mouseX <= 620 && mouseY >= 540 && mouseY <=610) {
-    cal = true;
-    home=false;
+    state = 3;
   }
-  if (mouseX >= 910 && mouseX <=1024 && mouseY >= 360 && mouseY <= 480 ) {
-    home = true;
-    showClock=false;
-    coc = false;
+  if (mouseX >= 950 && mouseX <=1000 && mouseY >= 400 && mouseY <= 440 ) {
+    state = 0;
+  }
   }
  
 }
