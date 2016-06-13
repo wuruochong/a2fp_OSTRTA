@@ -8,7 +8,8 @@ Clock clock;
 Calendar calen;
 Calculator calc;
 CoC coc;
-
+Planner plan;
+Button home;
 int state = 0; // 0 - VIEW, 1- CLOCK, 2- DAILY PLANNER, state 3 does not exist, 4 - COC
 
 void setup() {
@@ -17,6 +18,7 @@ void setup() {
   clock = new Clock();
   calc = new Calculator();
   coc = new CoC();
+  plan = new Planner();
   
   //icon images
   wImg = loadImage("wall.jpg");
@@ -28,11 +30,12 @@ void setup() {
   
   // load buttons
   buttons = new ArrayList<Button>();
-  buttons.add(new Button(new int[] {950, 400}, "home", 0, "home.jpg"));
+ // buttons.add(new Button(new int[] {950, 400}, "home", 0, "home.jpg"));
   buttons.add(new Button(new int[] {440, 540}, "clock", 0, "clock.png"));
+  buttons.add(new Button(new int[] {330,540}, "planner",0,"plan.png"));
   // place planner button here
   buttons.add(new Button(new int[]  {550, 540}, "game", 0, "CoC.jpg")); 
-  
+  home = (new Button(new int[] {1200, 400}, "home", 0, "home.jpg"));
   reset();
 }
 
@@ -57,6 +60,9 @@ void draw() {
   else if (state == 3) {
     calc.draw();
   }
+  else if (state == 2){
+    plan.draw();
+  }
     
   else if (state == 0) {
     background(255);
@@ -64,7 +70,7 @@ void draw() {
   }
   fill(0);
   text(mouseX + " : " + mouseY, mouseX + 2, mouseY+2);
- 
+   home.draw();
 }
 
 void mouseReleased()
@@ -83,6 +89,9 @@ void mousePressed() {
   if (state == 4) {
       coc.mousePressed();
   }
+  if (state == 2){
+    plan.mousePressed();
+  }
   //if (state == 3) {
   //  calc.mousePressed();
   //}
@@ -91,9 +100,9 @@ void mousePressed() {
       if ( button.buttonPressed(0) ) {
         String tag = button.getID();
         
-        if ( tag.equals("home") )
-          state = 0;
-        else if ( tag.equals("clock") )
+    //    if ( tag.equals("home") )
+      //    state = 0;
+         if ( tag.equals("clock") )
           state = 1;
         else if ( tag.equals("planner") )
           state = 2;
@@ -101,6 +110,9 @@ void mousePressed() {
           state = 4;
       }
     }
+  }
+  if (home.buttonPressed(0)){
+    state = 0;
   }
     /*
     if (mouseX >= 440 && mouseX <= 500 && mouseY >= 540 && mouseY <=600) {
