@@ -67,7 +67,7 @@ public class Clock {
     }
     text(str(hour()) + ':' + str(minute()), 100, 100); 
    
-    image(hImg, 920, 370, 110, 110);
+  
     // endShape();
     addA.draw();
   
