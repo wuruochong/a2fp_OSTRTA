@@ -10,7 +10,6 @@ public class Clock {
   PImage hImg;
   ArrayPriorityQueue<Time> alarm;
   Button addA;
-  ArrayList<Button> _buttons = new ArrayList<Button>();
   
   public Clock(){
    cx= width/2;
@@ -71,12 +70,14 @@ public class Clock {
     image(hImg, 920, 370, 110, 110);
     // endShape();
     addA.draw();
-    
+  
+  int tmpX = 50;
   for (Object t: alarm) {
-    ((Time)t).draw(tmpX);
-    println( ((Time)t).hour + " : " +  ((Time)t).min);
+    //fill(0);
+    //text((Time)t).hour, tmpY, 
+    ((Time)t).draw(tmpY);
+    //println( ((Time)t).hour + " : " +  ((Time)t).min);
     tmpX+=100;
-    
   }
   
   }
@@ -103,8 +104,8 @@ public class Clock {
       
       Time newAlarm = new Time(Integer.parseInt(time), Integer.parseInt(time2));
       alarm.add (newAlarm); //implementation to add to queue
-      _buttons.add(new Button(new int[] {tmpX, 600}, new int[] {tmpX + 140, 700}, "time", newAlarm.hour + " : " + newAlarm.min, 0));
-      tmpX+= 160;
+      //_buttons.add(new Button(new int[] {tmpX, 600}, new int[] {tmpX + 140, 700}, "time", newAlarm.hour + " : " + newAlarm.min, 0));
+      //tmpX+= 160;
       //(int[] coor1, int[] coor2, String tag, String text, int screen)
     }
     

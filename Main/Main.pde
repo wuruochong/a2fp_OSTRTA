@@ -57,9 +57,7 @@ void draw() {
   else if (state == 4){
    coc.draw();
   }
-  else if (state == 3) {
-    calc.draw();
-  }
+
   else if (state == 2){
     plan.draw();
   }
