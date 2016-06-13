@@ -9,6 +9,7 @@ public class Time implements Comparable{
   }
 
   public int compareTo(Object e){
+
       int hNow = hour();
       int mNow = min();
       // if returns positive number, lower priority
@@ -26,8 +27,7 @@ public class Time implements Comparable{
       else {
         return (myTime - tNow) - (oTime - tNow);
       }
-  }
-s
+
   void draw(int x) {
   rect(x, 600, 100, 100);
   textSize(12);
