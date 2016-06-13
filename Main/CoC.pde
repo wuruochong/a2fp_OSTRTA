@@ -28,9 +28,7 @@ public CoC(){
   _buttons.add(new Button(new int[] {0, 100}, new int[]{425, 428}, "1", "", 3, new int[] {0,0,0}, new int[]{0,0,0}));
   _buttons.add(new Button(new int[] {426, 100}, new int[] {850, 428}, "2","", 3,new  int[] {0,0,0}, new int[]{0,0,0}));
   _buttons.add(new Button(new int[] {851, 100}, new int[] {1279,428}, "3", "", 3,new  int[] {0,0,0},new  int[]{0,0,0}));
-  _buttons.add(new Button(new int[] {0, 431}, new int[] {425, 719}, "4", "", 3, new int[] {0,0,0}, new int[]{0,0,0}));
-  _buttons.add(new Button(new int[] {426, 431}, new int[] {850, 719}, "5", "", 3, new int[] {0,0,0}, new int[]{0,0,0}));
-  _buttons.add(new Button(new int[] {851, 431}, new int[] {1279, 719}, "6", "", 3,new int[] {0,0,0}, new int[]{0,0,0}));
+
 }
 
 void mousePressed() {
