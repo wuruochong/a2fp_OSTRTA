@@ -8,6 +8,7 @@ USE OF DATA STRUCTURES:
 - Priority Queue: 
     - defense towers can accurately target monsters
     - next alarm to ring is properly placed
+    - determines priority of events in event planner
 - Queue:
     - monsters are created in the order they were bought
 - Linked List
