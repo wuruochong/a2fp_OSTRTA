@@ -8,12 +8,9 @@ public class Time implements Comparable{
     min = b;
   }
 
-  int compareTo(Object o) {
+  public int compareTo(Object e){
 
-     int timeOne = (int) (((hour * 60) + min) * 60) / 1000000000;
-     int timeTwo = (int) (((
-     ((Time)o).hour * 60) + ((Time)o).min) * 60) / 1000000000;
-     return timeTwo - timeOne;
+      return ((((Time)e).hour)*60+((Time)e).min) - ((this.hour)*60+this.min);
   }
 
   void draw(int x) {
