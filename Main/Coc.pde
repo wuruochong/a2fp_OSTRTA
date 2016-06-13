@@ -1,5 +1,5 @@
 public class CoC{
-PImage bImg;
+  PImage   bImg;
 PFont font;
 Homebase base;
 TestBase test;
@@ -84,12 +84,12 @@ image(holder, x, y);
 void draw(){
   println(frameRate);
   if (state==0){
-    image(bImg,0,0,1280, 720);
+  image(bImg,0,0, 1280, 720);
     base.draw();
     if (base.state!=6){
       attackButton.img = loadImage("attack.jpg");
     }
-    if (base.state==6){
+    if (coc.base.state==6){
       attackButton.img = loadImage("attack2.png");
     }
     attackButton.draw();
@@ -101,7 +101,7 @@ void draw(){
     }
     if (!test.cont){
       state = 0;
-      base.state = 0;
+      coc.base.state = 0;
     }
     // implement if button pushed to quit, make state == 0 
   }
