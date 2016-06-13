@@ -74,7 +74,7 @@ void draw() {
     text("ALARM", 740, 400);
     textAlign(CORNER);
     
-    if ( alarmDisplayTimer > 1000000000 ) {
+    if ( alarmDisplayTimer > 100 ) {
       alarmRinging = false;
       alarmDisplayTimer = 0;
     }
@@ -82,7 +82,7 @@ void draw() {
       alarmDisplayTimer += 1;
   }
   
-  if (state == 1) {
+  else if (state == 1) {
     clock.draw();
    }
   else if (state == 4){
