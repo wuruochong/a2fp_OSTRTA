@@ -69,7 +69,7 @@ void draw() {
     reset();
   }
   fill(0);
-  text(mouseX + " : " + mouseY, mouseX + 2, mouseY+2);
+//  text(mouseX + " : " + mouseY, mouseX + 2, mouseY+2);
    home.draw();
 }
 
