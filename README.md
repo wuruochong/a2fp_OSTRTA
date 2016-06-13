@@ -4,7 +4,7 @@ Kathy Lau
 Calvin Vuong
 Ruochong Wu
 
-*** NOTE: Some files have been removed and readded, so contribution history for each file and line addition numbers are not accurate; refer to commit history instead for accurate details.
+*** NOTE: Some files have been removed and readded over the history of our project, so contribution history for each file and line addition numbers are not accurate; refer to commit history instead for accurate details.
 
 USE OF DATA STRUCTURES:
 - Priority Queue: 
@@ -35,3 +35,8 @@ Gameplay mechanisms should be pretty intuitive. The following are things you mig
 8. Click on home button to return home.
 Good luck!
 
+OTHER FEATURES:
+1. Individual Planner: Cycles between the days of the week. Add events and have them prioritized by time of day.
+2. Clock / Alarm: Look at the time. Also, you can set alarms which will interrupt you for a bit when its time for the alarm to ring.
+
+*NOTE: PacMan code is still in the repo, but not utilized. We didn't have time.
