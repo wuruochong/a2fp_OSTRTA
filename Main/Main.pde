@@ -11,6 +11,8 @@ boolean home;
 boolean coc;
 boolean cal;
 
+int state = 0; // 0 - VIEW, 1- CLOCK, 
+
 void setup() {
   //size(560, 720);
   size(1024, 760);
@@ -46,8 +48,9 @@ void reset() {
 }
 
 void draw() {
-  if (showClock)
-    clock.draw();
+  if (state == 1)
+    {clock.draw();
+   }
   else if (coc){
     CoC.setup();
     CoC.draw();
@@ -68,9 +71,14 @@ void keyPressed() {
 }
 
 void mousePressed() {
+  if (state == 1){
+  
+     clock.mousePressed();
+  }
   if (mouseX >= 440 && mouseX <= 500 && mouseY >= 540 && mouseY <=600) {
     showClock =true;
     home=false;
+    state = 1;
     //file.stop();
   }
   if (mouseX >= 660 && mouseX <= 720 && mouseY >= 540 && mouseY <=600) {

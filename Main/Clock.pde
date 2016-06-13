@@ -1,24 +1,30 @@
 import javax.swing.JOptionPane;
 
+  int tmpX;
+  
 public class Clock {
   
   int cx, cy, radius;
   float secondsRadius, minutesRadius, hoursRadius, clockDiameter;
   PFont font;
   PImage hImg;
-  ArrayPriorityQueue alarm;
+  ArrayPriorityQueue<Time> alarm;
   Button addA;
+  ArrayList<Button> _buttons = new ArrayList<Button>();
+  
   public Clock(){
    cx= width/2;
    cy=height/2;
    radius = min(width, height) / 2;
-   secondsRadius = radius * 0.72;
-   minutesRadius= radius * 0.60;
-   hoursRadius= radius * 0.50;
-   clockDiameter= radius * 1.8;
+   secondsRadius = radius * 0.36;
+   minutesRadius= radius * 0.30;
+   hoursRadius= radius * 0.25;
+   clockDiameter= radius * 0.8;
+   
+  tmpX = 100;
   
-  alarm = new ArrayPriorityQueue();
-  addA = new Button(new int[] {780,600}, new int[] {1000, 760}, "addA", "add alarm", 0, new int[]{255, 255, 255}, new int[]{0,0,0}) ;
+  alarm = new ArrayPriorityQueue<Time>();
+  addA = new Button(new int[] {780,200}, new int[] {1000, 360}, "addA", "add alarm", 0, new int[]{255, 255, 255}, new int[]{0,0,0}) ;
  
   }
   
@@ -65,8 +71,17 @@ public class Clock {
     image(hImg, 920, 370, 110, 110);
     // endShape();
     addA.draw();
-      String time =  JOptionPane.showInputDialog("hour: ");
   
+ /* for (Object t: alarm) {
+    rect(tmpX, 600, 100, 100);
+    fill(0);
+    text(( (Time)t).hour + " : " +  ((Time)t).min,tmpX+ 20, 800);
+    println( ((Time)t).hour + " : " +  ((Time)t).min);
+  }*/
+  
+  for (Button b: _buttons) {
+    b.draw();
+  }
   }
  
 
@@ -79,11 +94,13 @@ public class Clock {
       if (addA.buttonPressed(0)){
         
       String time =  JOptionPane.showInputDialog("hour: ");
-      
       String time2 =  JOptionPane.showInputDialog("min: ");
       
-     // alarm.add (); //implementation to add to queue
-
+      Time newAlarm = new Time(Integer.parseInt(time), Integer.parseInt(time2));
+      alarm.add (newAlarm); //implementation to add to queue
+      _buttons.add(new Button(new int[] {tmpX, 600}, new int[] {tmpX + 140, 700}, "time", newAlarm.hour + " : " + newAlarm.min, 0));
+      tmpX+= 160;
+      //(int[] coor1, int[] coor2, String tag, String text, int screen)
     }
     }
   }
