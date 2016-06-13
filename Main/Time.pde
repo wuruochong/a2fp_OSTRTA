@@ -21,8 +21,10 @@ public class Time implements Comparable{
   if (min < 10) {
   m = "0" + min;
 }
+textSize(10);
 
   text(hour + " : " +  m, x+ 50, 650);
+//  textSize(60);
   fill(255);
   //println( ((Time)t).hour + " : " +  ((Time)t).min);
 
