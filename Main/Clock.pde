@@ -67,7 +67,7 @@ public class Clock {
     }
     text(str(hour()) + ':' + str(minute()), 100, 100); 
    
-    image(hImg, 920, 370, 110, 110);
+  
     // endShape();
     addA.draw();
   
@@ -75,7 +75,7 @@ public class Clock {
   for (Object t: alarm) {
     //fill(0);
     //text((Time)t).hour, tmpY, 
-    ((Time)t).draw(tmpY);
+    ((Time)t).draw(tmpX);
     //println( ((Time)t).hour + " : " +  ((Time)t).min);
     tmpX+=100;
   }
