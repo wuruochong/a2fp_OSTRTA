@@ -13,6 +13,7 @@ public class TestBase{
   LList<Monster> _monsterList;
   String[] _towerChoices = {"Canon", "Sniper", "Tesla", "Wall", "Gold", "Elixir"};
   LList<Tower> _enemyTowers;
+  int numTowers;
   Button win;
   Button lose;
   boolean cont;
@@ -66,7 +67,7 @@ public class TestBase{
   void loadTowers(int level, int tier) {
     this.tier = tier;
     //println(level);
-    int numTowers;
+    //int numTowers;
     if (level<= 50)
     {
     numTowers = 3 + (int) (Math.random() * 3);
@@ -221,9 +222,6 @@ public class TestBase{
   qBoard.printSolution();
   
   }
-
-  
-  
   
      /*
      AI BASE
@@ -234,9 +232,6 @@ public class TestBase{
   
   }
    }
-  
-  
-  
   
   
   public boolean placeMonsters() {
@@ -271,18 +266,26 @@ public class TestBase{
     
   void draw(){
       if (_enemyTowers.size()==0){ // fix later
-        text("Attack Successful!", 500, 500);
+        text("Attack Successful! The spoils of war go to you!", 500, 500);
         win.draw();
         if (win.buttonPressed(0)){
           cont = false;
-          base.exp += 50;
+          // give user spoils for winning war
+          base.exp += 150;
+          base._gold += tier * numTowers * 30;
+          base._elixir += tier * numTowers * 20;
         }
       }
+      
       else if ( _monsterList.size() == 0 ) {
-        text("Attack failed!", 500, 500);
+        text("Attack failed! But you still get some resources though", 500, 500);
         lose.draw();
         if (lose.buttonPressed(0)){
           cont = false;
+          // give user some resources
+          base._gold +=  (int) ((tier / 2.0) * (numTowers - _enemyTowers.size()) * 15);
+          base._elixir += (int) ((tier / 2.0) * (numTowers - _enemyTowers.size()) * 10);
+
         }
       }
       

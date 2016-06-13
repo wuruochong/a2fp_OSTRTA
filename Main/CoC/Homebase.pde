@@ -36,8 +36,8 @@ public class Homebase{
   //ArrayList<Monster> _monsterChoices;
   
   String[] _monsterNames = { "Barbarian", "Archer", "Goblin", "Giant", "Wizard"}; //for generating buttons
-  String[] _towerNames = { "Tesla", "Canon", "Sniper"};// "idk", "idk2"};//for generating buttons
-  String[] _towerPics = {"tesla.gif", "canon.png", "sniper.gif"};//, null, null};
+  String[] _towerNames = { "Tesla", "Canon", "Sniper", "Wall"};//for generating buttons
+  String[] _towerPics = {"tesla.gif", "canon.png", "sniper.gif", "walls.png"};
   
   int[] campFireLoc = {700, 700}; //random location
   int exp;
@@ -62,8 +62,7 @@ public class Homebase{
 
    troopPanel= loadImage("troops2.jpg");
    back = new Button(new int[] {300, 200}, new int[] {400,250}, "back", "confirm", 0);    
-    
-
+   
 
    //attributes 
    _drawTicks = 0;
@@ -124,6 +123,7 @@ public class Homebase{
   tmpX +=  137;
   } 
   
+  // DEFENSE TOWER SELECTION
   tmpX=225;
   for (int i = 0; i < _towerNames.length; i ++ ){
   _buttons.add (new Button (new int[] {tmpX, 225}, _towerNames[i], 4, _towerPics[i]));
@@ -131,7 +131,7 @@ public class Homebase{
   }//Button(int[] coor1, String tag, int screen, String i)
   
   // add exit button for each state
-  for ( int i = 0; i <= 4; i++ )
+  for ( int i = 1; i <= 4; i++ )
     _buttons.add(new Button(new int[] {1200, 20}, "exitToHome", i, "x.png") );
   _buttons.add(new Button(new int[] {1200,20}, "exitToHome", 7, "x.png") );
    
@@ -179,6 +179,7 @@ public class Homebase{
      text("TESLA", 225,400);
      text("CANON", 392,400);
      text("SNIPER", 550,400);
+     text("WALL", 700, 400);
    }
    
     
@@ -439,17 +440,18 @@ public class Homebase{
         else if (tag.equals("Tesla")) {
             state = 0;
             buyTower(new Tesla(mouseX, mouseY) );
-        
         }
         else if (tag.equals("Canon")) {
             state = 0;
             buyTower(new Canon(mouseX, mouseY) );
-        
         }
         else if (tag.equals("Sniper")) {
             state = 0;
             buyTower(new Sniper(mouseX, mouseY) );
-        
+        }
+        else if (tag.equals("Wall")) {
+          state = 0;
+          buyTower(new Wall(mouseX, mouseY) );
         }
         
         //EXIT

@@ -30,9 +30,12 @@ _ycor = y;
     
     void draw(){
       super.draw();
-     image(icon, _xcor + icon.width/2, _ycor + icon.height/2, 50, 50);
-    fill(0); 
-   text(_hp + " wall ", _xcor+70,  _ycor+40 ); 
+    imageMode(CENTER);
+    image(icon, _xcor, _ycor, 25, 25);
+    imageMode(CORNER);
+     //image(icon, _xcor + icon.width/2, _ycor + icon.height/2, 50, 50);
+      fill(0); 
+     text(_hp + " wall ", _xcor+50,  _ycor+35 ); 
     
     }
     
