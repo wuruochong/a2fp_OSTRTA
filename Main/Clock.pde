@@ -30,7 +30,6 @@ public class Clock {
   }
   
   void draw() {
-
     background(255);
     font = createFont ("Serif", 60);
     textFont (font);

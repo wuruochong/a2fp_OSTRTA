@@ -22,8 +22,12 @@ public class Event implements Comparable{
   
   void draw(int xcor, int ycor){
     textSize(20);
-    if ( minute < 10 )
+    if ( minute < 10 && hour < 10 )
+      text("0"+ hour + ":0" + minute + ":   " + event, xcor, ycor);
+    else if ( minute < 10 )
       text(hour + ":0" + minute + ":   " + event, xcor, ycor);
+    else if ( hour < 10 )
+      text("0"+ hour + ":" + minute + ":   " + event, xcor, ycor);
     else
       text(hour + ":" + minute + ":     " + event, xcor, ycor);
   }
