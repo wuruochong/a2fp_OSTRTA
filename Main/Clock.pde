@@ -24,13 +24,13 @@ public class Clock {
   tmpX = 100;
   
   alarm = new ArrayPriorityQueue<Time>();
-  addA = new Button(new int[] {780,200}, new int[] {1000, 360}, "addA", "add alarm", 0, new int[]{255, 255, 255}, new int[]{0,0,0}) ;
+  addA = new Button(new int[] {980,100}, new int[] {1100, 200}, "addA", "add alarm", 0, new int[]{255, 255, 255}, new int[]{0,0,0}) ;
  
   }
   
   void draw() {
     background(255);
-    font = createFont ("Serif", 60);
+    font = createFont ("Serif", 20);
     textFont (font);
     textAlign(LEFT);
     // Draw the clock background
@@ -93,6 +93,7 @@ public class Clock {
         
       String time =  JOptionPane.showInputDialog("hour: ");
       String time2 =  JOptionPane.showInputDialog("min: ");
+      
       try{
         Integer.parseInt(time);
         Integer.parseInt(time2);
