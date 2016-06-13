@@ -1,13 +1,15 @@
-//import processing.sound.*;
-//SoundFile file;
+import java.util.ArrayList;
+
 PImage cImg, hImg, wImg, caImg, camImg, CoCImg; //clock, home, wallpaper, calculator, camera
+
+ArrayList<Button> buttons;
 
 Clock clock;
 Calendar calen;
 Calculator calc;
 CoC coc;
 
-int state = 0; // 0 - VIEW, 1- CLOCK, 2- DAILY PLANNER, 3- CALCULATOR, 4 - COC
+int state = 0; // 0 - VIEW, 1- CLOCK, 2- DAILY PLANNER, state 3 does not exist, 4 - COC
 
 void setup() {
   size( 1280, 720);
@@ -18,32 +20,39 @@ void setup() {
   
   //icon images
   wImg = loadImage("wall.jpg");
-  cImg = loadImage("clock.png");
-  hImg = loadImage("home.jpg");
-  caImg = loadImage("calc.png");
+  //cImg = loadImage("clock.png");
+  //hImg = loadImage("home.jpg");
+  //caImg = loadImage("calc.png");
   camImg = loadImage("cam.jpg");
-  CoCImg = loadImage("CoC.jpg");
+  //CoCImg = loadImage("CoC.jpg");
+  
+  // load buttons
+  buttons = new ArrayList<Button>();
+  buttons.add(new Button(new int[] {950, 400}, "home", 0, "home.jpg"));
+  buttons.add(new Button(new int[] {440, 540}, "clock", 0, "clock.png"));
+  // place planner button here
+  buttons.add(new Button(new int[]  {550, 540}, "game", 0, "CoC.jpg")); 
+  
   reset();
 }
 
 void reset() {
   image(wImg, 35, 20, 910, 720);
   image(camImg, 15, 350, 40, 40);
-  image(cImg, 450, 550, 70, 70);
-  image(hImg, 920, 370, 110, 110);
-  image(caImg, 560, 550, 70, 70);
-  image(CoCImg, 670, 550, 70, 70);
+  //image(cImg, 450, 550, 70, 70);
+  //image(hImg, 920, 370, 110, 110);
+  //image(caImg, 560, 550, 70, 70);
+  //image(CoCImg, 670, 550, 70, 70);
+  for ( Button b : buttons )
+    b.draw();
 }
 
 void draw() {
-  if (state == 1)
-    {clock.draw();
+  if (state == 1) {
+    clock.draw();
    }
   else if (state == 4){
-
-    coc.draw();
-
-
+   coc.draw();
   }
   else if (state == 3) {
     calc.draw();
@@ -52,8 +61,8 @@ void draw() {
   else if (state == 0) {
     background(255);
     reset();
-      }
-      fill(0);
+  }
+  fill(0);
   text(mouseX + " : " + mouseY, mouseX + 2, mouseY+2);
  
 }
@@ -69,29 +78,43 @@ void mouseReleased()
 
 void mousePressed() {
   if (state == 1){
-  
      clock.mousePressed();
   }
   if (state == 4) {
       coc.mousePressed();
   }
-  if (state == 3) {
-    calc.mousePressed();
-  }
+  //if (state == 3) {
+  //  calc.mousePressed();
+  //}
   if (state == 0) {
-  if (mouseX >= 440 && mouseX <= 500 && mouseY >= 540 && mouseY <=600) {
-    state = 1;
-    //file.stop();
+    for ( Button button : buttons ) {
+      if ( button.buttonPressed(0) ) {
+        String tag = button.getID();
+        
+        if ( tag.equals("home") )
+          state = 0;
+        else if ( tag.equals("clock") )
+          state = 1;
+        else if ( tag.equals("planner") )
+          state = 2;
+        else if ( tag.equals("game") )
+          state = 4;
+      }
+    }
   }
-  if (mouseX >= 660 && mouseX <= 720 && mouseY >= 540 && mouseY <=600) {
-    state = 4;
-  }
-  if (mouseX >= 550 && mouseX <= 620 && mouseY >= 540 && mouseY <=610) {
-    state = 3;
-  }
-  if (mouseX >= 950 && mouseX <=1000 && mouseY >= 400 && mouseY <= 440 ) {
-    state = 0;
-  }
-  }
- 
+    /*
+    if (mouseX >= 440 && mouseX <= 500 && mouseY >= 540 && mouseY <=600) {
+      state = 1;
+      //file.stop();
+    }
+    if (mouseX >= 660 && mouseX <= 720 && mouseY >= 540 && mouseY <=600) {
+      state = 4;
+    } 
+    if (mouseX >= 550 && mouseX <= 620 && mouseY >= 540 && mouseY <=610) {
+      state = 4;
+    }
+    if (mouseX >= 950 && mouseX <=1000 && mouseY >= 400 && mouseY <= 440 ) {
+      state = 0;
+    } */
 }
+ 

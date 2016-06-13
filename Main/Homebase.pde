@@ -345,7 +345,9 @@ public class Homebase{
     }
    
    if (state == 0) {
+    
     for (Tower t: _towersOwned) {
+      /*
       if (mouseButton == RIGHT) {
         t.clicked = false;
         locked = false;
@@ -361,9 +363,9 @@ public class Homebase{
           for ( Monster m : tmp )
             h.addMonster(m);
         }
-      }
+      } */
       
-      else  if (mouseX >= (t._xcor - 50) 
+      /*else*/  if (mouseX >= (t._xcor - 50) 
         && mouseX <= (t._xcor + 50) 
         && mouseY >= (t._ycor - 50) 
         && mouseY <= (t._ycor + 50)) {
@@ -371,6 +373,7 @@ public class Homebase{
           t.clicked = true;
           break;
         }
+        
     }
    }
       
@@ -652,6 +655,18 @@ public class Homebase{
  void mouseReleased(){
    for (Tower t: _towersOwned) {
        t.clicked = false;
+       if ( t instanceof MonsterHouse ) {
+          // remove monsters from monster house and then re-add to place them correctly
+          MonsterHouse h = (MonsterHouse) t;
+          LList<Monster> tmp = new LList();
+          Iterator iter = h._monstersOwned.iterator();
+          while ( iter.hasNext() ) {
+            tmp.add( (Monster) (iter.next()) );
+            iter.remove();
+          }
+          for ( Monster m : tmp )
+            h.addMonster(m);
+        }
    }
    locked = false;
  }
