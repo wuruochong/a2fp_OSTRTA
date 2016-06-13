@@ -1,6 +1,10 @@
+6/10/16; 6/11/16; 6/12/16
+Kathy & Calvin & Ruochong: developed new plans; implemented all of gameplay flowchart; added new features (ie more towers); increased user visualization of gameplay mechanism; coded planner and clock applications
+(i.e. TOO much to write like this; look at git commit history instead)
+-----------------------------------------------------------------------------------------------------------------------------------------
 6/9/16
 Calvin & Ruochong: Fixed bugs, restructured data structure use, Queuing kinda works, Towers attack Monsters.
-
+-----------------------------------------------------------------------------------------------------------------------------------------
 6/8/16
 Calvin: 07:57 Transformed non-button click areas into actual buttons using the custom written button class
 Calvin: 11:04 New resource tower created; Restructured class interaction system; Laid groundwork for visually seeing where to place tower after it is bought
