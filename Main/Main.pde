@@ -10,7 +10,10 @@ Calculator calc;
 CoC coc;
 Planner plan;
 Button home;
+
 int state = 0; // 0 - VIEW, 1- CLOCK, 2- DAILY PLANNER, state 3 does not exist, 4 - COC
+int alarmDisplayTimer = 0;
+boolean alarmRinging;
 
 void setup() {
   size( 1280, 720);
@@ -20,6 +23,7 @@ void setup() {
   coc = new CoC();
   plan = new Planner();
   
+  alarmRinging = false;
   //icon images
   wImg = loadImage("wall.jpg");
   //cImg = loadImage("clock.png");
@@ -51,6 +55,30 @@ void reset() {
 }
 
 void draw() {
+  if ( ! clock.alarm.isEmpty()
+       && hour() == ((Time)clock.alarm.peekTop()).hour
+       && minute() == ((Time)clock.alarm.peekTop()).min ) {
+         println("hi");
+         alarmRinging = true;
+         clock.alarm.removeTop();
+       }
+   // ring alarm
+  if ( alarmRinging ) {
+    fill(255,0,0);
+    rect(640, 300, 200, 200);
+    textAlign(CENTER);
+    fill(0);
+    text("ALARM", 740, 400);
+    textAlign(CORNER);
+    
+    if ( alarmDisplayTimer > 50 ) {
+      alarmRinging = false;
+      alarmDisplayTimer = 0;
+    }
+    else
+      alarmDisplayTimer += 1;
+  }
+  
   if (state == 1) {
     clock.draw();
    }
