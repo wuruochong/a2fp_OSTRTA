@@ -1,4 +1,5 @@
-PImage bImg;
+public class CoC{
+ PImage   bImg;
 PFont font;
 Homebase base;
 TestBase test;
@@ -11,7 +12,7 @@ Selecter sel;
 
 ArrayList<Button> _buttons;
 
-void setup(){
+public CoC(){
   size(1280,720);
   bImg = loadImage("grass.jpg");
   image(bImg,0,0, 1280, 720);
@@ -88,7 +89,7 @@ void draw(){
     if (base.state!=6){
       attackButton.img = loadImage("attack.jpg");
     }
-    if (base.state==6){
+    if (coc.base.state==6){
       attackButton.img = loadImage("attack2.png");
     }
     attackButton.draw();
@@ -100,7 +101,7 @@ void draw(){
     }
     if (!test.cont){
       state = 0;
-      base.state = 0;
+      coc.base.state = 0;
     }
     // implement if button pushed to quit, make state == 0 
   }
@@ -127,4 +128,5 @@ void draw(){
   }
     //  fill(0);
   //  text( "x: " + mouseX + " y: " + mouseY, mouseX + 2, mouseY );
+}
 }
