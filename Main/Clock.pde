@@ -75,7 +75,7 @@ public class Clock {
   for (Object t: alarm) {
     //fill(0);
     //text((Time)t).hour, tmpY, 
-    ((Time)t).draw(tmpY);
+    ((Time)t).draw(tmpX);
     //println( ((Time)t).hour + " : " +  ((Time)t).min);
     tmpX+=100;
   }
