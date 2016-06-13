@@ -9,12 +9,25 @@ public class Time implements Comparable{
   }
 
   public int compareTo(Object e){
+      int hNow = hour();
+      int mNow = min();
+      // if returns positive number, lower priority
       int tNow = hour() * 60 + min();
-      int myTime = (( ((Time)e).hour)*60+((Time)e).min);
-      int oTime = ((this.hour)*60+this.min)
-      return (tNow - oTime)-(tNow -myTime) ;
+      int oTime = (( ((Time)e).hour)*60+((Time)e).min);
+      int myTime = ((this.hour)*60+this.min)
+      
+      if ( tNow > myTime && tNow > oTime ) {
+        return (tNow - oTime) - (tNow - myTime);
+      }
+      else if ( tNow > myTime )
+        return 1;
+      else if ( tNow > oTime )
+        return -1;
+      else {
+        return (myTime - tNow) - (oTime - tNow);
+      }
   }
-
+s
   void draw(int x) {
   rect(x, 600, 100, 100);
   textSize(12);
