@@ -9,10 +9,10 @@ public class Time implements Comparable{
   }
 
   public int compareTo(Object e){
-      int tNow = hour() * 60 + min();
+      //int tNow = hour() * 60 + min();
       int myTime = (( ((Time)e).hour)*60+((Time)e).min);
-      int oTime = ((this.hour)*60+this.min)
-      return (tNow - oTime)-(tNow -myTime) ;
+      int oTime = ((this.hour)*60+this.min);
+      return myTime - oTime ;
   }
 
   void draw(int x) {

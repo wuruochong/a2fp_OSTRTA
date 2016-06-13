@@ -73,13 +73,17 @@ public class Clock {
     addA.draw();
   
   int tmpX = 50;
-  for (Object t: alarm) {
-    //fill(0);
-    //text((Time)t).hour, tmpY, 
-    ((Time)t).draw(tmpX);
-    //println( ((Time)t).hour + " : " +  ((Time)t).min);
+  for (int i = alarm._queue.size(); i > 0; i --) {
+    ((Time)alarm._queue.get(i-1)).draw(tmpX);
     tmpX+=100;
   }
+//  for (Object t: alarm) {
+    //fill(0);
+    //text((Time)t).hour, tmpY, 
+  //  ((Time)t).draw(tmpX);
+    //println( ((Time)t).hour + " : " +  ((Time)t).min);
+   // tmpX+=100;
+ // }
   
   }
  
