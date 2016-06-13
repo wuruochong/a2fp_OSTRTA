@@ -93,6 +93,7 @@ public class Clock {
         
       String time =  JOptionPane.showInputDialog("hour: ");
       String time2 =  JOptionPane.showInputDialog("min: ");
+      
       try{
         Integer.parseInt(time);
         Integer.parseInt(time2);

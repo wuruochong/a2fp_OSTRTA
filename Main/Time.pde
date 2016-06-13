@@ -17,7 +17,12 @@ public class Time implements Comparable{
   rect(x, 600, 100, 100);
   textSize(12);
   fill(0);
-  text(hour + " : " +  min, x+ 50, 650);
+  String m = "";
+  if (min < 10) {
+  m = "0" + min;
+}
+
+  text(hour + " : " +  m, x+ 50, 650);
   fill(255);
   //println( ((Time)t).hour + " : " +  ((Time)t).min);
 
