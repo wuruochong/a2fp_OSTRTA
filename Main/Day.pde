@@ -1,23 +1,23 @@
 public class Day {
-  int _currDay;
+  String _day;
+//  ArrayPriorityQueue<Event> _events;
   Day _nextDay;
+  Day _prevDay;
   
-//Constructor 
-  Day( int value, Day next ){
-    _currDay = value;
-    _nextDay = next; }
-  
-  Day getNext() {return _nextDay;}
-   
-  int getDay() {
-    return _currDay;
+  public Day(String day){
+    _day = day;
+ //   _events = new ArrayPriorityQueue<Event>;
+    _nextDay = null;
+    _prevDay = null;
   }
-  
-  void setDay(int newCurr) {
-    _currDay = newCurr; 
+  public Day(String day, prevDay, nextDay){
+    _day = day;
+    _prevDay = prevDay;
+    _nextDay = nextDay;
   }
-  
-  void setNext (Day next) {
-    _nextDay = next;
+  void draw(){
+    fill(0);
+    textSize(30);
+    text(_day, 550, 0);
   }
 }
