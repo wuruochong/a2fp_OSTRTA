@@ -4,6 +4,8 @@ Kathy Lau
 Calvin Vuong
 Ruochong Wu
 
+*** NOTE: Some files have been removed and readded, so contribution history for each file and line addition numbers are not accurate; refer to commit history instead for accurate details.
+
 USE OF DATA STRUCTURES:
 - Priority Queue: 
     - defense towers can accurately target monsters
