@@ -30,8 +30,9 @@ public class Clock {
   
   void draw() {
     background(255);
-    font = createFont ("Serif", 20);
-    textFont (font);
+    //font = createFont ("Serif", 20);
+    //textFont (font);
+    textSize(60);
     textAlign(LEFT);
     // Draw the clock background
     fill(225);
@@ -66,7 +67,7 @@ public class Clock {
       vertex(x, y);
     }
     text(str(hour()) + ':' + str(minute()), 100, 100); 
-   
+   textSize(20);
   
     // endShape();
     addA.draw();

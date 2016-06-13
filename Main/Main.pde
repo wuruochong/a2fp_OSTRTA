@@ -74,7 +74,7 @@ void draw() {
     text("ALARM", 740, 400);
     textAlign(CORNER);
     
-    if ( alarmDisplayTimer > 500 ) {
+    if ( alarmDisplayTimer > 1000000000 ) {
       alarmRinging = false;
       alarmDisplayTimer = 0;
     }
