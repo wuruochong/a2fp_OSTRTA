@@ -93,6 +93,14 @@ public class Clock {
         
       String time =  JOptionPane.showInputDialog("hour: ");
       String time2 =  JOptionPane.showInputDialog("min: ");
+      try{
+        Integer.parseInt(time);
+        Integer.parseInt(time2);
+      }
+      catch (Exception e) {
+        time = "0";
+        time2 = "0";
+      }
       
       Time newAlarm = new Time(Integer.parseInt(time), Integer.parseInt(time2));
       alarm.add (newAlarm); //implementation to add to queue
@@ -101,9 +109,9 @@ public class Clock {
       //(int[] coor1, int[] coor2, String tag, String text, int screen)
     }
     
-      if (mouseX >= 950 && mouseX <=1000 && mouseY >= 400 && mouseY <= 440 ) {
-    state = 0;
-  }
+      //if (mouseX >= 950 && mouseX <=1000 && mouseY >= 400 && mouseY <= 440 ) {
+    //state = 0;
+  //}
     
     
     }
