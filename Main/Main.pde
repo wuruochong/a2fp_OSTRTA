@@ -55,7 +55,8 @@ void reset() {
 }
 
 void draw() {
-  if ( ! clock.alarm.isEmpty()
+  //println( alarmRinging );
+  if ( ! clock.alarm.isEmpty() && ! alarmRinging
        && hour() == ((Time)clock.alarm.peekTop()).hour
        && minute() == ((Time)clock.alarm.peekTop()).min ) {
          println("hi");
@@ -63,7 +64,9 @@ void draw() {
          clock.alarm.removeTop();
        }
    // ring alarm
+   //alarmRinging = true;
   if ( alarmRinging ) {
+    println("lolz");
     fill(255,0,0);
     rect(640, 300, 200, 200);
     textAlign(CENTER);
@@ -71,7 +74,7 @@ void draw() {
     text("ALARM", 740, 400);
     textAlign(CORNER);
     
-    if ( alarmDisplayTimer > 50 ) {
+    if ( alarmDisplayTimer > 500 ) {
       alarmRinging = false;
       alarmDisplayTimer = 0;
     }
