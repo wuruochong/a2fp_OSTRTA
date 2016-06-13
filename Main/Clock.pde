@@ -20,6 +20,7 @@ public class Clock {
    minutesRadius= radius * 0.30;
    hoursRadius= radius * 0.25;
    clockDiameter= radius * 0.8;
+    hImg = loadImage("home.jpg");
    
   tmpX = 100;
   
@@ -67,21 +68,18 @@ public class Clock {
       vertex(x, y);
     }
     text(str(hour()) + ':' + str(minute()), 100, 100); 
-    hImg = loadImage("home.jpg");
+   
     image(hImg, 920, 370, 110, 110);
     // endShape();
     addA.draw();
-  
- /* for (Object t: alarm) {
-    rect(tmpX, 600, 100, 100);
-    fill(0);
-    text(( (Time)t).hour + " : " +  ((Time)t).min,tmpX+ 20, 800);
+    
+  for (Object t: alarm) {
+    ((Time)t).draw(tmpX);
     println( ((Time)t).hour + " : " +  ((Time)t).min);
-  }*/
-  
-  for (Button b: _buttons) {
-    b.draw();
+    tmpX+=100;
+    
   }
+  
   }
  
 
